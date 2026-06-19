@@ -40,6 +40,20 @@
         select:focus, input:focus { border-color: #3498db; outline: none; }
         select:disabled { opacity: 0.4; cursor: not-allowed; }
         
+        /* Modernizacija i čišćenje input polja za cenu */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type=number] {
+            -moz-appearance: textfield;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #2ecc71;
+        }
+        
         #savet-boks {
             margin-top: 25px;
             padding: 18px;
@@ -88,7 +102,6 @@
         .btn-ocena.minus:hover, .btn-ocena.minus.aktivno { background: #f1c40f; color: #000; box-shadow: 0 3px 10px rgba(241,196,15,0.3); }
         .btn-ocena.kriticno:hover, .btn-ocena.kriticno.aktivno { background: #e74c3c; color: #fff; box-shadow: 0 3px 10px rgba(231,76,60,0.3); }
 
-        /* Akciono dugme za izveštaj */
         .btn-glavno {
             width: 100%;
             padding: 15px;
@@ -104,7 +117,6 @@
         }
         .btn-glavno:hover { background: #2980b9; }
 
-        /* Boks za prikaz generisanog tekstualnog izveštaja */
         #izvestaj-boks {
             display: none;
             margin-top: 25px;
@@ -223,7 +235,6 @@
         ]
     };
 
-    // Objekat koji pamti tekstualni status ("OK", "MINUS", "KRITIČNO") i vrednost kazne
     let stanjeStavki = {};
 
     const markaSelect = document.getElementById("marka");
@@ -317,7 +328,6 @@
             katBlok.innerHTML = `<div class="kategorija-naslov">${imeKat}</div>`;
 
             strukturaCekListe[imeKat].forEach(st => {
-                // Inicijalno stanje stavke je OK (0 odbitka)
                 stanjeStavki[st.id] = { tekst: st.tekst, status: "OK", odbitak: 0 };
 
                 const stavkaDiv = document.createElement("div");
@@ -361,12 +371,10 @@
         finalnaCenaTxt.textContent = Math.round(finalnaCena) + " €";
     }
 
-    // NOVO: Generisanje čistog tekstualnog izveštaja
     function generisiTekstualniIzvestaj() {
         const marka = markaSelect.value;
         const model = modelSelect.value;
         const godiste = godisteSelect.value;
-        
         let danas = new Date().toLocaleDateString('sr-RS');
         
         let tekst = `=== AUTOLOVAC PRO REPORT ===\n`;
@@ -396,12 +404,9 @@
         
         izvestajTekst.textContent = tekst;
         izvestajBoks.style.display = "block";
-        
-        // Automatski skroluj ekran do izveštaja
         izvestajBoks.scrollIntoView({ behavior: 'smooth' });
     }
 
-    // Funkcija za brzo kopiranje na klik
     function kopirajTekst() {
         const tekst = izvestajTekst.textContent;
         navigator.clipboard.writeText(tekst).then(() => {
