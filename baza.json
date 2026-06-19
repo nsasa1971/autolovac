@@ -2,7 +2,29 @@
   "Volkswagen": {
     "Golf": {
       "2004-2008 (Golf 5)": "Obratite pažnju na rđu na pragovima i rubovima. Kod 2.0 TDI motora problem su bile Siemens dizne i pucanje glave motora, dok je 1.9 TDI daleko pouzdaniji.",
-      "2009-2013 (Golf 6)": "Glavna mana kod 1.6 TDI motora su osetljive i skupe dizne (brizgaljke), kao i EGR ventil. Proverite stanje plivajućeg zamajca."
+      "2009-2013 (Golf 6)": "Glavna mana kod 1.6 TDI motora su osetljive i skupe dizne (brizgaljke), kao i EGR ventil. Proverite stanje plivajućeg zamajca.",
+      "2013-2019 (Golf 7)": "Kod dizelaša proveriti pumpu za vodu koja rano otkazuje. Elektronska parkirna kočnica i infotejment ekran znaju da baguju."
+    },
+    "Passat": {
+      "2005-2010 (Passat B6)": "Rani modeli imaju problem sa uljnom pumpom (šestougaona osovina). Česti su kvarovi na tasteru elektronske ručne kočnice i rđa na gepek vratima.",
+      "2011-2014 (Passat B7)": "Generalno pouzdaniji od B6. Glavne stavke za proveru su DSG menjač (mora glatko da šalta) i potencijalno začepljenje DPF filtera kod gradske vožnje."
+    }
+  },
+  "Audi": {
+    "A4": {
+      "2008-2015 (B8)": "Kod 2.0 TFSI benzinaca proverite potrošnju ulja (karike). Kod dizelaša problem može biti pumpa visokog pritiska (CP4 pumpa koja pravi opiljke) i zamajac.",
+      "2015-2022 (B9)": "Obratite pažnju na curenje rashladne tečnosti (kućište termostata). S-Tronic menjač zahteva redovan servis na 60.000 km inače je skup za popravku."
+    }
+  },
+  "BMW": {
+    "Serija 3": {
+      "2005-2011 (E90)": "Kod N47 dizel motora (posle 2007) lanac je kritična tačka i nalazi se pozadi. Proveriti i grejač kabine i amortizere.",
+      "2012-2019 (F30)": "Takođe proveriti pogonski lanac kod ranih N47/N20 motora. Letva volana može imati luft, a plastične cevi za rashladnu tečnost postaju krte."
+    }
+  },
+  "Mercedes-Benz": {
+    "C-Klasa": {
+      "2007-2014 (W204)": "Zadnji most (kolijevka) je sklon teškoj koroziji i pucanju. Kod OM651 dizel motora proveriti zatezač lanca i curenje na kućištu filtera goriva."
     }
   },
   "Opel": {
@@ -15,6 +37,12 @@
     "Punto": {
       "1999-2005 (Classic)": "Slaba tačka im je 'City' servo volan (senzori pozicije otkazuju). Kod benzinca 1.2 hoće da ode dihtung glave motora.",
       "2006-2015 (Grande / Evo)": "1.3 Multijet motori su odlični, ali treba proveriti rastezanje pogonskog lanca. Elektronika i enterijer su znatno bolji nego kod starijeg modela."
+    }
+  },
+  "Renault": {
+    "Megane": {
+      "2008-2016 (Megane 3)": "Česti sitni problemi sa elektronikom (kartica za paljenje, el. podizači). Trapovi su osetljivi, ali je 1.5 dCi motor u ovom modelu odličan.",
+      "2016-2022 (Megane 4)": "Infotejment sistem (R-Link) često koči ili se resetuje. Proveriti zadnje torzione osovine i zazore na gepeku koji fabrički znaju biti krivi."
     }
   }
 }
