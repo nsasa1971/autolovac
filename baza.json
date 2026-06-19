@@ -1,0 +1,20 @@
+{
+  "Volkswagen": {
+    "Golf": {
+      "2004-2008 (Golf 5)": "Obratite pažnju na rđu na pragovima i rubovima. Kod 2.0 TDI motora problem su bile Siemens dizne i pucanje glave motora, dok je 1.9 TDI daleko pouzdaniji.",
+      "2009-2013 (Golf 6)": "Glavna mana kod 1.6 TDI motora su osetljive i skupe dizne (brizgaljke), kao i EGR ventil. Proverite stanje plivajućeg zamajca."
+    }
+  },
+  "Opel": {
+    "Astra": {
+      "2004-2010 (Astra H)": "Čest problem sa CIM modulom (otkazuju komande na volanu i sirena). Kod 1.7 CDTI motora alternator je slaba tačka, a kod 1.9 CDTI usisna grana.",
+      "2010-2015 (Astra J)": "Automobili su dosta teški, pa benzinski motori bez turbine troše više. Problematični mogu biti M32 manuelni menjači (ležajevi)."
+    }
+  },
+  "Fiat": {
+    "Punto": {
+      "1999-2005 (Classic)": "Slaba tačka im je 'City' servo volan (senzori pozicije otkazuju). Kod benzinca 1.2 hoće da ode dihtung glave motora.",
+      "2006-2015 (Grande / Evo)": "1.3 Multijet motori su odlični, ali treba proveriti rastezanje pogonskog lanca. Elektronika i enterijer su znatno bolji nego kod starijeg modela."
+    }
+  }
+}
