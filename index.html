@@ -3,653 +3,1165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AutoLovac PRO - Inspekcija i OBD2</title>
+    <title>AutoLovac PRO</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
         :root {
-            --bg-spolja: #f8fafc;        
-            --bg-kartica: #020617;       
-            --bg-polja: #0f172a;         
-            --ivica: #1e293b;            
-            --zlatna-svetla: #fde047;
-            --zlatna-srednja: #f59e0b;
-            --zlatna-tamna: #b45309;
-            --zelena: #10b981;    
-            --zuta: #eab308;      
-            --crvena: #ef4444;    
-            --tekst-glavni: #f8fafc;
-            --tekst-bledi: #94a3b8;
+            --bg: #0a0a0f;
+            --surface: #111118;
+            --surface2: #18181f;
+            --surface3: #1f1f2a;
+            --border: rgba(255,255,255,0.07);
+            --border2: rgba(255,255,255,0.12);
+            --gold: #f5a623;
+            --gold-dim: rgba(245,166,35,0.15);
+            --gold-glow: rgba(245,166,35,0.08);
+            --green: #22c55e;
+            --green-dim: rgba(34,197,94,0.12);
+            --yellow: #eab308;
+            --yellow-dim: rgba(234,179,8,0.12);
+            --red: #ef4444;
+            --red-dim: rgba(239,68,68,0.12);
+            --blue: #3b82f6;
+            --blue-dim: rgba(59,130,246,0.12);
+            --text: #f1f5f9;
+            --text2: #94a3b8;
+            --text3: #475569;
+            --radius: 14px;
+            --radius-sm: 8px;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-spolja);
-            color: var(--tekst-glavni);
-            margin: 0;
-            padding: 20px 15px;
-            display: flex;
-            justify-content: center;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
             min-height: 100vh;
+            padding: 20px 16px 140px;
             -webkit-font-smoothing: antialiased;
         }
-        
-        .kontejner {
-            max-width: 500px;
-            width: 100%;
-            background: var(--bg-kartica);
-            padding: 40px 30px;
-            border-radius: 28px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            border: 1px solid var(--ivica);
-            box-sizing: border-box;
-            position: relative;
+
+        .app {
+            max-width: 520px;
+            margin: 0 auto;
         }
-        
-        .zaglavlje-sekcija { text-align: center; margin-bottom: 35px; }
-        
-        .ikona-kontejner {
-            width: 70px;
-            height: 70px;
-            background: var(--bg-polja);
+
+        /* HEADER */
+        .header {
+            text-align: center;
+            padding: 32px 0 28px;
+        }
+        .logo-wrap {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            background: var(--surface2);
+            border: 1px solid var(--border2);
             border-radius: 20px;
+            padding: 14px 24px;
+            margin-bottom: 20px;
+        }
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--gold-dim);
+            border: 1px solid rgba(245,166,35,0.3);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 15px auto;
-            border: 1px solid var(--zlatna-tamna);
-            box-shadow: 0 4px 15px -1px rgba(245, 158, 11, 0.2);
         }
+        .logo-icon i { font-size: 22px; color: var(--gold); }
+        .logo-text h1 { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; color: #fff; text-align: left; line-height: 1.1; }
+        .logo-text span { font-size: 12px; color: var(--text2); font-weight: 500; }
+        .header-badges {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .badge {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 99px;
+            padding: 5px 12px;
+            font-size: 11px;
+            color: var(--text2);
+            font-weight: 600;
+        }
+        .badge i { margin-right: 4px; font-size: 10px; }
+        .badge.gold { border-color: rgba(245,166,35,0.3); color: var(--gold); background: var(--gold-glow); }
 
-        .ikona-kontejner i {
-            font-size: 32px;
-            background: linear-gradient(135deg, var(--zlatna-svetla), var(--zlatna-srednja));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        h1 { margin: 0 0 5px 0; font-size: 28px; font-weight: 800; letter-spacing: -0.5px; color: white; }
-        .podnaslov { color: var(--tekst-bledi); margin: 0; font-size: 14px; font-weight: 500; }
-        
-        label { display: block; margin-top: 15px; margin-bottom: 8px; color: var(--tekst-bledi); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
-
-        select, input {
-            width: 100%;
-            padding: 16px;
-            background: var(--bg-polja);
-            color: white;
-            border: 1px solid var(--ivica);
-            border-radius: 16px;
-            font-size: 16px;
-            font-weight: 500;
-            box-sizing: border-box;
-            transition: all 0.2s;
-            appearance: none;
-        }
-        select:focus, input:focus { border-color: var(--zlatna-srednja); outline: none; box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.1); }
-        select:disabled { opacity: 0.4; }
-        
-        input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
-        input[type=number] { -moz-appearance: textfield; text-align: center; font-size: 24px; font-weight: 700; color: var(--zelena); }
-        
-        #savet-boks {
-            margin-top: 30px;
+        /* CARDS */
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
             padding: 20px;
-            background: rgba(245, 158, 11, 0.05);
-            border: 1px solid rgba(245, 158, 11, 0.3);
-            border-radius: 16px;
-            display: none;
+            margin-bottom: 12px;
         }
-        #savet-boks h3 { margin: 0 0 10px 0; color: var(--zlatna-srednja); font-size: 15px; font-weight: 700; }
-        #tekst-mane { font-size: 14px; line-height: 1.6; color: var(--tekst-glavni); margin: 0; }
-
-        #cek-lista-modul { display: none; margin-top: 40px; }
-        .kategorija-blok { margin-top: 30px; }
-        
-        .kategorija-naslov { 
-            color: var(--zlatna-svetla); 
-            font-size: 16px; 
-            margin-bottom: 15px;
+        .card-title {
+            font-size: 11px;
             font-weight: 700;
-            border-bottom: 1px solid var(--ivica);
-            padding-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text3);
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
-        
+        .card-title i { color: var(--gold); font-size: 12px; }
+
+        /* INPUTS */
+        label {
+            display: block;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            color: var(--text3);
+            margin-bottom: 6px;
+            margin-top: 14px;
+        }
+        label:first-of-type { margin-top: 0; }
+
+        select, input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 13px 16px;
+            background: var(--surface2);
+            color: var(--text);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-size: 15px;
+            font-weight: 500;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+        select:focus, input:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px var(--gold-dim);
+        }
+        select:disabled { opacity: 0.35; cursor: not-allowed; }
+
+        input[type="number"] {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--gold);
+            text-align: center;
+        }
+        input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; }
+        input[type="number"] { -moz-appearance: textfield; }
+
+        /* SELECT ARROW */
+        .select-wrap { position: relative; }
+        .select-wrap::after {
+            content: '\f107';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text3);
+            pointer-events: none;
+            font-size: 13px;
+        }
+
+        /* ALERT BOX */
+        .alert-box {
+            background: rgba(245,166,35,0.07);
+            border: 1px solid rgba(245,166,35,0.2);
+            border-left: 3px solid var(--gold);
+            border-radius: var(--radius-sm);
+            padding: 14px 16px;
+            display: none;
+            margin-top: 12px;
+        }
+        .alert-box h4 {
+            color: var(--gold);
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 7px;
+        }
+        .alert-box p { font-size: 13px; line-height: 1.6; color: var(--text2); }
+
+        /* CHECKLIST */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 0 10px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 14px;
+        }
+        .section-header-num {
+            width: 26px;
+            height: 26px;
+            background: var(--gold-dim);
+            border: 1px solid rgba(245,166,35,0.3);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--gold);
+            flex-shrink: 0;
+        }
+        .section-header span { font-size: 14px; font-weight: 700; color: var(--text); }
+
         .stavka {
-            background: var(--bg-polja);
-            padding: 20px;
-            border-radius: 20px;
-            margin-bottom: 15px;
-            border: 1px solid var(--ivica);
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 14px 16px;
+            margin-bottom: 8px;
+            transition: border-color 0.2s;
         }
-        .stavka-tekst { margin-bottom: 15px; font-weight: 500; font-size: 14px; color: var(--tekst-glavni); line-height: 1.5; }
-        
-        .opcije-grupa { display: flex; gap: 8px; }
+        .stavka.ocenjen { border-color: var(--border2); }
+        .stavka-tekst {
+            font-size: 13px;
+            color: var(--text2);
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+        .opcije-grupa { display: flex; gap: 6px; }
         .btn-ocena {
             flex: 1;
-            padding: 12px 0;
-            border: 1px solid var(--ivica);
-            border-radius: 9999px;
+            padding: 10px 4px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
             font-weight: 700;
             font-size: 11px;
             cursor: pointer;
             background: transparent;
-            color: var(--tekst-bledi);
-            transition: all 0.2s;
-        }
-        
-        .btn-ocena.ok.aktivno { background: var(--zelena); border-color: var(--zelena); color: white; }
-        .btn-ocena.minus.aktivno { background: var(--zuta); border-color: var(--zuta); color: #000; }
-        .btn-ocena.kriticno.aktivno { background: var(--crvena); border-color: var(--crvena); color: white; }
-
-        /* NOVO: STILOVI ZA OBD SEKCIJU */
-        .obd-unos-grupa { display: flex; gap: 10px; margin-bottom: 15px; }
-        .obd-unos-grupa input { flex: 2; text-transform: uppercase; font-family: monospace; letter-spacing: 1px; font-size: 18px;}
-        .obd-unos-grupa button { 
-            flex: 1; 
-            background: var(--bg-polja); 
-            color: var(--zlatna-svetla); 
-            border: 1px solid var(--zlatna-tamna); 
-            border-radius: 16px; 
-            font-weight: bold; 
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .obd-unos-grupa button:hover { background: rgba(245, 158, 11, 0.1); }
-        
-        .obd-stavka {
-            background: rgba(239, 68, 68, 0.1);
-            border: 1px solid rgba(239, 68, 68, 0.3);
-            padding: 15px;
-            border-radius: 12px;
+            color: var(--text3);
+            transition: all 0.15s;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            margin-bottom: 10px;
+            justify-content: center;
+            gap: 4px;
         }
-        .obd-stavka-info { color: #fca5a5; font-size: 13px; }
-        .obd-stavka-kod { font-weight: bold; color: white; font-size: 15px; margin-bottom: 3px; display: block;}
-        .btn-obrisi-obd {
-            background: transparent; border: none; color: var(--crvena); font-size: 18px; cursor: pointer;
+        .btn-ocena:hover { border-color: var(--border2); color: var(--text2); }
+        .btn-ocena.ok.aktivno { background: var(--green-dim); border-color: rgba(34,197,94,0.4); color: var(--green); }
+        .btn-ocena.minus.aktivno { background: var(--yellow-dim); border-color: rgba(234,179,8,0.4); color: var(--yellow); }
+        .btn-ocena.kriticno.aktivno { background: var(--red-dim); border-color: rgba(239,68,68,0.4); color: var(--red); }
+
+        /* OBD */
+        .obd-row { display: flex; gap: 8px; margin-bottom: 12px; }
+        .obd-row input {
+            flex: 1;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            letter-spacing: 2px;
+            font-size: 16px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+        .btn-obd-add {
+            padding: 0 18px;
+            background: var(--gold-dim);
+            border: 1px solid rgba(245,166,35,0.3);
+            border-radius: var(--radius-sm);
+            color: var(--gold);
+            font-weight: 700;
+            font-size: 13px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: 0.15s;
+        }
+        .btn-obd-add:hover { background: rgba(245,166,35,0.25); }
+
+        .obd-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--red-dim);
+            border: 1px solid rgba(239,68,68,0.2);
+            border-radius: var(--radius-sm);
+            padding: 12px 14px;
+            margin-bottom: 6px;
+            animation: slideIn 0.2s ease;
+        }
+        @keyframes slideIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+        .obd-icon { color: var(--red); font-size: 16px; flex-shrink: 0; }
+        .obd-info { flex: 1; min-width: 0; }
+        .obd-kod { font-weight: 800; font-size: 14px; color: #fca5a5; font-family: monospace; }
+        .obd-opis { font-size: 12px; color: var(--text2); margin-top: 2px; line-height: 1.4; }
+        .obd-kazna { font-size: 12px; font-weight: 700; color: var(--red); white-space: nowrap; }
+        .btn-obd-del { background: none; border: none; color: var(--text3); cursor: pointer; padding: 4px; font-size: 16px; transition: color 0.15s; }
+        .btn-obd-del:hover { color: var(--red); }
+
+        .obd-hint {
+            font-size: 11px;
+            color: var(--text3);
+            text-align: center;
+            padding: 10px;
+            border: 1px dashed var(--border);
+            border-radius: var(--radius-sm);
+            margin-top: 4px;
         }
 
-        .btn-glavno {
+        /* BUTTONS */
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
             width: 100%;
-            padding: 18px;
-            background: linear-gradient(135deg, var(--zlatna-srednja), var(--zlatna-tamna));
-            color: #fff;
+            padding: 15px;
             border: none;
-            border-radius: 16px;
-            font-size: 15px;
+            border-radius: var(--radius-sm);
+            font-size: 14px;
             font-weight: 700;
             cursor: pointer;
-            margin-top: 20px;
+            margin-top: 10px;
             transition: all 0.2s;
+            letter-spacing: 0.2px;
         }
-        .btn-glavno:hover { filter: brightness(1.1); }
+        .btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
+        .btn:active { transform: translateY(0); }
+        .btn-primary { background: linear-gradient(135deg, #f5a623 0%, #e08e10 100%); color: #1a0e00; }
+        .btn-red { background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.3); color: #fca5a5; }
+        .btn-green { background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.3); color: #86efac; }
+        .btn-blue { background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.3); color: #93c5fd; }
 
-        #izvestaj-boks {
+        /* REPORT */
+        .report-box {
             display: none;
-            margin-top: 20px;
-            background: #000;
-            padding: 20px;
-            border-radius: 16px;
-            border: 1px dashed var(--ivica);
+            margin-top: 12px;
         }
-        #izvestaj-tekst { color: var(--zelena); font-family: monospace; white-space: pre-wrap; font-size: 13px; line-height: 1.5; }
+        .report-terminal {
+            background: #050505;
+            border: 1px solid rgba(34,197,94,0.2);
+            border-radius: var(--radius-sm);
+            padding: 18px;
+            margin-bottom: 10px;
+        }
+        .report-terminal pre {
+            color: #86efac;
+            font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+            font-size: 12px;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        .report-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+        .report-actions .btn { margin-top: 0; }
+        .report-actions .btn-blue { grid-column: 1 / -1; }
 
-        #cenkanje-bar {
+        /* BOTTOM BAR */
+        .price-bar {
             position: fixed;
-            bottom: 25px;
+            bottom: 0;
             left: 0;
             right: 0;
-            margin: 0 auto;
-            max-width: 480px;
-            width: 90%;
-            background: linear-gradient(135deg, #fcd34d 0%, #f59e0b 50%, #d97706 100%);
-            border: 1px solid #fde047;
-            border-radius: 9999px;
-            padding: 15px 25px;
-            box-shadow: 0 15px 30px -5px rgba(217, 119, 6, 0.4);
+            padding: 14px 16px 20px;
+            background: linear-gradient(to top, var(--bg) 60%, transparent);
             display: none;
-            box-sizing: border-box;
-            z-index: 1000;
+            z-index: 100;
         }
-        .cenkanje-sadrzaj { display: flex; justify-content: space-between; align-items: center; }
-        .cenkanje-sadrzaj span:first-child { font-size: 14px; color: #451a03; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
-        #finalna-cena { color: #451a03; font-size: 24px; font-weight: 900; }
+        .price-bar-inner {
+            max-width: 520px;
+            margin: 0 auto;
+            background: var(--surface);
+            border: 1px solid var(--border2);
+            border-radius: var(--radius);
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            box-shadow: 0 -4px 30px rgba(0,0,0,0.6);
+        }
+        .price-bar-left { display: flex; flex-direction: column; gap: 2px; }
+        .price-bar-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.8px; font-weight: 700; color: var(--text3); }
+        .price-bar-sub { font-size: 11px; color: var(--text3); }
+        .price-bar-sub span { color: var(--red); font-weight: 600; }
+        .price-val {
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--gold);
+            letter-spacing: -1px;
+        }
+        .price-diff {
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .price-diff.negative { color: var(--red); }
+        .price-diff.zero { color: var(--text3); }
+
+        /* PROGRESS INDICATOR */
+        .progress-steps {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 20px;
+        }
+        .step-dot {
+            flex: 1;
+            height: 3px;
+            border-radius: 99px;
+            background: var(--surface2);
+            transition: background 0.3s;
+        }
+        .step-dot.active { background: var(--gold); }
+        .step-dot.done { background: var(--green); }
+
+        /* SCORE SUMMARY */
+        .score-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        .score-item {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 12px;
+            text-align: center;
+        }
+        .score-num { font-size: 22px; font-weight: 800; }
+        .score-lbl { font-size: 10px; color: var(--text3); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+        .score-num.ok { color: var(--green); }
+        .score-num.warn { color: var(--yellow); }
+        .score-num.crit { color: var(--red); }
+
+        /* TOAST */
+        .toast {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: var(--surface);
+            border: 1px solid var(--border2);
+            border-radius: 99px;
+            padding: 10px 20px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text);
+            z-index: 1000;
+            opacity: 0;
+            transition: all 0.3s;
+            white-space: nowrap;
+            pointer-events: none;
+        }
+        .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+        .toast i { margin-right: 6px; }
+
+        /* RESPONSIVE */
+        @media (max-width: 400px) {
+            .opcije-grupa { flex-direction: column; }
+            .btn-ocena { padding: 9px; }
+            .logo-wrap { padding: 12px 16px; }
+        }
     </style>
 </head>
 <body>
 
-<div class="kontejner" style="margin-bottom: 120px;">
-    
-    <div class="zaglavlje-sekcija">
-        <div class="ikona-kontejner">
-            <i class="fa-solid fa-list-check"></i>
+<div class="app">
+
+    <div class="header">
+        <div class="logo-wrap">
+            <div class="logo-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+            <div class="logo-text">
+                <h1>AutoLovac PRO</h1>
+                <span>Digitalni asistent za pregled vozila</span>
+
+            </div>
         </div>
-        <h1>AutoLovac PRO</h1>
-        <p class="podnaslov">Digitalni asistent za provjeru vozila</p>
+        <div class="header-badges">
+            <div class="badge gold"><i class="fa-solid fa-database"></i> 15+ marki</div>
+            <div class="badge"><i class="fa-solid fa-laptop-medical"></i> OBD2 baza</div>
+            <div class="badge"><i class="fa-solid fa-file-pdf"></i> PDF izveštaj</div>
+        </div>
     </div>
 
-    <div class="unos-sekcija">
-        <label for="cena-oglas">Početna cijena (€)</label>
+    <div class="progress-steps" id="progress-steps">
+        <div class="step-dot active" id="step1"></div>
+        <div class="step-dot" id="step2"></div>
+        <div class="step-dot" id="step3"></div>
+    </div>
+
+    <!-- KORAK 1: VOZILO -->
+    <div class="card">
+        <div class="card-title"><i class="fa-solid fa-car"></i> Vozilo i cena</div>
+
+        <label>Početna cena (€)</label>
         <input type="number" id="cena-oglas" value="5000" oninput="izracunajCenu()">
 
-        <label for="marka">Marka vozila</label>
-        <select id="marka" onchange="osveziModele()" disabled>
-            <option value="">-- Učitavam bazu... --</option>
-        </select>
+        <label>Marka</label>
+        <div class="select-wrap">
+            <select id="marka" onchange="osveziModele()" disabled>
+                <option value="">— Učitavam bazu... —</option>
+            </select>
+        </div>
 
-        <label for="model">Model</label>
-        <select id="model" onchange="osveziGodista()" disabled>
-            <option value="">-- Prvo izaberite marku --</option>
-        </select>
+        <label>Model</label>
+        <div class="select-wrap">
+            <select id="model" onchange="osveziGodista()" disabled>
+                <option value="">— Prvo izaberite marku —</option>
+            </select>
+        </div>
 
-        <label for="godiste">Godište / Generacija</label>
-        <select id="godiste" onchange="aktivirajPregled()" disabled>
-            <option value="">-- Prvo izaberite model --</option>
-        </select>
+        <label>Godište / Generacija</label>
+        <div class="select-wrap">
+            <select id="godiste" onchange="aktivirajPregled()" disabled>
+                <option value="">— Prvo izaberite model —</option>
+            </select>
+        </div>
+
+        <div class="alert-box" id="savet-boks">
+            <h4><i class="fa-solid fa-triangle-exclamation" style="margin-right:6px"></i>Karakteristične mane ove generacije</h4>
+            <p id="tekst-mane"></p>
+        </div>
     </div>
 
-    <div id="savet-boks">
-        <h3><i class="fa-solid fa-triangle-exclamation" style="margin-right: 5px;"></i> Karakteristične mane:</h3>
-        <p id="tekst-mane"></p>
-    </div>
+    <!-- KORAK 2: ČEKLIST -->
+    <div id="cek-lista-modul" style="display:none">
 
-    <div id="cek-lista-modul">
+        <div class="card" style="margin-bottom:12px">
+            <div class="card-title"><i class="fa-solid fa-chart-pie"></i> Rezultat pregleda</div>
+            <div class="score-grid">
+                <div class="score-item"><div class="score-num ok" id="sc-ok">0</div><div class="score-lbl">OK</div></div>
+                <div class="score-item"><div class="score-num warn" id="sc-warn">0</div><div class="score-lbl">Mana</div></div>
+                <div class="score-item"><div class="score-num crit" id="sc-crit">0</div><div class="score-lbl">Kritično</div></div>
+            </div>
+        </div>
+
         <div id="kategorije-kontejner"></div>
-        
-        <div class="kategorija-blok">
-            <div class="kategorija-naslov"><i class="fa-solid fa-laptop-medical" style="margin-right: 8px;"></i> 5. OBD2 Dijagnostika</div>
-            <div class="obd-unos-grupa">
-                <input type="text" id="obd-unos" placeholder="Unesi kod (npr. P0400)">
-                <button onclick="proveriOBDKod()">Upiši</button>
+
+        <!-- OBD2 -->
+        <div class="card">
+            <div class="card-title"><i class="fa-solid fa-laptop-medical"></i> OBD2 dijagnostika</div>
+            <div class="obd-row">
+                <input type="text" id="obd-unos" placeholder="P0400" maxlength="6"
+                    onkeydown="if(event.key==='Enter') proveriOBDKod()">
+                <button class="btn-obd-add" onclick="proveriOBDKod()">
+                    <i class="fa-solid fa-plus"></i> Dodaj
+                </button>
             </div>
             <div id="obd-lista"></div>
+            <div class="obd-hint" id="obd-hint">
+                <i class="fa-solid fa-circle-info" style="margin-right:4px"></i>
+                Unesi DTC kod iz dijagnostike (npr. P0400, P2002...)
+            </div>
         </div>
-        <button class="btn-glavno" onclick="generisiTekstualniIzvestaj()">
-            <i class="fa-solid fa-file-invoice" style="margin-right: 8px;"></i> Napravi izvještaj pregovora
-        </button>
-        
-        <div id="izvestaj-boks">
-            <div id="izvestaj-tekst"></div>
-            <button class="btn-glavno" style="background: var(--zelena); margin-top:15px; color: white; border:none;" onclick="kopirajTekst()">
-                <i class="fa-solid fa-copy" style="margin-right: 8px;"></i> Kopiraj tekst u klipbord
+
+        <!-- IZVEŠTAJ -->
+        <div class="card">
+            <div class="card-title"><i class="fa-solid fa-file-contract"></i> Izveštaj pregovora</div>
+            <button class="btn btn-primary" onclick="generisiIzvestaj()">
+                <i class="fa-solid fa-file-invoice"></i> Generiši izveštaj
             </button>
-            
-            <button class="btn-glavno" style="background: #3b82f6; margin-top:10px; color: white; border:none;" onclick="snimiUBazuOblaka()">
-                <i class="fa-solid fa-cloud-arrow-up" style="margin-right: 8px;"></i> 💾 Sačuvaj izvještaj u bazu podataka
-            </button>
+
+            <div class="report-box" id="report-box">
+                <div class="report-terminal">
+                    <pre id="report-tekst"></pre>
+                </div>
+                <div class="report-actions">
+                    <button class="btn btn-red" onclick="generisiPDF()">
+                        <i class="fa-solid fa-file-pdf"></i> PDF
+                    </button>
+                    <button class="btn btn-green" onclick="kopirajTekst()">
+                        <i class="fa-solid fa-copy"></i> Kopiraj
+                    </button>
+                    <button class="btn btn-blue" onclick="snimiUBazu()">
+                        <i class="fa-solid fa-cloud-arrow-up"></i> Sačuvaj u bazu
+                    </button>
+                    <button class="btn" style="background:var(--surface2);border:1px solid var(--border2);color:var(--text2);grid-column:1/-1" onclick="vratiSe()">
+                        <i class="fa-solid fa-arrow-left"></i> Vrati se na pregled
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- BOTTOM PRICE BAR -->
+<div class="price-bar" id="price-bar">
+    <div class="price-bar-inner">
+        <div class="price-bar-left">
+            <div class="price-bar-label">Realna vrednost</div>
+            <div class="price-bar-sub">Odbitak: <span id="odbitak-txt">0 €</span></div>
+        </div>
+        <div style="text-align:right">
+            <div class="price-val" id="finalna-cena">5.000 €</div>
         </div>
     </div>
 </div>
 
-<div id="cenkanje-bar">
-    <div class="cenkanje-sadrzaj">
-        <span>Konačna vrijednost:</span>
-        <span id="finalna-cena">5000 €</span>
-    </div>
-</div>
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
 
 <script>
-    // ==========================================
-    // PAŽNJA: OVDJE ZALIJEPI SVOJU KONFIGURACIJU IZ FIREBASE-a!
     const firebaseConfig = {
-  apiKey: "AIzaSyBCl3LAUXyw47c81od5Gqcb3FAIexysQBw",
-  authDomain: "autolovac-pro.firebaseapp.com",
-  projectId: "autolovac-pro",
-  storageBucket: "autolovac-pro.firebasestorage.app",
-  messagingSenderId: "118844372336",
-  appId: "1:118844372336:web:9d245372932bf4e9840bb5"
-};
-
-    // ==========================================
-
+        apiKey: "AIzaSyBCl3LAUXyw47c81od5Gqcb3FAIexysQBw",
+        authDomain: "autolovac-pro.firebaseapp.com",
+        projectId: "autolovac-pro",
+        storageBucket: "autolovac-pro.firebasestorage.app",
+        messagingSenderId: "118844372336",
+        appId: "1:118844372336:web:9d245372932bf4e9840bb5"
+    };
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
+    // ── STATE ──────────────────────────────────────────────
     let bazaMane = {};
     let pocetnaCena = 5000;
-    let iznosSustinskogOdbitka = 0;
-    
-    // BAZA OBD2 GREŠAKA SA PROCJENJENIM TROŠKOM
-    const obdBaza = {
-        "P0400": { opis: "EGR ventil - Greška u protoku", cena: 150 },
-        "P0234": { opis: "Turbina - Overboost (Prepunjavanje, prljavo krilce)", cena: 250 },
-        "P0101": { opis: "MAF senzor (Protokomjer) van granica", cena: 100 },
-        "P0300": { opis: "Izostanak paljenja na više cilindara (Sjećice/Bobine)", cena: 150 },
-        "P2002": { opis: "DPF filter - Efikasnost ispod granice (Zapušen)", cena: 350 },
-        "P0087": { opis: "Pritisak goriva prenizak (Pumpa visokog pritiska/Dizne)", cena: 450 },
-        "P0340": { opis: "Senzor bregaste osovine - Kvar u krugu", cena: 80 }
-    };
-    
-    let aktivniOBDKodovi = [];
-
-    const strukturaCekListe = {
-        "1. Spoljašnost i Limarija": [
-            { id: "zazori", tekst: "Zazori na haubi i vratima (Tragovi udesa / farbanja)", kazna: 500 },
-            { id: "rdja", tekst: "Korozija na pragovima, rubovima zadnjih točkova i patosu", kazna: 600 },
-            { id: "stakla", tekst: "Pukotine na šoferšajbni ili različita godišta na staklima", kazna: 200 },
-            { id: "gume", tekst: "Stanje i starost guma (DOT broj) i oštećenja felni", kazna: 350 }
-        ],
-        "2. Enterijer i Elektronika": [
-            { id: "klima", tekst: "Kompresor klime ne pali ili ne hladi / greje ravnomerno", kazna: 250 },
-            { id: "potrosenost", tekst: "Pohabanost volana i sedišta ne odgovara kilometraži", kazna: 150 },
-            { id: "elektronika", tekst: "Ne rade podizači, centralna brava ili gori lampica (Check Engine/Airbag)", kazna: 200 }
-        ],
-        "3. Motorni Prostor": [
-            { id: "ulje", tekst: "Sveži tragovi ulja na bloku motora i ispod turbine", kazna: 300 },
-            { id: "tecnosti", tekst: "Emulzija (majonez) na čepu za ulje ili ulje u antifrizu", kazna: 700 },
-            { id: "auspuh", tekst: "Crni, plavi ili gusti beli dim iz auspuha pri dodavanju gasa", kazna: 500 }
-        ],
-        "4. Probna Vožnja": [
-            { id: "trap", tekst: "Tupi udarci i lupkanje na trapu pri prelasku preko rupa", kazna: 250 },
-            { id: "kvacilo", tekst: "Zamajac trese pri polasku, krčanje sinhrona u menjaču", kazna: 500 }
-        ]
-    };
-
+    let ukupanOdbitak = 0;
     let stanjeStavki = {};
+    let aktivniOBD = [];
 
-    const markaSelect = document.getElementById("marka");
-    const modelSelect = document.getElementById("model");
-    const godisteSelect = document.getElementById("godiste");
-    const savetBoks = document.getElementById("savet-boks");
-    const tekstMane = document.getElementById("tekst-mane");
-    const cekListaModul = document.getElementById("cek-lista-modul");
-    const kategorijeKontejner = document.getElementById("kategorije-kontejner");
-    const cenkanjeBar = document.getElementById("cenkanje-bar");
-    const finalnaCenaTxt = document.getElementById("finalna-cena");
-    const izvestajBoks = document.getElementById("izvestaj-boks");
-    const izvestajTekst = document.getElementById("izvestaj-tekst");
+    // ── OBD BAZA (proširena) ───────────────────────────────
+    const obdBaza = {
+        // Emisija / EGR / DPF
+        "P0400": { opis: "EGR ventil — greška u protoku", cena: 150 },
+        "P0401": { opis: "EGR ventil — nedovoljan protok", cena: 150 },
+        "P0402": { opis: "EGR ventil — prekomjeran protok", cena: 120 },
+        "P2002": { opis: "DPF filter — efikasnost ispod granice (zapušen)", cena: 350 },
+        "P2003": { opis: "DPF filter — zamka čvrstih čestica puna", cena: 400 },
+        "P0420": { opis: "Katalizator — smanjena efikasnost (Banka 1)", cena: 300 },
+        "P0421": { opis: "Katalizator — zagrijavanje ispod granice", cena: 300 },
+        "P0430": { opis: "Katalizator — smanjena efikasnost (Banka 2)", cena: 300 },
+        // Turbo
+        "P0234": { opis: "Turbina — Overboost (prepunjavanje, prljavo krilce)", cena: 250 },
+        "P0235": { opis: "Senzor pritiska turbine — kvar u krugu", cena: 80 },
+        "P0299": { opis: "Turbina — nedovoljno punjenje", cena: 300 },
+        // Gorivo / Ubrizgavanje
+        "P0087": { opis: "Pritisak goriva prenizak (pumpa/dizne)", cena: 450 },
+        "P0088": { opis: "Pritisak goriva previsok", cena: 300 },
+        "P0093": { opis: "Curenje u sistemu visokog pritiska goriva", cena: 500 },
+        "P0201": { opis: "Dizna cilindra 1 — kvar kruga", cena: 200 },
+        "P0202": { opis: "Dizna cilindra 2 — kvar kruga", cena: 200 },
+        "P0203": { opis: "Dizna cilindra 3 — kvar kruga", cena: 200 },
+        "P0204": { opis: "Dizna cilindra 4 — kvar kruga", cena: 200 },
+        // Paljenje / Cilindri
+        "P0300": { opis: "Izostanak paljenja na više cilindara (svjećice/bobine)", cena: 150 },
+        "P0301": { opis: "Izostanak paljenja — cilindar 1", cena: 100 },
+        "P0302": { opis: "Izostanak paljenja — cilindar 2", cena: 100 },
+        "P0303": { opis: "Izostanak paljenja — cilindar 3", cena: 100 },
+        "P0304": { opis: "Izostanak paljenja — cilindar 4", cena: 100 },
+        // Senzori zraka / smjesa
+        "P0101": { opis: "MAF senzor (protokomjer) — van granica", cena: 100 },
+        "P0102": { opis: "MAF senzor — nizak napon", cena: 80 },
+        "P0171": { opis: "Smjesa — previše siromašna (Banka 1)", cena: 100 },
+        "P0172": { opis: "Smjesa — previše bogata (Banka 1)", cena: 100 },
+        "P0174": { opis: "Smjesa — previše siromašna (Banka 2)", cena: 100 },
+        "P0175": { opis: "Smjesa — previše bogata (Banka 2)", cena: 100 },
+        // Lambda / O2
+        "P0130": { opis: "Lambda sonda — kvar (Banka 1, Senzor 1)", cena: 150 },
+        "P0131": { opis: "Lambda sonda — nizak napon", cena: 120 },
+        "P0136": { opis: "Lambda sonda — kvar (Banka 1, Senzor 2)", cena: 150 },
+        "P0140": { opis: "Lambda sonda — nema aktivnosti", cena: 150 },
+        // Hladnjak / Termostat
+        "P0115": { opis: "Senzor temperature rashladne tečnosti — kvar", cena: 60 },
+        "P0116": { opis: "Senzor temperature rashladne tečnosti — van granica", cena: 60 },
+        "P0128": { opis: "Rashladna tečnost ispod radne temperature (termostat otvoren)", cena: 120 },
+        // Bregasta / Radilica
+        "P0340": { opis: "Senzor bregaste osovine — kvar u krugu", cena: 80 },
+        "P0341": { opis: "Senzor bregaste osovine — van granica", cena: 80 },
+        "P0335": { opis: "Senzor radilice — kvar u krugu", cena: 80 },
+        "P0016": { opis: "Korelacija bregaste/radilice — razbacani razvodnici / istrošen lanac", cena: 600 },
+        "P0017": { opis: "Korelacija bregaste/radilice (Banka 1, Senzor 2)", cena: 600 },
+        // Menjač / DSG
+        "P0700": { opis: "Automatski menjač — greška upravljačkog sistema", cena: 200 },
+        "P0730": { opis: "Menjač — neispravni omjer brzine", cena: 300 },
+        "P0741": { opis: "Torque converter — kvar sklopke (trzanje)", cena: 400 },
+        // Kočioni sistem
+        "C0031": { opis: "ABS — senzor prednjeg lijevog točka", cena: 100 },
+        "C0034": { opis: "ABS — senzor prednjeg desnog točka", cena: 100 },
+        "C0037": { opis: "ABS — senzor zadnjeg lijevog točka", cena: 100 },
+        "C0040": { opis: "ABS — senzor zadnjeg desnog točka", cena: 100 },
+        // Sigurnosni sistemi
+        "B0001": { opis: "Airbag — vozačev neispravan", cena: 200 },
+        "B0002": { opis: "Airbag — suvozačev neispravan", cena: 200 },
+        "B1000": { opis: "Airbag — greška upravljačke jedinice", cena: 350 },
+        // AdBlue / SCR
+        "P203F": { opis: "AdBlue — nivo reagensa prenizak", cena: 30 },
+        "P204F": { opis: "SCR sistem — efikasnost ispod granice", cena: 300 },
+        "P2201": { opis: "NOx senzor — kvar u krugu", cena: 250 },
+    };
 
+    // ── ČEKLIST STRUKTURA ─────────────────────────────────
+    const cekLista = {
+        "Spoljašnost i limarija": {
+            ikona: "fa-car-burst",
+            stavke: [
+                { id: "zazori",  tekst: "Zazori na haubi, vratima i gepeku su neujednačeni (tragovi udesa / farbanja)", kazna: 500 },
+                { id: "rdja",    tekst: "Korozija na pragovima, rubovima točkova i ispod blatobrana", kazna: 600 },
+                { id: "stakla",  tekst: "Pukotine/ogrebotine na šoferšajbni ili nestandardna stakla na vozilu", kazna: 200 },
+                { id: "gume",    tekst: "Stanje guma (DOT datum > 6 god), neravnomjerna pohabanost ili oštećenja felni", kazna: 350 },
+            ]
+        },
+        "Enterijer i elektronika": {
+            ikona: "fa-gauge-high",
+            stavke: [
+                { id: "klima",       tekst: "Klima ne radi ili ne hladi ravnomjerno (gori lampica A/C)", kazna: 250 },
+                { id: "potrosnost",  tekst: "Pohabanost volana, mjenjača i sedišta NE odgovara prikazanoj kilometraži", kazna: 150 },
+                { id: "elektronika", tekst: "Ne rade podizači/brava/grijanje sjedišta ili gori CHECK ENGINE / AIRBAG lampica", kazna: 200 },
+                { id: "miris",       tekst: "Vlaga ili miris plesni u kabini (provjeri pod tepiha i gepeka)", kazna: 200 },
+            ]
+        },
+        "Motorni prostor": {
+            ikona: "fa-engine",
+            stavke: [
+                { id: "ulje",    tekst: "Svježi tragovi ulja na bloku, ispod turbine ili na ispušnom sistemu", kazna: 300 },
+                { id: "emulzija",tekst: "Emulzija (majonez) na čepu za ulje, poklopcu glave ili u antifrizu", kazna: 700 },
+                { id: "dim",     tekst: "Crni, plavi ili gusti bijeli dim iz auspuha pri ubrzavanju", kazna: 500 },
+                { id: "zvuci",   tekst: "Neobični zvuci motora na praznom hodu (tiktanje, kucanje, šuštanje)", kazna: 400 },
+            ]
+        },
+        "Probna vožnja": {
+            ikona: "fa-road",
+            stavke: [
+                { id: "trap",    tekst: "Tupi udarci ili lupkanje na trapu pri prelasku rupa i brzina", kazna: 250 },
+                { id: "kvacilo", tekst: "Zamajac trese pri polasku, krčanje sinhrona ili tvrd mjenjač", kazna: 500 },
+                { id: "kocenje", tekst: "Vozilo vuče na stranu pri kočenju ili trzanje kočionih diskova", kazna: 200 },
+                { id: "adas",    tekst: "ADAS sistemi se gase ili daju lažna upozorenja (Lane Assist, Front Assist)", kazna: 150 },
+            ]
+        }
+    };
+
+    // ── DOM REFS ───────────────────────────────────────────
+    const markaEl   = document.getElementById("marka");
+    const modelEl   = document.getElementById("model");
+    const godisteEl = document.getElementById("godiste");
+
+    // ── INIT ───────────────────────────────────────────────
     async function ucitajBazu() {
         try {
-            const odgovor = await fetch('baza.json');
-            bazaMane = await odgovor.json();
-            
-            markaSelect.innerHTML = '<option value="">-- Izaberite --</option>';
-            Object.keys(bazaMane).forEach(marka => {
-                const opcija = document.createElement("option");
-                opcija.value = marka; opcija.textContent = marka;
-                markaSelect.appendChild(opcija);
+            const r = await fetch('baza.json');
+            bazaMane = await r.json();
+            markaEl.innerHTML = '<option value="">— Izaberite marku —</option>';
+            Object.keys(bazaMane).sort().forEach(m => {
+                markaEl.appendChild(new Option(m, m));
             });
-            markaSelect.disabled = false;
-        } catch (greska) {
-            console.error("Greška:", greska);
+            markaEl.disabled = false;
+        } catch(e) {
+            markaEl.innerHTML = '<option value="">⚠ Greška pri učitavanju baze</option>';
         }
     }
     ucitajBazu();
 
+    // ── SELECTS ────────────────────────────────────────────
     function osveziModele() {
-        const izabranaMarka = markaSelect.value;
-        modelSelect.innerHTML = '<option value="">-- Izaberite --</option>';
-        godisteSelect.innerHTML = '<option value="">-- Izaberite --</option>';
-        godisteSelect.disabled = true;
+        const m = markaEl.value;
+        modelEl.innerHTML = '<option value="">— Izaberite model —</option>';
+        godisteEl.innerHTML = '<option value="">— Izaberite godište —</option>';
+        godisteEl.disabled = true;
         resetujEkran();
-        if (izabranaMarka === "") { modelSelect.disabled = true; return; }
-        Object.keys(bazaMane[izabranaMarka]).forEach(model => {
-            const opcija = document.createElement("option");
-            opcija.value = model; opcija.textContent = model;
-            modelSelect.appendChild(opcija);
-        });
-        modelSelect.disabled = false;
+        if (!m) { modelEl.disabled = true; return; }
+        Object.keys(bazaMane[m]).sort().forEach(mdl => modelEl.appendChild(new Option(mdl, mdl)));
+        modelEl.disabled = false;
+        azurirajKorake(1);
     }
 
     function osveziGodista() {
-        const izabranaMarka = markaSelect.value;
-        const izabraniModel = modelSelect.value;
-        godisteSelect.innerHTML = '<option value="">-- Izaberite --</option>';
+        const m = markaEl.value, mdl = modelEl.value;
+        godisteEl.innerHTML = '<option value="">— Izaberite godište —</option>';
         resetujEkran();
-        if (izabraniModel === "") { godisteSelect.disabled = true; return; }
-        Object.keys(bazaMane[izabranaMarka][izabraniModel]).forEach(god => {
-            const opcija = document.createElement("option");
-            opcija.value = god; opcija.textContent = god;
-            godisteSelect.appendChild(opcija);
-        });
-        godisteSelect.disabled = false;
+        if (!mdl) { godisteEl.disabled = true; return; }
+        Object.keys(bazaMane[m][mdl]).forEach(g => godisteEl.appendChild(new Option(g, g)));
+        godisteEl.disabled = false;
+        azurirajKorake(1);
     }
 
     function resetujEkran() {
-        savetBoks.style.display = "none";
-        cekListaModul.style.display = "none";
-        cenkanjeBar.style.display = "none";
-        izvestajBoks.style.display = "none";
-        aktivniOBDKodovi = []; // Resetovanje OBD kodova
-        osveziOBDListuUI();
+        document.getElementById("savet-boks").style.display = "none";
+        document.getElementById("cek-lista-modul").style.display = "none";
+        document.getElementById("price-bar").style.display = "none";
+        document.getElementById("report-box").style.display = "none";
+        aktivniOBD = [];
+        osveziOBDUI();
     }
 
     function aktivirajPregled() {
-        const izabranaMarka = markaSelect.value;
-        const izabraniModel = modelSelect.value;
-        const izabranoGodiste = godisteSelect.value;
-        if (izabranoGodiste === "") { resetujEkran(); return; }
+        const m = markaEl.value, mdl = modelEl.value, g = godisteEl.value;
+        if (!g) { resetujEkran(); return; }
 
-        tekstMane.textContent = bazaMane[izabranaMarka][izabraniModel][izabranoGodiste];
-        savetBoks.style.display = "block";
+        document.getElementById("tekst-mane").textContent = bazaMane[m][mdl][g];
+        document.getElementById("savet-boks").style.display = "block";
 
-        iscrtajKategorisaniMeni();
-        cekListaModul.style.display = "block";
-        cenkanjeBar.style.display = "block";
+        iscrtajCekListu();
+        document.getElementById("cek-lista-modul").style.display = "block";
+        document.getElementById("price-bar").style.display = "block";
         izracunajCenu();
+        azurirajKorake(2);
     }
 
-    function iscrtajKategorisaniMeni() {
-        kategorijeKontejner.innerHTML = "";
-        stanjeStavki = {}; 
+    function azurirajKorake(korak) {
+        document.getElementById("step1").className = "step-dot " + (korak >= 1 ? "done" : "active");
+        document.getElementById("step2").className = "step-dot " + (korak >= 2 ? "active" : "");
+        document.getElementById("step3").className = "step-dot";
+    }
 
-        Object.keys(strukturaCekListe).forEach(imeKat => {
-            const katBlok = document.createElement("div");
-            katBlok.className = "kategorija-blok";
-            katBlok.innerHTML = `<div class="kategorija-naslov">${imeKat}</div>`;
+    // ── CEKLISTA ───────────────────────────────────────────
+    function iscrtajCekListu() {
+        const kt = document.getElementById("kategorije-kontejner");
+        kt.innerHTML = "";
+        stanjeStavki = {};
+        let i = 1;
 
-            strukturaCekListe[imeKat].forEach(st => {
+        Object.keys(cekLista).forEach(ime => {
+            const kat = cekLista[ime];
+            const katDiv = document.createElement("div");
+            katDiv.className = "card";
+            katDiv.innerHTML = `<div class="section-header">
+                <div class="section-header-num">${i}</div>
+                <span>${ime}</span>
+            </div>`;
+
+            kat.stavke.forEach(st => {
                 stanjeStavki[st.id] = { tekst: st.tekst, status: "OK", odbitak: 0 };
-
-                const stavkaDiv = document.createElement("div");
-                stavkaDiv.className = "stavka";
-                stavkaDiv.innerHTML = `
+                const d = document.createElement("div");
+                d.className = "stavka";
+                d.id = "stavka-" + st.id;
+                d.innerHTML = `
                     <div class="stavka-tekst">${st.tekst}</div>
                     <div class="opcije-grupa">
-                        <button class="btn-ocena ok aktivno" onclick="oceniStavku('${st.id}', 'OK', this, 0)">OK</button>
-                        <button class="btn-ocena minus" onclick="oceniStavku('${st.id}', 'MINUS', this, ${st.kazna})">MANA</button>
-                        <button class="btn-ocena kriticno" onclick="oceniStavku('${st.id}', 'KRITIČNO', this, ${st.kazna * 1.5})">KATASTROFA</button>
-                    </div>
-                `;
-                katBlok.appendChild(stavkaDiv);
+                        <button class="btn-ocena ok aktivno" onclick="oceni('${st.id}','OK',this,0)">
+                            <i class="fa-solid fa-check"></i> OK
+                        </button>
+                        <button class="btn-ocena minus" onclick="oceni('${st.id}','MANA',this,${st.kazna})">
+                            <i class="fa-solid fa-minus"></i> Mana
+                        </button>
+                        <button class="btn-ocena kriticno" onclick="oceni('${st.id}','KRITIČNO',this,${st.kazna * 1.5})">
+                            <i class="fa-solid fa-xmark"></i> Kritično
+                        </button>
+                    </div>`;
+                katDiv.appendChild(d);
             });
-            kategorijeKontejner.appendChild(katBlok);
+
+            kt.appendChild(katDiv);
+            i++;
         });
     }
 
-    function oceniStavku(id, status, dugme, odbitak) {
-        const roditelj = dugme.parentElement;
-        roditelj.querySelectorAll('.btn-ocena').forEach(b => b.classList.remove('aktivno'));
-        dugme.classList.add('aktivno');
-
+    function oceni(id, status, btn, odbitak) {
+        btn.parentElement.querySelectorAll('.btn-ocena').forEach(b => b.classList.remove('aktivno'));
+        btn.classList.add('aktivno');
         stanjeStavki[id].status = status;
         stanjeStavki[id].odbitak = odbitak;
+        document.getElementById("stavka-" + id).className = "stavka" + (status !== "OK" ? " ocenjen" : "");
         izracunajCenu();
+        azurirajScore();
     }
 
-    // OBD FUNKCIJE
+    function azurirajScore() {
+        let ok = 0, warn = 0, crit = 0;
+        Object.values(stanjeStavki).forEach(s => {
+            if (s.status === "OK") ok++;
+            else if (s.status === "MANA") warn++;
+            else if (s.status === "KRITIČNO") crit++;
+        });
+        document.getElementById("sc-ok").textContent = ok;
+        document.getElementById("sc-warn").textContent = warn;
+        document.getElementById("sc-crit").textContent = crit;
+    }
+
+    // ── OBD ────────────────────────────────────────────────
     function proveriOBDKod() {
-        let unosPolje = document.getElementById("obd-unos");
-        let kod = unosPolje.value.toUpperCase().trim();
-        
+        const el = document.getElementById("obd-unos");
+        const kod = el.value.trim().toUpperCase().replace(/\s/g, "");
         if (!kod) return;
-        
-        if (aktivniOBDKodovi.some(k => k.kod === kod)) {
-            alert("Ovaj OBD kod je već dodat u listu!");
-            unosPolje.value = "";
+        if (aktivniOBD.find(k => k.kod === kod)) {
+            prikaziToast("⚠ Ovaj kod je već dodat", "warn");
+            el.value = "";
             return;
         }
-
-        if (obdBaza[kod]) {
-            aktivniOBDKodovi.push({
-                kod: kod,
-                opis: obdBaza[kod].opis,
-                kazna: obdBaza[kod].cena
-            });
-        } else {
-            // Ako kod nije u bazi, dodajemo ga sa generičkom cenom od 50€ da ipak ostane zabeležen
-            aktivniOBDKodovi.push({
-                kod: kod,
-                opis: "Nespecifikovana greška na modulu",
-                kazna: 50
-            });
-        }
-        
-        unosPolje.value = "";
-        osveziOBDListuUI();
+        const info = obdBaza[kod] || { opis: "Nespecifikovana greška (provjeri dokumentaciju)", cena: 75 };
+        aktivniOBD.push({ kod, opis: info.opis, kazna: info.cena });
+        el.value = "";
+        osveziOBDUI();
         izracunajCenu();
     }
 
     function obrisiOBD(index) {
-        aktivniOBDKodovi.splice(index, 1);
-        osveziOBDListuUI();
+        aktivniOBD.splice(index, 1);
+        osveziOBDUI();
         izracunajCenu();
     }
 
-    function osveziOBDListuUI() {
-        let kontejner = document.getElementById("obd-lista");
-        kontejner.innerHTML = "";
-        
-        aktivniOBDKodovi.forEach((stavka, index) => {
-            let div = document.createElement("div");
-            div.className = "obd-stavka";
-            div.innerHTML = `
-                <div>
-                    <span class="obd-stavka-kod">${stavka.kod} (-${stavka.kazna}€)</span>
-                    <span class="obd-stavka-info">${stavka.opis}</span>
+    function osveziOBDUI() {
+        const lista = document.getElementById("obd-lista");
+        const hint = document.getElementById("obd-hint");
+        lista.innerHTML = "";
+        if (aktivniOBD.length === 0) {
+            hint.style.display = "block";
+            return;
+        }
+        hint.style.display = "none";
+        aktivniOBD.forEach((s, i) => {
+            const d = document.createElement("div");
+            d.className = "obd-item";
+            d.innerHTML = `
+                <i class="fa-solid fa-circle-exclamation obd-icon"></i>
+                <div class="obd-info">
+                    <div class="obd-kod">${s.kod} <span class="obd-kazna">−${s.kazna} €</span></div>
+                    <div class="obd-opis">${s.opis}</div>
                 </div>
-                <button class="btn-obrisi-obd" onclick="obrisiOBD(${index})"><i class="fa-solid fa-xmark"></i></button>
-            `;
-            kontejner.appendChild(div);
+                <button class="btn-obd-del" onclick="obrisiOBD(${i})" title="Ukloni"><i class="fa-solid fa-xmark"></i></button>`;
+            lista.appendChild(d);
         });
     }
 
-    // AŽURIRANA KALKULACIJA
+    // ── KALKULACIJA ────────────────────────────────────────
     function izracunajCenu() {
-        const unosCene = document.getElementById("cena-oglas").value;
-        pocetnaCena = unosCene ? parseFloat(unosCene) : 0;
-        
-        iznosSustinskogOdbitka = 0;
-        
-        // Sabiranje mana sa ček liste
-        Object.keys(stanjeStavki).forEach(id => {
-            iznosSustinskogOdbitka += stanjeStavki[id].odbitak;
-        });
-        
-        // Sabiranje OBD kazni
-        aktivniOBDKodovi.forEach(obd => {
-            iznosSustinskogOdbitka += obd.kazna;
-        });
+        pocetnaCena = parseFloat(document.getElementById("cena-oglas").value) || 0;
+        ukupanOdbitak = 0;
+        Object.values(stanjeStavki).forEach(s => ukupanOdbitak += s.odbitak);
+        aktivniOBD.forEach(o => ukupanOdbitak += o.kazna);
 
-        let finalnaCena = pocetnaCena - iznosSustinskogOdbitka;
-        if (finalnaCena < 0) finalnaCena = 0;
+        const finalna = Math.max(0, Math.round(pocetnaCena - ukupanOdbitak));
+        document.getElementById("finalna-cena").textContent = finalna.toLocaleString("sr-RS") + " €";
+        document.getElementById("odbitak-txt").textContent = Math.round(ukupanOdbitak).toLocaleString("sr-RS") + " €";
 
-        finalnaCenaTxt.textContent = Math.round(finalnaCena) + " €";
-        
-        if (izvestajBoks.style.display === "block") {
-            osveziSamoTekstIzvestaja();
+        if (document.getElementById("report-box").style.display === "block") {
+            osveziTekstIzvestaja();
         }
     }
 
-    function osveziSamoTekstIzvestaja() {
-        const marka = markaSelect.value;
-        const model = modelSelect.value;
-        const godiste = godisteSelect.value;
-        let danas = new Date().toLocaleDateString('bs-BA');
-        
-        let tekst = `=== AUTOLOVAC PRO ===\n`;
-        tekst += `Datum: ${danas}\n`;
-        tekst += `Vozilo: ${marka} ${model} (${godiste})\n`;
-        tekst += `Početna cena: ${pocetnaCena} €\n`;
-        tekst += `--------------------------\n`;
-        tekst += `PRONAĐENE MANE:\n`;
-        
-        let brojacMana = 0;
-        
-        // Upis OBD grešaka u tekst
-        if (aktivniOBDKodovi.length > 0) {
-            tekst += `[OBD2 DIJAGNOSTIKA]\n`;
-            aktivniOBDKodovi.forEach(obd => {
-                brojacMana++;
-                tekst += `- Greška ${obd.kod}: ${obd.opis} (-${obd.kazna} €)\n`;
+    // ── IZVJEŠTAJ ──────────────────────────────────────────
+    function generisiIzvestaj() {
+        osveziTekstIzvestaja();
+        document.getElementById("report-box").style.display = "block";
+        document.getElementById("report-box").scrollIntoView({ behavior: "smooth", block: "start" });
+        document.getElementById("step3").className = "step-dot active";
+    }
+
+    function osveziTekstIzvestaja() {
+        const m = markaEl.value, mdl = modelEl.value, g = godisteEl.value;
+        const datum = new Date().toLocaleDateString("sr-Latn-RS", { day: "2-digit", month: "2-digit", year: "numeric" });
+        const fin = Math.max(0, Math.round(pocetnaCena - ukupanOdbitak));
+
+        t += `╔═══════════════════════════════╗\n`;
+        t += `║      AUTOLOVAC PRO             ║\n`;
+        t += `╚═══════════════════════════════╝\n\n`;
+        t += `Datum:        ${datum}\n`;
+        t += `Vozilo:       ${m} ${mdl} (${g})\n`;
+        t += `Oglas:        ${pocetnaCena.toLocaleString("sr-RS")} €\n`;
+        t += `\n── PRONAĐENI PROBLEMI ──────────\n\n`;
+
+        let ima = false;
+
+        if (aktivniOBD.length > 0) {
+            t += `[ OBD2 DIJAGNOSTIKA ]\n`;
+            aktivniOBD.forEach(o => {
+                t += `  ▸ ${o.kod}: ${o.opis}\n    Procjena popravke: ~${o.kazna} €\n`;
+                ima = true;
             });
-            tekst += `\n`;
+            t += "\n";
         }
 
-        // Upis ostalih grešaka
-        Object.keys(stanjeStavki).forEach(id => {
-            let st = stanjeStavki[id];
-            if (st.status !== "OK") {
-                brojacMana++;
-                tekst += `- [${st.status}] ${st.tekst} (-${Math.round(st.odbitak)} €)\n`;
+        Object.keys(cekLista).forEach(imeKat => {
+            const stavkeKat = cekLista[imeKat].stavke;
+            const maneKat = stavkeKat.filter(st => stanjeStavki[st.id] && stanjeStavki[st.id].status !== "OK");
+            if (maneKat.length > 0) {
+                t += `[ ${imeKat.toUpperCase()} ]\n`;
+                maneKat.forEach(st => {
+                    const status = stanjeStavki[st.id].status;
+                    const odbitak = Math.round(stanjeStavki[st.id].odbitak);
+                    const ikona = status === "KRITIČNO" ? "✕" : "−";
+                    t += `  ${ikona} [${status}] ${st.tekst}\n    Odbitak: ~${odbitak} €\n`;
+                    ima = true;
+                });
+                t += "\n";
             }
         });
-        
-        if (brojacMana === 0) {
-            tekst += `Vozilo je u odličnom stanju.\n`;
-        }
-        
-        tekst += `--------------------------\n`;
-        tekst += `REALNA VREDNOST: ${Math.round(pocetnaCena - iznosSustinskogOdbitka)} €\n`;
-        
-        izvestajTekst.textContent = tekst;
+
+        if (!ima) t += `  ✓ Vozilo je u odličnom stanju.\n\n`;
+
+        t += `── KALKULACIJA ─────────────────\n\n`;
+        t += `Početna cena:     ${pocetnaCena.toLocaleString("sr-RS")} €\n`;
+        t += `Ukupni odbitak:  -${Math.round(ukupanOdbitak).toLocaleString("sr-RS")} €\n`;
+        t += `────────────────────────────────\n`;
+        t += `REALNA VREDNOST: ${fin.toLocaleString("sr-RS")} €\n\n`;
+        t += `Generisano pomoću AutoLovac PRO`;
+
+        document.getElementById("report-tekst").textContent = t;
     }
 
-    function generisiTekstualniIzvestaj() {
-        osveziSamoTekstIzvestaja(); 
-        izvestajBoks.style.display = "block"; 
-        izvestajBoks.scrollIntoView({ behavior: 'smooth' }); 
-    }
+    // ── PDF ────────────────────────────────────────────────
+    function generisiPDF() {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF({ unit: "mm", format: "a4" });
+        const m = markaEl.value, mdl = modelEl.value, g = godisteEl.value;
+        const datum = new Date().toLocaleDateString("sr-Latn-RS", { day: "2-digit", month: "2-digit", year: "numeric" });
+        const fin = Math.max(0, Math.round(pocetnaCena - ukupanOdbitak));
 
-    function kopirajTekst() {
-        const tekst = izvestajTekst.textContent;
-        navigator.clipboard.writeText(tekst).then(() => {
-            alert("Izvještaj je uspješno kopiran!");
-        });
-    }
+        // Header block
+        doc.setFillColor(10, 10, 15);
+        doc.rect(0, 0, 210, 38, "F");
+        doc.setTextColor(245, 166, 35);
+        doc.setFontSize(22);
+        doc.setFont("helvetica", "bold");
+        doc.text("AutoLovac PRO", 20, 16);
+        doc.setFontSize(10);
+        doc.setTextColor(148, 163, 184);
+        doc.setFont("helvetica", "normal");
+        doc.text("Izvestaj pregleda vozila", 20, 24);
+        doc.text(`Datum: ${datum}`, 20, 31);
+        doc.setTextColor(245, 166, 35);
+        const vozNaslov = doc.splitTextToSize(`${m} ${mdl} (${g})`, 80);
+        doc.text(vozNaslov, 120, 24);
 
-    function snimiUBazuOblaka() {
-        const marka = markaSelect.value;
-        const model = modelSelect.value;
-        const godiste = godisteSelect.value;
-        
-        let podaciZaSlanje = {
-            datum: new Date().toLocaleDateString('bs-BA'),
-            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-            marka: marka,
-            model: model,
-            godiste: godiste,
-            pocetnaCena: pocetnaCena,
-            ulaganja: iznosSustinskogOdbitka,
-            finalnaCena: pocetnaCena - iznosSustinskogOdbitka,
-            detaljiMana: {},
-            obdKodovi: aktivniOBDKodovi // Dodati kodovi u bazu
+        let y = 52;
+        const col = (hex) => {
+            const r = parseInt(hex.slice(1,3),16);
+            const g2 = parseInt(hex.slice(3,5),16);
+            const b = parseInt(hex.slice(5,7),16);
+            return [r,g2,b];
         };
 
-        Object.keys(stanjeStavki).forEach(id => {
-            if (stanjeStavki[id].status !== "OK") {
-                podaciZaSlanje.detaljiMana[id] = stanjeStavki[id].status;
+        const sekcija = (naslov, boja) => {
+            doc.setFillColor(...col(boja));
+            doc.rect(20, y, 170, 7, "F");
+            doc.setTextColor(255, 255, 255);
+            doc.setFontSize(9);
+            doc.setFont("helvetica", "bold");
+            doc.text(naslov, 24, y + 4.8);
+            y += 11;
+        };
+
+        const red = (tekst, desno, boja = "#374151") => {
+            if (y > 268) { doc.addPage(); y = 20; }
+            doc.setTextColor(...col(boja));
+            doc.setFontSize(9);
+            doc.setFont("helvetica", "normal");
+            const maxSirina = desno ? 120 : 160;
+            const lines = doc.splitTextToSize(tekst, maxSirina);
+            doc.text(lines, 24, y);
+            if (desno) {
+                doc.setFont("helvetica", "bold");
+                doc.text(desno, 188, y, { align: "right" });
+            }
+            y += lines.length * 5.5 + 1;
+        };
+
+        // Vozilo info
+        sekcija("INFORMACIJE O VOZILU", "#1e293b");
+        red(`Pocetna cena oglasa: ${pocetnaCena.toLocaleString("sr-RS")} EUR`, null, "#111827");
+        y += 4;
+
+        // OBD
+        if (aktivniOBD.length > 0) {
+            sekcija("OBD2 DIJAGNOSTIKA", "#7f1d1d");
+            aktivniOBD.forEach(o => {
+                red(`${o.kod}: ${o.opis}`, `-${o.kazna} EUR`, "#7f1d1d");
+            });
+            y += 4;
+        }
+
+        // Čeklist mane
+        let imaMana = false;
+        Object.keys(cekLista).forEach(imeKat => {
+            const stavkeKat = cekLista[imeKat].stavke;
+            const mane = stavkeKat.filter(st => stanjeStavki[st.id] && stanjeStavki[st.id].status !== "OK");
+            if (mane.length > 0) {
+                if (!imaMana) { sekcija("EVIDENTIRANE MANE", "#1e3a5f"); imaMana = true; }
+                doc.setTextColor(100, 116, 139);
+                doc.setFontSize(8);
+                doc.setFont("helvetica", "bold");
+                if (y > 268) { doc.addPage(); y = 20; }
+                doc.text(imeKat.toUpperCase(), 24, y);
+                y += 5;
+                mane.forEach(st => {
+                    red(`[${stanjeStavki[st.id].status}] ${st.tekst}`,
+                        `-${Math.round(stanjeStavki[st.id].odbitak)} EUR`,
+                        stanjeStavki[st.id].status === "KRITIČNO" ? "#991b1b" : "#78350f");
+                });
+                y += 2;
             }
         });
 
-        db.collection("inspekcije").add(podaciZaSlanje)
-        .then(() => {
-            alert("✅ Izvještaj je uspješno trajno zabilježen u bazu podataka!");
-        })
-        .catch((error) => {
-            console.error("Greška pri upisu u bazu: ", error);
-            alert("Došlo je do greške pri povezivanju sa bazom.");
-        });
+        if (!imaMana && aktivniOBD.length === 0) {
+            sekcija("STANJE VOZILA", "#14532d");
+            red("Vozilo je u odlicnom stanju — nisu evidentirane mane.", null, "#166534");
+            y += 4;
+        }
+
+        // Finalna cena
+        y += 4;
+        doc.setFillColor(10, 10, 15);
+        doc.rect(18, y - 2, 174, 24, "F");
+        doc.setTextColor(148, 163, 184);
+        doc.setFontSize(9);
+        doc.setFont("helvetica", "normal");
+        doc.text(`Pocetna cena:`, 24, y + 5);
+        doc.text(`${pocetnaCena.toLocaleString("sr-RS")} EUR`, 188, y + 5, { align: "right" });
+        doc.text(`Ukupni odbitak:`, 24, y + 11);
+        doc.setTextColor(239, 68, 68);
+        doc.text(`-${Math.round(ukupanOdbitak).toLocaleString("sr-RS")} EUR`, 188, y + 11, { align: "right" });
+        doc.setTextColor(245, 166, 35);
+        doc.setFontSize(13);
+        doc.setFont("helvetica", "bold");
+        doc.text("REALNA VREDNOST:", 24, y + 19);
+        doc.text(`${fin.toLocaleString("sr-RS")} EUR`, 188, y + 19, { align: "right" });
+
+        // Footer
+        doc.setTextColor(71, 85, 105);
+        doc.setFontSize(8);
+        doc.setFont("helvetica", "normal");
+        doc.text("Generisano pomocu AutoLovac PRO", 105, 290, { align: "center" });
+
+        doc.save(`AutoLovac_${m}_${mdl}_${datum.replace(/\./g,"")}.pdf`);
+        prikaziToast("✓ PDF preuzet", "ok");
+    }
+
+    // ── KOPIRANJE ──────────────────────────────────────────
+    function kopirajTekst() {
+        navigator.clipboard.writeText(document.getElementById("report-tekst").textContent)
+            .then(() => prikaziToast("✓ Tekst kopiran u clipboard", "ok"))
+            .catch(() => prikaziToast("⚠ Kopiranje nije uspelo", "warn"));
+    }
+
+    // ── VRATI SE ───────────────────────────────────────────
+    function vratiSe() {
+        document.getElementById("report-box").style.display = "none";
+        document.getElementById("kategorije-kontejner").scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    // ── FIREBASE ───────────────────────────────────────────
+    function snimiUBazu() {
+        const m = markaEl.value, mdl = modelEl.value, g = godisteEl.value;
+        const fin = Math.max(0, Math.round(pocetnaCena - ukupanOdbitak));
+
+        const podatci = {
+            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+            datum: new Date().toLocaleDateString("sr-Latn-RS"),
+            marka: m, model: mdl, godiste: g,
+            pocetnaCena, ukupanOdbitak,
+            finalnaCena: fin,
+            obdKodovi: aktivniOBD,
+            mane: Object.fromEntries(
+                Object.entries(stanjeStavki).filter(([_, v]) => v.status !== "OK")
+                    .map(([k, v]) => [k, { status: v.status, odbitak: v.odbitak }])
+            )
+        };
+
+        db.collection("inspekcije").add(podatci)
+            .then(() => prikaziToast("✓ Sačuvano u bazi", "ok"))
+            .catch(() => prikaziToast("⚠ Greška pri upisu u bazu", "warn"));
+    }
+
+    // ── TOAST ──────────────────────────────────────────────
+    function prikaziToast(poruka, tip = "ok") {
+        const t = document.getElementById("toast");
+        t.textContent = poruka;
+        t.style.borderColor = tip === "ok" ? "rgba(34,197,94,0.3)" : "rgba(245,166,35,0.3)";
+        t.classList.add("show");
+        setTimeout(() => t.classList.remove("show"), 2800);
     }
 </script>
-
 </body>
 </html>
