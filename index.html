@@ -3,27 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AutoLovac PRO - Inspekcija</title>
+    <title>AutoLovac PRO - Inspekcija i Baza</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
     
     <style>
         :root {
-            /* Osnovne boje */
             --bg-spolja: #f8fafc;        
             --bg-kartica: #020617;       
             --bg-polja: #0f172a;         
             --ivica: #1e293b;            
-            
-            /* ZLATNA TEMATIKA ZA PRO IZGLED */
             --zlatna-svetla: #fde047;
             --zlatna-srednja: #f59e0b;
             --zlatna-tamna: #b45309;
-            
-            /* Boje za ocene */
             --zelena: #10b981;    
             --zuta: #eab308;      
             --crvena: #ef4444;    
-            
             --tekst-glavni: #f8fafc;
             --tekst-bledi: #94a3b8;
         }
@@ -52,11 +49,7 @@
             position: relative;
         }
         
-        /* ZAGLAVLJE SA ZLATNOM IKONICOM */
-        .zaglavlje-sekcija {
-            text-align: center;
-            margin-bottom: 35px;
-        }
+        .zaglavlje-sekcija { text-align: center; margin-bottom: 35px; }
         
         .ikona-kontejner {
             width: 70px;
@@ -73,38 +66,15 @@
 
         .ikona-kontejner i {
             font-size: 32px;
-            /* Zlatni preliv na samoj ikonici */
             background: linear-gradient(135deg, var(--zlatna-svetla), var(--zlatna-srednja));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
         
-        h1 { 
-            margin: 0 0 5px 0; 
-            font-size: 28px; 
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            color: white;
-        }
+        h1 { margin: 0 0 5px 0; font-size: 28px; font-weight: 800; letter-spacing: -0.5px; color: white; }
+        .podnaslov { color: var(--tekst-bledi); margin: 0; font-size: 14px; font-weight: 500; }
         
-        .podnaslov { 
-            color: var(--tekst-bledi); 
-            margin: 0; 
-            font-size: 14px; 
-            font-weight: 500; 
-        }
-        
-        /* POLJA ZA UNOS */
-        label { 
-            display: block; 
-            margin-top: 15px; 
-            margin-bottom: 8px; 
-            color: var(--tekst-bledi); 
-            font-weight: 600; 
-            font-size: 12px; 
-            text-transform: uppercase; 
-            letter-spacing: 0.5px; 
-        }
+        label { display: block; margin-top: 15px; margin-bottom: 8px; color: var(--tekst-bledi); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
 
         select, input {
             width: 100%;
@@ -119,23 +89,12 @@
             transition: all 0.2s;
             appearance: none;
         }
-        select:focus, input:focus { 
-            border-color: var(--zlatna-srednja); 
-            outline: none; 
-            box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.1); 
-        }
+        select:focus, input:focus { border-color: var(--zlatna-srednja); outline: none; box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.1); }
         select:disabled { opacity: 0.4; }
         
         input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
-        input[type=number] { 
-            -moz-appearance: textfield; 
-            text-align: center; 
-            font-size: 24px; 
-            font-weight: 700; 
-            color: var(--zelena); 
-        }
+        input[type=number] { -moz-appearance: textfield; text-align: center; font-size: 24px; font-weight: 700; color: var(--zelena); }
         
-        /* BOKS SA MANAMA */
         #savet-boks {
             margin-top: 30px;
             padding: 20px;
@@ -144,15 +103,9 @@
             border-radius: 16px;
             display: none;
         }
-        #savet-boks h3 { 
-            margin: 0 0 10px 0; 
-            color: var(--zlatna-srednja); 
-            font-size: 15px; 
-            font-weight: 700; 
-        }
+        #savet-boks h3 { margin: 0 0 10px 0; color: var(--zlatna-srednja); font-size: 15px; font-weight: 700; }
         #tekst-mane { font-size: 14px; line-height: 1.6; color: var(--tekst-glavni); margin: 0; }
 
-        /* ČEK LISTA */
         #cek-lista-modul { display: none; margin-top: 40px; }
         .kategorija-blok { margin-top: 30px; }
         
@@ -215,15 +168,8 @@
             border-radius: 16px;
             border: 1px dashed var(--ivica);
         }
-        #izvestaj-tekst {
-            color: var(--zelena);
-            font-family: monospace;
-            white-space: pre-wrap;
-            font-size: 13px;
-            line-height: 1.5;
-        }
+        #izvestaj-tekst { color: var(--zelena); font-family: monospace; white-space: pre-wrap; font-size: 13px; line-height: 1.5; }
 
-        /* --- ZLATNI LEBDEĆI BAR --- */
         #cenkanje-bar {
             position: fixed;
             bottom: 25px;
@@ -232,7 +178,6 @@
             margin: 0 auto;
             max-width: 480px;
             width: 90%;
-            /* Moćan zlatni preliv */
             background: linear-gradient(135deg, #fcd34d 0%, #f59e0b 50%, #d97706 100%);
             border: 1px solid #fde047;
             border-radius: 9999px;
@@ -242,23 +187,9 @@
             box-sizing: border-box;
             z-index: 1000;
         }
-        .cenkanje-sadrzaj {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .cenkanje-sadrzaj span:first-child { 
-            font-size: 14px; 
-            color: #451a03; /* Tamno braon (skoro crna) za luksuzan kontrast na zlatnom */
-            font-weight: 700; 
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        #finalna-cena { 
-            color: #451a03; 
-            font-size: 24px; 
-            font-weight: 900; 
-        }
+        .cenkanje-sadrzaj { display: flex; justify-content: space-between; align-items: center; }
+        .cenkanje-sadrzaj span:first-child { font-size: 14px; color: #451a03; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+        #finalna-cena { color: #451a03; font-size: 24px; font-weight: 900; }
     </style>
 </head>
 <body>
@@ -308,7 +239,11 @@
         <div id="izvestaj-boks">
             <div id="izvestaj-tekst"></div>
             <button class="btn-glavno" style="background: var(--zelena); margin-top:15px; color: white; border:none;" onclick="kopirajTekst()">
-                <i class="fa-solid fa-copy" style="margin-right: 8px;"></i> Kopiraj
+                <i class="fa-solid fa-copy" style="margin-right: 8px;"></i> Kopiraj tekst u klipbord
+            </button>
+            
+            <button class="btn-glavno" style="background: #3b82f6; margin-top:10px; color: white; border:none;" onclick="snimiUBazuOblaka()">
+                <i class="fa-solid fa-cloud-arrow-up" style="margin-right: 8px;"></i> 💾 Sačuvaj izveštaj u bazu podataka
             </button>
         </div>
     </div>
@@ -322,11 +257,26 @@
 </div>
 
 <script>
+    // ==========================================
+    // PAŽNjA: OVDE ZALEPI SVOJU KONFIGURACIJU IZ KORAKA 3!
+    const firebaseConfig = {
+  apiKey: "AIzaSyBCl3LAUXyw47c81od5Gqcb3FAIexysQBw",
+  authDomain: "autolovac-pro.firebaseapp.com",
+  projectId: "autolovac-pro",
+  storageBucket: "autolovac-pro.firebasestorage.app",
+  messagingSenderId: "118844372336",
+  appId: "1:118844372336:web:9d245372932bf4e9840bb5"
+};
+    // ==========================================
+
+    // Pokretanje Firebase-a
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
     let bazaMane = {};
     let pocetnaCena = 5000;
     let iznosSustinskogOdbitka = 0;
     
-    // ZNATNO PROŠIRENA LISTA PROVERA
     const strukturaCekListe = {
         "1. Spoljašnost i Limarija": [
             { id: "zazori", tekst: "Zazori na haubi i vratima (Tragovi udesa / farbanja)", kazna: 500 },
@@ -524,6 +474,43 @@
         const tekst = izvestajTekst.textContent;
         navigator.clipboard.writeText(tekst).then(() => {
             alert("Izveštaj uspešno kopiran u klipbord!");
+        });
+    }
+
+    // LOGIKA UPISA PODATAKA U CLOUD FIREBASE
+    function snimiUBazuOblaka() {
+        const marka = markaSelect.value;
+        const model = modelSelect.value;
+        const godiste = godisteSelect.value;
+        
+        // Spremamo čist objekat sa podacima za prenos
+        let podaciZaSlanje = {
+            datum: new Date().toLocaleDateString('sr-RS'),
+            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+            marka: marka,
+            model: model,
+            godiste: godiste,
+            pocetnaCena: pocetnaCena,
+            ulaganja: iznosSustinskogOdbitka,
+            finalnaCena: pocetnaCena - iznosSustinskogOdbitka,
+            detaljiMana: {}
+        };
+
+        // Pakujemo u objekat samo one stavke koje imaju manu
+        Object.keys(stanjeStavki).forEach(id => {
+            if (stanjeStavki[id].status !== "OK") {
+                podaciZaSlanje.detaljiMana[id] = stanjeStavki[id].status;
+            }
+        });
+
+        // Upisujemo dokument u kolekciju pod nazivom "inspekcije"
+        db.collection("inspekcije").add(podaciZaSlanje)
+        .then(() => {
+            alert("✅ Izveštaj je uspešno trajno zabeležen u bazu podataka!");
+        })
+        .catch((error) => {
+            console.error("Greška pri upisu u bazu: ", error);
+            alert("Došlo je do greške pri povezivanju sa bazom.");
         });
     }
 </script>
