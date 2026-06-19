@@ -1,48 +1,97 @@
 {
   "Volkswagen": {
     "Golf": {
-      "2004-2008 (Golf 5)": "Obratite pažnju na rđu na pragovima i rubovima. Kod 2.0 TDI motora problem su bile Siemens dizne i pucanje glave motora, dok je 1.9 TDI daleko pouzdaniji.",
-      "2009-2013 (Golf 6)": "Glavna mana kod 1.6 TDI motora su osetljive i skupe dizne (brizgaljke), kao i EGR ventil. Proverite stanje plivajućeg zamajca.",
-      "2013-2019 (Golf 7)": "Kod dizelaša proveriti pumpu za vodu koja rano otkazuje. Elektronska parkirna kočnica i infotejment ekran znaju da baguju."
+      "2004-2008 (Golf 5)": "Rđa na pragovima i rubovima. Kod 2.0 TDI (140KS) pucanje glave motora i Siemens dizne. 1.9 TDI je pouzdaniji, ali proveriti zamajac.",
+      "2009-2013 (Golf 6)": "Osetljive dizne i EGR ventil kod 1.6 TDI. Kod benzinca 1.2/1.4 TSI proveriti lanac koji se brzo isteže.",
+      "2013-2019 (Golf 7)": "Vodena pumpa kod TDI motora rano procuri. Proveriti rad infotainment ekrana i elektronske ručne kočnice."
     },
     "Passat": {
-      "2005-2010 (Passat B6)": "Rani modeli imaju problem sa uljnom pumpom (šestougaona osovina). Česti su kvarovi na tasteru elektronske ručne kočnice i rđa na gepek vratima.",
-      "2011-2014 (Passat B7)": "Generalno pouzdaniji od B6. Glavne stavke za proveru su DSG menjač (mora glatko da šalta) i potencijalno začepljenje DPF filtera kod gradske vožnje."
+      "2005-2010 (B6)": "Problem sa osovinom uljne pumpe kod 2.0 TDI (odlazi turbo i motor). Rđa oko svetala za tablicu na gepeku.",
+      "2011-2014 (B7)": "Bolji od B6, ali proveriti DPF filter i DSG menjač (trzanje pri kretanju).",
+      "2015-2023 (B8)": "Potrošnja rashladne tečnosti, problemi sa LED farovima i greške na senzorima radara (Front Assist)."
+    }
+  },
+  "Skoda": {
+    "Octavia": {
+      "2004-2013 (A5)": "Identične mane kao Golf 5/6. Enterijer (prekidači) se brzo guli. Kompresor klime često otkazuje.",
+      "2013-2020 (A6)": "Buka u kabini pri većim brzinama. Kod 1.6 TDI proveriti dizne, kod 2.0 TDI vodenu pumpu."
+    },
+    "Superb": {
+      "2008-2015 (Mk2)": "Genijalan gepek, ali kablovi u vratima gepeka pucaju. Rđa na donjim ivicama vrata.",
+      "2015-2023 (Mk3)": "Problemi sa hromiranim lajsnama, škripanje plastike u enterijeru i osetljiv DSG menjač na jačim motorima."
     }
   },
   "Audi": {
+    "A3": {
+      "2003-2012 (8P)": "Problem sa podizačima prozora. 2.0 TDI BKD motor (do 2008) ima problem sa pucanjem glave.",
+      "2012-2020 (8V)": "Zveckanje iz menjača, problemi sa MMI sistemom (ekran koji izlazi iz table zna da se zaglavi)."
+    },
     "A4": {
-      "2008-2015 (B8)": "Kod 2.0 TFSI benzinaca proverite potrošnju ulja (karike). Kod dizelaša problem može biti pumpa visokog pritiska (CP4 pumpa koja pravi opiljke) i zamajac.",
-      "2015-2022 (B9)": "Obratite pažnju na curenje rashladne tečnosti (kućište termostata). S-Tronic menjač zahteva redovan servis na 60.000 km inače je skup za popravku."
+      "2008-2015 (B8)": "Velika potrošnja ulja kod 2.0 TFSI benzinca. Kod 2.0 TDI problem sa CP4 pumpom visokog pritiska (opiljci u sistemu).",
+      "2015-2023 (B9)": "Osetljivo Multitronic/S-Tronic kvačilo. Problem sa curenjem antifriza na kućištu termostata."
     }
   },
   "BMW": {
     "Serija 3": {
-      "2005-2011 (E90)": "Kod N47 dizel motora (posle 2007) lanac je kritična tačka i nalazi se pozadi. Proveriti i grejač kabine i amortizere.",
-      "2012-2019 (F30)": "Takođe proveriti pogonski lanac kod ranih N47/N20 motora. Letva volana može imati luft, a plastične cevi za rashladnu tečnost postaju krte."
+      "2005-2011 (E90)": "N47 dizel motor (posle 2007) ima problematičan lanac smešten pozadi motora. Kvarovi modula za zaključavanje volana.",
+      "2012-2019 (F30)": "Osetljiva letva volana (lupkanje). Kod dizelaša proveriti EGR hladnjak koji može izazvati požar (postoji opoziv)."
+    },
+    "Serija 5": {
+      "2003-2010 (E60)": "Komplikovana elektronika, česti kvarovi CCC modula (iDrive ekran). Kod dizela klapne usisne grane mogu upasti u motor.",
+      "2010-2017 (F10)": "Vazdušni jastuci na zadnjoj osovini (karavan) pucaju. Lanac na 2.0d (N47/B47) je i dalje tačka na koju treba obratiti pažnju."
     }
   },
   "Mercedes-Benz": {
     "C-Klasa": {
-      "2007-2014 (W204)": "Zadnji most (kolijevka) je sklon teškoj koroziji i pucanju. Kod OM651 dizel motora proveriti zatezač lanca i curenje na kućištu filtera goriva."
-    }
-  },
-  "Opel": {
-    "Astra": {
-      "2004-2010 (Astra H)": "Čest problem sa CIM modulom (otkazuju komande na volanu i sirena). Kod 1.7 CDTI motora alternator je slaba tačka, a kod 1.9 CDTI usisna grana.",
-      "2010-2015 (Astra J)": "Automobili su dosta teški, pa benzinski motori bez turbine troše više. Problematični mogu biti M32 manuelni menjači (ležajevi)."
-    }
-  },
-  "Fiat": {
-    "Punto": {
-      "1999-2005 (Classic)": "Slaba tačka im je 'City' servo volan (senzori pozicije otkazuju). Kod benzinca 1.2 hoće da ode dihtung glave motora.",
-      "2006-2015 (Grande / Evo)": "1.3 Multijet motori su odlični, ali treba proveriti rastezanje pogonskog lanca. Elektronika i enterijer su znatno bolji nego kod starijeg modela."
+      "2007-2014 (W204)": "Zadnji most (kolijevka) truli i može pući u vožnji. Kod OM651 (220 CDI) problem sa piezo diznama i vodenom pumpom."
+    },
+    "E-Klasa": {
+      "2002-2009 (W211)": "SBC kočioni sistem kod modela pre restilizacije (do 2006) izuzetno skup za popravku. Vazdušno ogibljenje gubi pritisak.",
+      "2009-2016 (W212)": "Problem sa lancem kod OM651 motora i propadanje sedišta od eko-kože (Artico)."
     }
   },
   "Renault": {
     "Megane": {
-      "2008-2016 (Megane 3)": "Česti sitni problemi sa elektronikom (kartica za paljenje, el. podizači). Trapovi su osetljivi, ali je 1.5 dCi motor u ovom modelu odličan.",
-      "2016-2022 (Megane 4)": "Infotejment sistem (R-Link) često koči ili se resetuje. Proveriti zadnje torzione osovine i zazore na gepeku koji fabrički znaju biti krivi."
+      "2008-2016 (Megane 3)": "1.5 dCi proveriti leteće ležajeve radilice. Elektronika sitničava (kartica, senzori).",
+      "2016-2022 (Megane 4)": "R-Link multimedija koči i resetuje se. Krivi zazori na gepek vratima grebu branik."
+    },
+    "Clio": {
+      "2012-2019 (Clio 4)": "Izuzetno loša zvučna izolacija i jeftina plastika koja škripi. Problem sa stabilizatorima na trapu."
+    }
+  },
+  "Peugeot": {
+    "308": {
+      "2007-2013 (T7)": "Elektronika (BSI modul). 1.6 THP benzinci (zajedno sa BMW-om) troše ulje i imaju problem sa lancem.",
+      "2013-2021 (T9)": "Kod 1.6 i 1.5 BlueHDi motora crkava rezervoar za AdBlue (veoma skupa zamena). Ekran osetljiv na dodir često otkazuje."
+    }
+  },
+  "Opel": {
+    "Astra": {
+      "2004-2010 (H)": "CIM modul u volanu gubi kontakt (sirena ne radi). 1.7 CDTI problem sa alternatorom.",
+      "2010-2015 (J)": "M32 manuelni menjač (bruje ležajevi u 5. i 6. brzini). Težak auto koji troši više benzina.",
+      "2015-2021 (K)": "Lanac kod 1.6 CDTI dizela počinje rano da zvecka pri paljenju. Problem sa matriks LED farovima."
+    }
+  },
+  "Fiat": {
+    "Punto": {
+      "1999-2010 (Classic)": "City servo volan crkava. Benzincima 1.2 često strada dihtung glave i cure poklopci ventila."
+    },
+    "Bravo": {
+      "2007-2014": "Poluge brisača preskaču. Kod 1.9 JTDm obratiti pažnju na klapne usisne grane, dok su motori mehanicki neuništivi."
+    }
+  },
+  "Alfa Romeo": {
+    "159": {
+      "2005-2011": "Trap je jako osetljiv na naše puteve i skup za održavanje. Težak nos auta brže troši gume. M32 menjač pravi problem."
+    },
+    "Giulietta": {
+      "2010-2020": "Pucaju kablovi u prevoju gepek vrata. DNA prekidač (modovi vožnje) zna da zablokira. Unutrašnja ručica vrata hoće da ostane u ruci."
+    }
+  },
+  "Toyota": {
+    "Yaris": {
+      "2005-2011": "M-MT robotizovani menjač je spor i trza. Lak na krovu i haubi se ljušti od sunca.",
+      "2011-2020": "Veoma pouzdan, ali enterijer se lako grebe. Infotainment sistem je zastareo i spor."
     }
   }
 }

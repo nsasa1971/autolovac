@@ -3,251 +3,320 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AutoLovac PRO - Premium Ček-Lista</title>
+    <title>AutoLovac PRO - Inspekcija</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
     <style>
         :root {
-            --bg-glavna: #0a0a0c;
-            --bg-kartica: #13131a;
-            --bg-input: #1c1c24;
-            --plava: #3498db;
-            --plava-hover: #2980b9;
-            --zelena: #2ecc71;
-            --zuta: #f1c40f;
-            --crvena: #e74c3c;
-            --tekst-glavni: #ffffff;
-            --tekst-sekundarni: #94a3b8;
+            /* Osnovne boje */
+            --bg-spolja: #f8fafc;        
+            --bg-kartica: #020617;       
+            --bg-polja: #0f172a;         
+            --ivica: #1e293b;            
+            
+            /* ZLATNA TEMATIKA ZA PRO IZGLED */
+            --zlatna-svetla: #fde047;
+            --zlatna-srednja: #f59e0b;
+            --zlatna-tamna: #b45309;
+            
+            /* Boje za ocene */
+            --zelena: #10b981;    
+            --zuta: #eab308;      
+            --crvena: #ef4444;    
+            
+            --tekst-glavni: #f8fafc;
+            --tekst-bledi: #94a3b8;
         }
 
         body {
-            font-family: 'SF Pro Display', -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
-            background-color: var(--bg-glavna);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-spolja);
             color: var(--tekst-glavni);
             margin: 0;
-            padding: 15px;
+            padding: 20px 15px;
             display: flex;
             justify-content: center;
+            min-height: 100vh;
             -webkit-font-smoothing: antialiased;
         }
         
         .kontejner {
-            max-width: 550px;
+            max-width: 500px;
             width: 100%;
             background: var(--bg-kartica);
-            padding: 30px 20px;
-            border-radius: 24px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-            border: 1px solid #22222f;
+            padding: 40px 30px;
+            border-radius: 28px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            border: 1px solid var(--ivica);
             box-sizing: border-box;
+            position: relative;
+        }
+        
+        /* ZAGLAVLJE SA ZLATNOM IKONICOM */
+        .zaglavlje-sekcija {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+        
+        .ikona-kontejner {
+            width: 70px;
+            height: 70px;
+            background: var(--bg-polja);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px auto;
+            border: 1px solid var(--zlatna-tamna);
+            box-shadow: 0 4px 15px -1px rgba(245, 158, 11, 0.2);
+        }
+
+        .ikona-kontejner i {
+            font-size: 32px;
+            /* Zlatni preliv na samoj ikonici */
+            background: linear-gradient(135deg, var(--zlatna-svetla), var(--zlatna-srednja));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         
         h1 { 
-            text-align: center; 
-            background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 5px; 
-            font-size: 32px; 
+            margin: 0 0 5px 0; 
+            font-size: 28px; 
             font-weight: 800;
             letter-spacing: -0.5px;
+            color: white;
         }
         
-        .podnaslov { text-align: center; color: var(--tekst-sekundarni); margin-top: 0; margin-bottom: 30px; font-size: 14px; font-weight: 500; }
-        
-        .grupa-polja {
-            background: #181822;
-            padding: 15px;
-            border-radius: 16px;
-            border: 1px solid #222232;
-            margin-bottom: 20px;
+        .podnaslov { 
+            color: var(--tekst-bledi); 
+            margin: 0; 
+            font-size: 14px; 
+            font-weight: 500; 
         }
-
-        label { display: block; margin-top: 12px; margin-bottom: 6px; color: var(--tekst-sekundarni); font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; }
-        label:first-child { margin-top: 0; }
+        
+        /* POLJA ZA UNOS */
+        label { 
+            display: block; 
+            margin-top: 15px; 
+            margin-bottom: 8px; 
+            color: var(--tekst-bledi); 
+            font-weight: 600; 
+            font-size: 12px; 
+            text-transform: uppercase; 
+            letter-spacing: 0.5px; 
+        }
 
         select, input {
             width: 100%;
-            padding: 14px;
-            background: var(--bg-input);
-            color: #fff;
-            border: 1px solid #2d2d3d;
-            border-radius: 12px;
+            padding: 16px;
+            background: var(--bg-polja);
+            color: white;
+            border: 1px solid var(--ivica);
+            border-radius: 16px;
             font-size: 16px;
             font-weight: 500;
             box-sizing: border-box;
-            transition: all 0.2s ease;
+            transition: all 0.2s;
+            appearance: none;
         }
-        select:focus, input:focus { border-color: var(--plava); box-shadow: 0 0 0 3px rgba(52,152,219,0.2); outline: none; }
-        select:disabled { opacity: 0.3; cursor: not-allowed; }
+        select:focus, input:focus { 
+            border-color: var(--zlatna-srednja); 
+            outline: none; 
+            box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.1); 
+        }
+        select:disabled { opacity: 0.4; }
         
-        input::-webkit-outer-spin-button,
-        input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
-        input[type=number] { -moz-appearance: textfield; text-align: center; font-size: 20px; font-weight: 700; color: var(--zelena); letter-spacing: 0.5px; }
+        input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+        input[type=number] { 
+            -moz-appearance: textfield; 
+            text-align: center; 
+            font-size: 24px; 
+            font-weight: 700; 
+            color: var(--zelena); 
+        }
         
+        /* BOKS SA MANAMA */
         #savet-boks {
-            margin-top: 25px;
+            margin-top: 30px;
             padding: 20px;
-            background: linear-gradient(135deg, #241c08 0%, #1a1405 100%);
-            border-left: 4px solid var(--zuta);
-            border-radius: 12px;
+            background: rgba(245, 158, 11, 0.05);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 16px;
             display: none;
-            border-top: 1px solid #3a3010;
-            border-right: 1px solid #3a3010;
-            border-bottom: 1px solid #3a3010;
         }
-        #savet-boks h3 { margin-top: 0; color: var(--zuta); font-size: 16px; font-weight: 700; letter-spacing: -0.3px; }
-        #tekst-mane { font-size: 15px; line-height: 1.6; color: #e2e8f0; margin: 0; }
+        #savet-boks h3 { 
+            margin: 0 0 10px 0; 
+            color: var(--zlatna-srednja); 
+            font-size: 15px; 
+            font-weight: 700; 
+        }
+        #tekst-mane { font-size: 14px; line-height: 1.6; color: var(--tekst-glavni); margin: 0; }
 
-        #cek-lista-modul { display: none; margin-top: 35px; }
+        /* ČEK LISTA */
+        #cek-lista-modul { display: none; margin-top: 40px; }
         .kategorija-blok { margin-top: 30px; }
         
         .kategorija-naslov { 
-            color: var(--plava); 
-            font-size: 18px; 
-            border-bottom: 1px solid #222235; 
-            padding-bottom: 8px; 
-            margin-bottom: 18px;
+            color: var(--zlatna-svetla); 
+            font-size: 16px; 
+            margin-bottom: 15px;
             font-weight: 700;
-            letter-spacing: -0.3px;
+            border-bottom: 1px solid var(--ivica);
+            padding-bottom: 8px;
         }
         
         .stavka {
-            background: #181822;
-            padding: 18px;
-            border-radius: 16px;
-            margin-bottom: 14px;
-            border: 1px solid #222232;
+            background: var(--bg-polja);
+            padding: 20px;
+            border-radius: 20px;
+            margin-bottom: 15px;
+            border: 1px solid var(--ivica);
         }
-        .stavka-tekst { margin-bottom: 14px; font-weight: 600; font-size: 15px; color: #f8fafc; line-height: 1.4; }
+        .stavka-tekst { margin-bottom: 15px; font-weight: 500; font-size: 14px; color: var(--tekst-glavni); line-height: 1.5; }
         
         .opcije-grupa { display: flex; gap: 8px; }
         .btn-ocena {
             flex: 1;
-            padding: 12px 4px;
-            border: 1px solid #2d2d3d;
-            border-radius: 10px;
+            padding: 12px 0;
+            border: 1px solid var(--ivica);
+            border-radius: 9999px;
             font-weight: 700;
-            font-size: 12px;
+            font-size: 11px;
             cursor: pointer;
-            background: var(--bg-input);
-            color: #94a3b8;
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            background: transparent;
+            color: var(--tekst-bledi);
+            transition: all 0.2s;
         }
-        .btn-ocena:active { transform: scale(0.97); }
         
-        .btn-ocena.ok:hover, .btn-ocena.ok.aktivno { background: var(--zelena); border-color: var(--zelena); color: #fff; box-shadow: 0 4px 12px rgba(46,204,113,0.25); }
-        .btn-ocena.minus:hover, .btn-ocena.minus.aktivno { background: var(--zuta); border-color: var(--zuta); color: #000; box-shadow: 0 4px 12px rgba(241,196,15,0.25); }
-        .btn-ocena.kriticno:hover, .btn-ocena.kriticno.aktivno { background: var(--crvena); border-color: var(--crvena); color: #fff; box-shadow: 0 4px 12px rgba(231,76,60,0.25); }
+        .btn-ocena.ok.aktivno { background: var(--zelena); border-color: var(--zelena); color: white; }
+        .btn-ocena.minus.aktivno { background: var(--zuta); border-color: var(--zuta); color: #000; }
+        .btn-ocena.kriticno.aktivno { background: var(--crvena); border-color: var(--crvena); color: white; }
 
         .btn-glavno {
             width: 100%;
-            padding: 16px;
-            background: linear-gradient(135deg, var(--plava) 0%, #2575fc 100%);
+            padding: 18px;
+            background: linear-gradient(135deg, var(--zlatna-srednja), var(--zlatna-tamna));
             color: #fff;
             border: none;
-            border-radius: 14px;
-            font-size: 16px;
+            border-radius: 16px;
+            font-size: 15px;
             font-weight: 700;
             cursor: pointer;
-            margin-top: 30px;
-            box-shadow: 0 4px 15px rgba(52,152,219,0.3);
+            margin-top: 20px;
             transition: all 0.2s;
         }
-        .btn-glavno:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(52,152,219,0.4); }
-        .btn-glavno:active { transform: translateY(1px); }
+        .btn-glavno:hover { filter: brightness(1.1); }
 
         #izvestaj-boks {
             display: none;
-            margin-top: 30px;
-            background: #111118;
-            padding: 22px;
+            margin-top: 20px;
+            background: #000;
+            padding: 20px;
             border-radius: 16px;
-            border: 1px dashed #333345;
+            border: 1px dashed var(--ivica);
         }
         #izvestaj-tekst {
-            background: #07070a;
-            color: #a7f3d0;
-            padding: 18px;
-            border-radius: 10px;
-            font-family: 'Fira Code', 'Courier New', Courier, monospace;
+            color: var(--zelena);
+            font-family: monospace;
             white-space: pre-wrap;
             font-size: 13px;
-            line-height: 1.6;
-            border: 1px solid #1e1e2f;
+            line-height: 1.5;
         }
 
+        /* --- ZLATNI LEBDEĆI BAR --- */
         #cenkanje-bar {
             position: fixed;
-            bottom: 0;
+            bottom: 25px;
             left: 0;
-            width: 100%;
-            background: rgba(22, 22, 26, 0.95);
-            backdrop-filter: blur(10px);
-            border-top: 1px solid #222235;
-            padding: 18px 20px;
-            text-align: center;
-            box-shadow: 0 -10px 30px rgba(0,0,0,0.5);
+            right: 0;
+            margin: 0 auto;
+            max-width: 480px;
+            width: 90%;
+            /* Moćan zlatni preliv */
+            background: linear-gradient(135deg, #fcd34d 0%, #f59e0b 50%, #d97706 100%);
+            border: 1px solid #fde047;
+            border-radius: 9999px;
+            padding: 15px 25px;
+            box-shadow: 0 15px 30px -5px rgba(217, 119, 6, 0.4);
             display: none;
             box-sizing: border-box;
             z-index: 1000;
         }
         .cenkanje-sadrzaj {
-            max-width: 550px;
-            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        .cenkanje-sadrzaj span:first-child { font-size: 15px; color: var(--tekst-sekundarni); font-weight: 600; }
-        #finalna-cena { color: var(--zelena); font-size: 26px; font-weight: 800; text-shadow: 0 0 15px rgba(46,204,113,0.2); }
+        .cenkanje-sadrzaj span:first-child { 
+            font-size: 14px; 
+            color: #451a03; /* Tamno braon (skoro crna) za luksuzan kontrast na zlatnom */
+            font-weight: 700; 
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        #finalna-cena { 
+            color: #451a03; 
+            font-size: 24px; 
+            font-weight: 900; 
+        }
     </style>
 </head>
 <body>
 
 <div class="kontejner" style="margin-bottom: 120px;">
-    <h1>🚗 AutoLovac PRO</h1>
-    <p class="podnaslov">Inteligentni vodič za proveri vozila</p>
+    
+    <div class="zaglavlje-sekcija">
+        <div class="ikona-kontejner">
+            <i class="fa-solid fa-list-check"></i>
+        </div>
+        <h1>AutoLovac PRO</h1>
+        <p class="podnaslov">Digitalni asistent za proveru vozila</p>
+    </div>
 
-    <div class="grupa-polja">
-        <label for="cena-oglas">Početna cena na oglasu (€):</label>
+    <div class="unos-sekcija">
+        <label for="cena-oglas">Početna cena (€)</label>
         <input type="number" id="cena-oglas" value="5000" oninput="izracunajCenu()">
 
-        <label for="marka">Marka:</label>
+        <label for="marka">Marka vozila</label>
         <select id="marka" onchange="osveziModele()" disabled>
             <option value="">-- Učitavam bazu... --</option>
         </select>
 
-        <label for="model">Model:</label>
+        <label for="model">Model</label>
         <select id="model" onchange="osveziGodista()" disabled>
             <option value="">-- Prvo izaberite marku --</option>
         </select>
 
-        <label for="godiste">Godište / Generacija:</label>
+        <label for="godiste">Godište / Generacija</label>
         <select id="godiste" onchange="aktivirajPregled()" disabled>
             <option value="">-- Prvo izaberite model --</option>
         </select>
     </div>
 
     <div id="savet-boks">
-        <h3>⚠️ Karakteristične fabričke mane:</h3>
+        <h3><i class="fa-solid fa-triangle-exclamation" style="margin-right: 5px;"></i> Karakteristične mane:</h3>
         <p id="tekst-mane"></p>
     </div>
 
     <div id="cek-lista-modul">
         <div id="kategorije-kontejner"></div>
         
-        <button class="btn-glavno" onclick="generisiTekstualniIzvestaj()">📋 Generiši izveštaj za klijenta</button>
+        <button class="btn-glavno" onclick="generisiTekstualniIzvestaj()">
+            <i class="fa-solid fa-file-invoice" style="margin-right: 8px;"></i> Napravi izveštaj pregovora
+        </button>
         
         <div id="izvestaj-boks">
-            <h3 style="margin-top:0; color:var(--plava); font-size: 16px;">Spreman tekst za slanje:</h3>
             <div id="izvestaj-tekst"></div>
-            <button class="btn-glavno" style="background: linear-gradient(135deg, var(--zelena) 0%, #2196f3 100%); margin-top:12px; box-shadow: 0 4px 12px rgba(46,204,113,0.2);" onclick="kopirajTekst()">📋 Kopiraj u klipbord</button>
+            <button class="btn-glavno" style="background: var(--zelena); margin-top:15px; color: white; border:none;" onclick="kopirajTekst()">
+                <i class="fa-solid fa-copy" style="margin-right: 8px;"></i> Kopiraj
+            </button>
         </div>
     </div>
 </div>
 
 <div id="cenkanje-bar">
     <div class="cenkanje-sadrzaj">
-        <span>Realna vrednost nakon mana:</span>
+        <span>Konačna vrednost:</span>
         <span id="finalna-cena">5000 €</span>
     </div>
 </div>
@@ -257,22 +326,27 @@
     let pocetnaCena = 5000;
     let iznosSustinskogOdbitka = 0;
     
+    // ZNATNO PROŠIRENA LISTA PROVERA
     const strukturaCekListe = {
-        "1. Spoljašnost i Karoserija": [
-            { id: "zazori", tekst: "Simetrija zazora (hauba, krila, vrata) — tragovi havarija", kazna: 450 },
-            { id: "gume", tekst: "Stanje guma i starost (DOT) — izlizanost gaznog sloja", kazna: 300 }
+        "1. Spoljašnost i Limarija": [
+            { id: "zazori", tekst: "Zazori na haubi i vratima (Tragovi udesa / farbanja)", kazna: 500 },
+            { id: "rdja", tekst: "Korozija na pragovima, rubovima zadnjih točkova i patosu", kazna: 600 },
+            { id: "stakla", tekst: "Pukotine na šoferšajbni ili različita godišta na staklima", kazna: 200 },
+            { id: "gume", tekst: "Stanje i starost guma (DOT broj) i oštećenja felni", kazna: 350 }
         ],
-        "2. Enterijer i Kabinska Oprema": [
-            { id: "klima", tekst: "Ispravnost kompresora klime i svih smerova duvanja", kazna: 200 },
-            { id: "potrosenost", tekst: "Istrošenost enterijera (volan, sedišta) u odnosu na km", kazna: 100 }
+        "2. Enterijer i Elektronika": [
+            { id: "klima", tekst: "Kompresor klime ne pali ili ne hladi / greje ravnomerno", kazna: 250 },
+            { id: "potrosenost", tekst: "Pohabanost volana i sedišta ne odgovara kilometraži", kazna: 150 },
+            { id: "elektronika", tekst: "Ne rade podizači, centralna brava ili gori lampica (Check Engine/Airbag)", kazna: 200 }
         ],
-        "3. Pogonski Agregat (Motor)": [
-            { id: "ulje", tekst: "Tragovi curenja ulja na motoru, dihtunzima i plastici", kazna: 250 },
-            { id: "tečnosti", tekst: "Čistoća antifriza (odsustvo uljnih mrlja/emulzije u posudi)", kazna: 600 }
+        "3. Motorni Prostor": [
+            { id: "ulje", tekst: "Sveži tragovi ulja na bloku motora i ispod turbine", kazna: 300 },
+            { id: "tecnosti", tekst: "Emulzija (majonez) na čepu za ulje ili ulje u antifrizu", kazna: 700 },
+            { id: "auspuh", tekst: "Crni, plavi ili gusti beli dim iz auspuha pri dodavanju gasa", kazna: 500 }
         ],
-        "4. Dinamička Provera (Vožnja)": [
-            { id: "trap", tekst: "Odsustvo lupkanja, zveckanja i nepravilnih zvukova na trapu", kazna: 250 },
-            { id: "kvacilo", tekst: "Tvrdoća pedale kvačila, treskanje pri kretanju (zamajac)", kazna: 450 }
+        "4. Probna Vožnja": [
+            { id: "trap", tekst: "Tupi udarci i lupkanje na trapu pri prelasku preko rupa", kazna: 250 },
+            { id: "kvacilo", tekst: "Zamajac trese pri polasku, krčanje sinhrona u menjaču", kazna: 500 }
         ]
     };
 
@@ -295,7 +369,7 @@
             const odgovor = await fetch('baza.json');
             bazaMane = await odgovor.json();
             
-            markaSelect.innerHTML = '<option value="">-- Izaberite marku --</option>';
+            markaSelect.innerHTML = '<option value="">-- Izaberite --</option>';
             Object.keys(bazaMane).forEach(marka => {
                 const opcija = document.createElement("option");
                 opcija.value = marka; opcija.textContent = marka;
@@ -310,8 +384,8 @@
 
     function osveziModele() {
         const izabranaMarka = markaSelect.value;
-        modelSelect.innerHTML = '<option value="">-- Izaberite model --</option>';
-        godisteSelect.innerHTML = '<option value="">-- Prvo izaberite model --</option>';
+        modelSelect.innerHTML = '<option value="">-- Izaberite --</option>';
+        godisteSelect.innerHTML = '<option value="">-- Izaberite --</option>';
         godisteSelect.disabled = true;
         resetujEkran();
         if (izabranaMarka === "") { modelSelect.disabled = true; return; }
@@ -326,7 +400,7 @@
     function osveziGodista() {
         const izabranaMarka = markaSelect.value;
         const izabraniModel = modelSelect.value;
-        godisteSelect.innerHTML = '<option value="">-- Izaberite godište --</option>';
+        godisteSelect.innerHTML = '<option value="">-- Izaberite --</option>';
         resetujEkran();
         if (izabraniModel === "") { godisteSelect.disabled = true; return; }
         Object.keys(bazaMane[izabranaMarka][izabraniModel]).forEach(god => {
@@ -376,9 +450,9 @@
                 stavkaDiv.innerHTML = `
                     <div class="stavka-tekst">${st.tekst}</div>
                     <div class="opcije-grupa">
-                        <button class="btn-ocena ok aktivno" onclick="oceniStavku('${st.id}', 'OK', this, 0)">🟢 OK</button>
-                        <button class="btn-ocena minus" onclick="oceniStavku('${st.id}', 'MINUS', this, ${st.kazna})">🟡 MINUS</button>
-                        <button class="btn-ocena kriticno" onclick="oceniStavku('${st.id}', 'KRITIČNO', this, ${st.kazna * 1.8})">🔴 KRITIČNO</button>
+                        <button class="btn-ocena ok aktivno" onclick="oceniStavku('${st.id}', 'OK', this, 0)">OK</button>
+                        <button class="btn-ocena minus" onclick="oceniStavku('${st.id}', 'MINUS', this, ${st.kazna})">MANA</button>
+                        <button class="btn-ocena kriticno" onclick="oceniStavku('${st.id}', 'KRITIČNO', this, ${st.kazna * 1.5})">KATASTROFA</button>
                     </div>
                 `;
                 katBlok.appendChild(stavkaDiv);
@@ -418,30 +492,28 @@
         const godiste = godisteSelect.value;
         let danas = new Date().toLocaleDateString('sr-RS');
         
-        let tekst = `=== AUTOLOVAC PRO REPORT ===\n`;
-        tekst += `Datum pregleda: ${danas}\n`;
+        let tekst = `=== AUTOLOVAC PRO ===\n`;
+        tekst += `Datum: ${danas}\n`;
         tekst += `Vozilo: ${marka} ${model} (${godiste})\n`;
         tekst += `Početna cena: ${pocetnaCena} €\n`;
-        tekst += `----------------------------------------\n`;
-        tekst += `DETALjAN PREGLED MANA:\n`;
+        tekst += `--------------------------\n`;
+        tekst += `PRONAĐENE MANE:\n`;
         
         let brojacMana = 0;
         Object.keys(stanjeStavki).forEach(id => {
             let st = stanjeStavki[id];
             if (st.status !== "OK") {
                 brojacMana++;
-                tekst += `⚠️ [${st.status}] ${st.tekst} (-${Math.round(st.odbitak)} €)\n`;
+                tekst += `- [${st.status}] ${st.tekst} (-${Math.round(st.odbitak)} €)\n`;
             }
         });
         
         if (brojacMana === 0) {
-            tekst += `✅ Nisu pronađene značajne tehničke mane na pregledu.\n`;
+            tekst += `Vozilo je u odličnom stanju.\n`;
         }
         
-        tekst += `----------------------------------------\n`;
-        tekst += `Ukupna procenjena ulaganja: ${Math.round(iznosSustinskogOdbitka)} €\n`;
-        tekst += `💰 PREDLOG ZA CENKANJE: ${Math.round(pocetnaCena - iznosSustinskogOdbitka)} €\n`;
-        tekst += `========================================`;
+        tekst += `--------------------------\n`;
+        tekst += `REALNA VREDNOST: ${Math.round(pocetnaCena - iznosSustinskogOdbitka)} €\n`;
         
         izvestajTekst.textContent = tekst;
         izvestajBoks.style.display = "block";
@@ -451,9 +523,7 @@
     function kopirajTekst() {
         const tekst = izvestajTekst.textContent;
         navigator.clipboard.writeText(tekst).then(() => {
-            alert("Izveštaj uspešno kopiran u klipbord! Spreman je za slanje.");
-        }).catch(err => {
-            console.error('Greška pri kopiranju: ', err);
+            alert("Izveštaj uspešno kopiran u klipbord!");
         });
     }
 </script>
