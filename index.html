@@ -201,11 +201,11 @@
             <i class="fa-solid fa-list-check"></i>
         </div>
         <h1>AutoLovac PRO</h1>
-        <p class="podnaslov">Digitalni asistent za proveru vozila</p>
+        <p class="podnaslov">Digitalni asistent za provjeru vozila</p>
     </div>
 
     <div class="unos-sekcija">
-        <label for="cena-oglas">Početna cena (€)</label>
+        <label for="cena-oglas">Početna cijena (€)</label>
         <input type="number" id="cena-oglas" value="5000" oninput="izracunajCenu()">
 
         <label for="marka">Marka vozila</label>
@@ -233,7 +233,7 @@
         <div id="kategorije-kontejner"></div>
         
         <button class="btn-glavno" onclick="generisiTekstualniIzvestaj()">
-            <i class="fa-solid fa-file-invoice" style="margin-right: 8px;"></i> Napravi izveštaj pregovora
+            <i class="fa-solid fa-file-invoice" style="margin-right: 8px;"></i> Napravi izvještaj pregovora
         </button>
         
         <div id="izvestaj-boks">
@@ -243,7 +243,7 @@
             </button>
             
             <button class="btn-glavno" style="background: #3b82f6; margin-top:10px; color: white; border:none;" onclick="snimiUBazuOblaka()">
-                <i class="fa-solid fa-cloud-arrow-up" style="margin-right: 8px;"></i> 💾 Sačuvaj izveštaj u bazu podataka
+                <i class="fa-solid fa-cloud-arrow-up" style="margin-right: 8px;"></i> 💾 Sačuvaj izvještaj u bazu podataka
             </button>
         </div>
     </div>
@@ -251,14 +251,15 @@
 
 <div id="cenkanje-bar">
     <div class="cenkanje-sadrzaj">
-        <span>Konačna vrednost:</span>
+        <span>Konačna vrijednost:</span>
         <span id="finalna-cena">5000 €</span>
     </div>
 </div>
 
 <script>
     // ==========================================
-    // PAŽNjA: OVDE ZALEPI SVOJU KONFIGURACIJU IZ KORAKA 3!
+    // PAŽNJA: OVDJE ZALIJEPI SVOJU KONFIGURACIJU IZ FIREBASE-a!
+    // Ako zaboraviš ovo, dugme za snimanje neće raditi.
     const firebaseConfig = {
   apiKey: "AIzaSyBCl3LAUXyw47c81od5Gqcb3FAIexysQBw",
   authDomain: "autolovac-pro.firebaseapp.com",
@@ -267,6 +268,7 @@
   messagingSenderId: "118844372336",
   appId: "1:118844372336:web:9d245372932bf4e9840bb5"
 };
+
     // ==========================================
 
     // Pokretanje Firebase-a
@@ -421,6 +423,7 @@
         izracunajCenu();
     }
 
+    // AUTOMATSKO AŽURIRANJE TEKSTA DODATO OVDJE
     function izracunajCenu() {
         const unosCene = document.getElementById("cena-oglas").value;
         pocetnaCena = unosCene ? parseFloat(unosCene) : 0;
@@ -434,18 +437,24 @@
         if (finalnaCena < 0) finalnaCena = 0;
 
         finalnaCenaTxt.textContent = Math.round(finalnaCena) + " €";
+        
+        // Magija: Ako je crni tekstualni boks otvoren, automatski ga osvježi!
+        if (izvestajBoks.style.display === "block") {
+            osveziSamoTekstIzvestaja();
+        }
     }
 
-    function generisiTekstualniIzvestaj() {
+    // Odvojena funkcija isključivo za generisanje stringa
+    function osveziSamoTekstIzvestaja() {
         const marka = markaSelect.value;
         const model = modelSelect.value;
         const godiste = godisteSelect.value;
-        let danas = new Date().toLocaleDateString('sr-RS');
+        let danas = new Date().toLocaleDateString('bs-BA');
         
         let tekst = `=== AUTOLOVAC PRO ===\n`;
         tekst += `Datum: ${danas}\n`;
         tekst += `Vozilo: ${marka} ${model} (${godiste})\n`;
-        tekst += `Početna cena: ${pocetnaCena} €\n`;
+        tekst += `Početna cijena: ${pocetnaCena} €\n`;
         tekst += `--------------------------\n`;
         tekst += `PRONAĐENE MANE:\n`;
         
@@ -463,29 +472,31 @@
         }
         
         tekst += `--------------------------\n`;
-        tekst += `REALNA VREDNOST: ${Math.round(pocetnaCena - iznosSustinskogOdbitka)} €\n`;
+        tekst += `REALNA VRIJEDNOST: ${Math.round(pocetnaCena - iznosSustinskogOdbitka)} €\n`;
         
         izvestajTekst.textContent = tekst;
-        izvestajBoks.style.display = "block";
-        izvestajBoks.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function generisiTekstualniIzvestaj() {
+        osveziSamoTekstIzvestaja(); // Prvo generiše tekst
+        izvestajBoks.style.display = "block"; // Zatim ga prikazuje
+        izvestajBoks.scrollIntoView({ behavior: 'smooth' }); // I spušta ekran do njega
     }
 
     function kopirajTekst() {
         const tekst = izvestajTekst.textContent;
         navigator.clipboard.writeText(tekst).then(() => {
-            alert("Izveštaj uspešno kopiran u klipbord!");
+            alert("Izvještaj je uspješno kopiran!");
         });
     }
 
-    // LOGIKA UPISA PODATAKA U CLOUD FIREBASE
     function snimiUBazuOblaka() {
         const marka = markaSelect.value;
         const model = modelSelect.value;
         const godiste = godisteSelect.value;
         
-        // Spremamo čist objekat sa podacima za prenos
         let podaciZaSlanje = {
-            datum: new Date().toLocaleDateString('sr-RS'),
+            datum: new Date().toLocaleDateString('bs-BA'),
             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
             marka: marka,
             model: model,
@@ -496,17 +507,15 @@
             detaljiMana: {}
         };
 
-        // Pakujemo u objekat samo one stavke koje imaju manu
         Object.keys(stanjeStavki).forEach(id => {
             if (stanjeStavki[id].status !== "OK") {
                 podaciZaSlanje.detaljiMana[id] = stanjeStavki[id].status;
             }
         });
 
-        // Upisujemo dokument u kolekciju pod nazivom "inspekcije"
         db.collection("inspekcije").add(podaciZaSlanje)
         .then(() => {
-            alert("✅ Izveštaj je uspešno trajno zabeležen u bazu podataka!");
+            alert("✅ Izvještaj je uspješno trajno zabilježen u bazu podataka!");
         })
         .catch((error) => {
             console.error("Greška pri upisu u bazu: ", error);
