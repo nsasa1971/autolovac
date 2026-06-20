@@ -556,6 +556,22 @@
             </div>
         </div>
 
+        <!-- KAMERA -->
+        <div class="card">
+            <div class="card-title"><i class="fa-solid fa-camera"></i> Slikanje oštećenja</div>
+            <div style="display:flex;gap:8px;margin-bottom:12px">
+                <button class="btn-obd-add" style="flex:1;padding:12px;border-radius:8px;font-size:13px" onclick="document.getElementById('foto-unos').click()">
+                    <i class="fa-solid fa-camera" style="margin-right:6px"></i> Uslikaj / Odaberi
+                </button>
+                <input type="file" id="foto-unos" accept="image/*" capture="environment" multiple style="display:none" onchange="dodajFotografije(this)">
+            </div>
+            <div id="foto-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px"></div>
+            <div class="obd-hint" id="foto-hint">
+                <i class="fa-solid fa-images" style="margin-right:4px"></i>
+                Dodaj fotografije oštećenja — biće uključene u izveštaj
+            </div>
+        </div>
+
         <!-- IZVEŠTAJ -->
         <div class="card">
             <div class="card-title"><i class="fa-solid fa-file-contract"></i> Izveštaj pregovora</div>
@@ -566,6 +582,12 @@
             <div class="report-box" id="report-box">
                 <div class="report-terminal">
                     <pre id="report-tekst"></pre>
+                </div>
+                <div id="foto-preview-izvestaj" style="margin:10px 0;display:none">
+                    <div style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;font-weight:700">
+                        <i class="fa-solid fa-images" style="margin-right:4px"></i>Fotografije oštećenja
+                    </div>
+                    <div id="foto-preview-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px"></div>
                 </div>
                 <div class="report-actions">
                     <button class="btn btn-red" onclick="generisiPDF()">
@@ -587,6 +609,19 @@
     </div>
 </div>
 
+<!-- ISTORIJA MODAL -->
+<div id="istorija-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:200;overflow-y:auto;padding:20px 16px 40px">
+    <div style="max-width:520px;margin:0 auto">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
+            <div style="font-size:17px;font-weight:800;color:#fff"><i class="fa-solid fa-clock-rotate-left" style="color:var(--gold);margin-right:10px"></i>Moji sačuvani pregledi</div>
+            <button onclick="zatvoriIstoriju()" style="background:var(--surface2);border:1px solid var(--border2);color:var(--text2);width:36px;height:36px;border-radius:8px;cursor:pointer;font-size:16px">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div id="istorija-lista"></div>
+    </div>
+</div>
+
 <!-- BOTTOM PRICE BAR -->
 <div class="price-bar" id="price-bar">
     <div class="price-bar-inner">
@@ -594,7 +629,10 @@
             <div class="price-bar-label">Realna vrednost</div>
             <div class="price-bar-sub">Odbitak: <span id="odbitak-txt">0 €</span></div>
         </div>
-        <div style="text-align:right">
+        <div style="display:flex;align-items:center;gap:10px">
+            <button onclick="otvorIstoriju()" title="Moji pregledi" style="background:var(--surface2);border:1px solid var(--border2);color:var(--text2);width:40px;height:40px;border-radius:10px;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+            </button>
             <div class="price-val" id="finalna-cena">5.000 €</div>
         </div>
     </div>
@@ -783,6 +821,11 @@
         document.getElementById("report-box").style.display = "none";
         aktivniOBD = [];
         osveziOBDUI();
+        fotografije = [];
+        const fg = document.getElementById("foto-grid");
+        if (fg) fg.innerHTML = "";
+        const fh = document.getElementById("foto-hint");
+        if (fh) fh.style.display = "block";
     }
 
     function aktivirajPregled() {
@@ -934,6 +977,7 @@
     // ── IZVJEŠTAJ ──────────────────────────────────────────
     function generisiIzvestaj() {
         osveziTekstIzvestaja();
+        osveziFotoPreviewIzvestaj();
         document.getElementById("report-box").style.display = "block";
         document.getElementById("report-box").scrollIntoView({ behavior: "smooth", block: "start" });
         document.getElementById("step3").className = "step-dot active";
@@ -944,7 +988,7 @@
         const datum = new Date().toLocaleDateString("sr-Latn-RS", { day: "2-digit", month: "2-digit", year: "numeric" });
         const fin = Math.max(0, Math.round(pocetnaCena - ukupanOdbitak));
 
-        t += `╔═══════════════════════════════╗\n`;
+        let t = `╔═══════════════════════════════╗\n`;
         t += `║      AUTOLOVAC PRO             ║\n`;
         t += `╚═══════════════════════════════╝\n\n`;
         t += `Datum:        ${datum}\n`;
@@ -1152,6 +1196,185 @@
         db.collection("inspekcije").add(podatci)
             .then(() => prikaziToast("✓ Sačuvano u bazi", "ok"))
             .catch(() => prikaziToast("⚠ Greška pri upisu u bazu", "warn"));
+    }
+
+    // ── KAMERA / FOTOGRAFIJE ───────────────────────────────
+    let fotografije = []; // [{dataUrl, naziv}]
+
+    function dodajFotografije(input) {
+        const fajlovi = Array.from(input.files);
+        if (!fajlovi.length) return;
+
+        fajlovi.forEach(fajl => {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                fotografije.push({ dataUrl: e.target.result, naziv: fajl.name });
+                osveziGalerijuUI();
+            };
+            reader.readAsDataURL(fajl);
+        });
+        input.value = "";
+    }
+
+    function osveziGalerijuUI() {
+        const grid = document.getElementById("foto-grid");
+        const hint = document.getElementById("foto-hint");
+        grid.innerHTML = "";
+        hint.style.display = fotografije.length === 0 ? "block" : "none";
+
+        fotografije.forEach((f, i) => {
+            const wrap = document.createElement("div");
+            wrap.style.cssText = "position:relative;border-radius:8px;overflow:hidden;aspect-ratio:1;background:var(--surface2)";
+            wrap.innerHTML = `
+                <img src="${f.dataUrl}" style="width:100%;height:100%;object-fit:cover;display:block">
+                <button onclick="obrisiSliku(${i})" style="position:absolute;top:4px;right:4px;width:22px;height:22px;background:rgba(0,0,0,0.7);border:none;border-radius:50%;color:#fff;font-size:11px;cursor:pointer;display:flex;align-items:center;justify-content:center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>`;
+            grid.appendChild(wrap);
+        });
+
+        // Ažuriraj preview u izveštaju ako je otvoren
+        if (document.getElementById("report-box").style.display === "block") {
+            osveziFotoPreviewIzvestaj();
+        }
+    }
+
+    function obrisiSliku(index) {
+        fotografije.splice(index, 1);
+        osveziGalerijuUI();
+    }
+
+    function osveziFotoPreviewIzvestaj() {
+        const wrap = document.getElementById("foto-preview-izvestaj");
+        const grid = document.getElementById("foto-preview-grid");
+        if (fotografije.length === 0) { wrap.style.display = "none"; return; }
+        wrap.style.display = "block";
+        grid.innerHTML = "";
+        fotografije.forEach(f => {
+            const img = document.createElement("img");
+            img.src = f.dataUrl;
+            img.style.cssText = "width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;display:block";
+            grid.appendChild(img);
+        });
+    }
+
+    // ── ISTORIJA (localStorage) ────────────────────────────
+    const ISTORIJA_KEY = "autolovac_istorija";
+
+    function ucitajIstoriju() {
+        try { return JSON.parse(localStorage.getItem(ISTORIJA_KEY) || "[]"); }
+        catch { return []; }
+    }
+
+    function sacuvajUIstoriju() {
+        const m = markaEl.value, mdl = modelEl.value, g = godisteEl.value;
+        const fin = Math.max(0, Math.round(pocetnaCena - ukupanOdbitak));
+        const lista = ucitajIstoriju();
+
+        const unos = {
+            id: Date.now(),
+            datum: new Date().toLocaleDateString("sr-RS", { day:"2-digit", month:"2-digit", year:"numeric" }),
+            marka: m, model: mdl, godiste: g,
+            pocetnaCena,
+            ukupanOdbitak: Math.round(ukupanOdbitak),
+            finalnaCena: fin,
+            brojMana: Object.values(stanjeStavki).filter(s => s.status !== "OK").length + aktivniOBD.length,
+            obdKodovi: aktivniOBD.map(o => o.kod),
+            fotografije: fotografije.map(f => f.dataUrl) // base64 thumbnails
+        };
+
+        lista.unshift(unos); // najnoviji gore
+        if (lista.length > 50) lista.pop(); // max 50
+        localStorage.setItem(ISTORIJA_KEY, JSON.stringify(lista));
+    }
+
+    function otvorIstoriju() {
+        const lista = ucitajIstoriju();
+        const kontejner = document.getElementById("istorija-lista");
+
+        if (lista.length === 0) {
+            kontejner.innerHTML = `
+                <div style="text-align:center;padding:60px 20px;color:var(--text3)">
+                    <i class="fa-solid fa-folder-open" style="font-size:40px;display:block;margin-bottom:16px;color:var(--surface2)"></i>
+                    <div style="font-size:15px;font-weight:600;color:var(--text2);margin-bottom:6px">Nema sačuvanih pregleda</div>
+                    <div style="font-size:13px">Generiši izveštaj i klikni "Sačuvaj u bazu" da sačuvaš pregled.</div>
+                </div>`;
+        } else {
+            kontejner.innerHTML = lista.map((p, i) => `
+                <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:10px">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
+                        <div>
+                            <div style="font-size:15px;font-weight:800;color:#fff">${p.marka} ${p.model}</div>
+                            <div style="font-size:12px;color:var(--text3);margin-top:2px">${p.godiste} &nbsp;·&nbsp; ${p.datum}</div>
+                        </div>
+                        <button onclick="obrisiIzIstorije(${p.id})" style="background:none;border:none;color:var(--text3);cursor:pointer;font-size:15px;padding:4px">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px">
+                        <span style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:5px 10px;font-size:12px;color:var(--text2)">
+                            <i class="fa-solid fa-tag" style="margin-right:4px;color:var(--text3)"></i>${p.pocetnaCena.toLocaleString("sr-RS")} €
+                        </span>
+                        <span style="background:var(--red-dim);border:1px solid rgba(239,68,68,0.2);border-radius:6px;padding:5px 10px;font-size:12px;color:#fca5a5">
+                            <i class="fa-solid fa-minus" style="margin-right:4px"></i>${p.ukupanOdbitak.toLocaleString("sr-RS")} €
+                        </span>
+                        <span style="background:var(--gold-dim);border:1px solid rgba(245,166,35,0.3);border-radius:6px;padding:5px 10px;font-size:12px;color:var(--gold);font-weight:700">
+                            ${p.finalnaCena.toLocaleString("sr-RS")} €
+                        </span>
+                        ${p.brojMana > 0 ? `<span style="background:var(--yellow-dim);border:1px solid rgba(234,179,8,0.2);border-radius:6px;padding:5px 10px;font-size:12px;color:var(--yellow)">${p.brojMana} mana</span>` : ""}
+                        ${p.obdKodovi && p.obdKodovi.length > 0 ? `<span style="background:var(--red-dim);border:1px solid rgba(239,68,68,0.2);border-radius:6px;padding:5px 10px;font-size:12px;color:#fca5a5">OBD: ${p.obdKodovi.join(", ")}</span>` : ""}
+                    </div>
+                    ${p.fotografije && p.fotografije.length > 0 ? `
+                    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:5px">
+                        ${p.fotografije.slice(0,4).map((src, fi) => `
+                            <div style="position:relative;border-radius:6px;overflow:hidden;aspect-ratio:1">
+                                <img src="${src}" style="width:100%;height:100%;object-fit:cover;display:block">
+                                ${fi === 3 && p.fotografije.length > 4 ? `<div style="position:absolute;inset:0;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:700">+${p.fotografije.length - 4}</div>` : ""}
+                            </div>`).join("")}
+                    </div>` : ""}
+                </div>`).join("");
+        }
+
+        document.getElementById("istorija-modal").style.display = "block";
+        document.body.style.overflow = "hidden";
+    }
+
+    function zatvoriIstoriju() {
+        document.getElementById("istorija-modal").style.display = "none";
+        document.body.style.overflow = "";
+    }
+
+    function obrisiIzIstorije(id) {
+        const lista = ucitajIstoriju().filter(p => p.id !== id);
+        localStorage.setItem(ISTORIJA_KEY, JSON.stringify(lista));
+        otvorIstoriju(); // refresh
+    }
+
+    // ── SNIMI U BAZU + ISTORIJU ────────────────────────────
+    function snimiUBazu() {
+        const m = markaEl.value, mdl = modelEl.value, g = godisteEl.value;
+        const fin = Math.max(0, Math.round(pocetnaCena - ukupanOdbitak));
+
+        // Uvek snimi u lokalnu istoriju
+        sacuvajUIstoriju();
+
+        // Pokušaj i Firebase
+        const podatci = {
+            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+            datum: new Date().toLocaleDateString("sr-RS"),
+            marka: m, model: mdl, godiste: g,
+            pocetnaCena, ukupanOdbitak,
+            finalnaCena: fin,
+            obdKodovi: aktivniOBD,
+            mane: Object.fromEntries(
+                Object.entries(stanjeStavki).filter(([_, v]) => v.status !== "OK")
+                    .map(([k, v]) => [k, { status: v.status, odbitak: v.odbitak }])
+            )
+        };
+
+        db.collection("inspekcije").add(podatci)
+            .then(() => prikaziToast("✓ Sačuvano lokalno i u bazi", "ok"))
+            .catch(() => prikaziToast("✓ Sačuvano lokalno", "ok"));
     }
 
     // ── TOAST ──────────────────────────────────────────────
