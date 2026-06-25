@@ -5,9 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AutoLovac PRO</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -482,10 +479,10 @@
             <div class="badge"><i class="fa-solid fa-laptop-medical"></i> OBD2 baza</div>
             <div class="badge"><i class="fa-solid fa-file-pdf"></i> PDF izvestaj</div>
         </div>
-        <button id="btn-istorija-header" onclick="otvorIstoriju()" style="margin-top:14px;width:100%;display:none;align-items:center;justify-content:center;gap:10px;background:var(--surface2);border:1px solid var(--border2);border-radius:10px;padding:12px 16px;color:var(--text2);font-size:13px;font-weight:700;cursor:pointer;transition:all 0.2s">
+        <button id="btn-istorija-header" onclick="otvorIstoriju()" style="margin-top:14px;width:100%;align-items:center;justify-content:center;gap:10px;background:var(--surface2);border:1px solid var(--border2);border-radius:10px;padding:12px 16px;color:var(--text2);font-size:13px;font-weight:700;cursor:pointer;transition:all 0.2s;display:none">
             <i class="fa-solid fa-clock-rotate-left" style="color:var(--gold)"></i>
-            <span id="btn-istorija-tekst">Moji sacuvani pregledi</span>
-            <span id="btn-istorija-broj" style="background:var(--gold-dim);border:1px solid rgba(245,166,35,0.3);color:var(--gold);border-radius:99px;padding:2px 8px;font-size:11px"></span>
+            <span>Moji sacuvani pregledi</span>
+            <span id="btn-istorija-broj" style="background:var(--gold-dim);border:1px solid rgba(245,166,35,0.3);color:var(--gold);border-radius:99px;padding:2px 9px;font-size:11px;font-weight:800"></span>
         </button>
     </div>
 
@@ -508,7 +505,17 @@
                 <option value="">— Učitavam bazu... —</option>
             </select>
         </div>
+        <!-- Rucni unos za ostale marke -->
+        <div id="ostalo-wrap" style="display:none">
+            <label>Unesite marku</label>
+            <input type="text" id="ostalo-marka" placeholder="npr. Lada, Zastava, Saab..." oninput="osveziOstalo()">
+            <label>Unesite model</label>
+            <input type="text" id="ostalo-model" placeholder="npr. Niva, 101, 9-5..." oninput="osveziOstalo()">
+            <label>Unesite godište</label>
+            <input type="text" id="ostalo-godiste" placeholder="npr. 2003, 1998-2005..." oninput="osveziOstalo()">
+        </div>
 
+        <div id="standardni-selekti">
         <label>Model</label>
         <div class="select-wrap">
             <select id="model" onchange="osveziGodista()" disabled>
@@ -521,6 +528,7 @@
             <select id="godiste" onchange="aktivirajPregled()" disabled>
                 <option value="">— Prvo izaberite model —</option>
             </select>
+        </div>
         </div>
 
         <div class="alert-box" id="savet-boks">
@@ -660,17 +668,32 @@
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
 
+<!-- Skripte na kraju body-ja — garantovano se izvrsavaju po redu -->
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
 <script>
-    const firebaseConfig = {
-        apiKey: "AIzaSyBCl3LAUXyw47c81od5Gqcb3FAIexysQBw",
-        authDomain: "autolovac-pro.firebaseapp.com",
-        projectId: "autolovac-pro",
-        storageBucket: "autolovac-pro.firebasestorage.app",
-        messagingSenderId: "118844372336",
-        appId: "1:118844372336:web:9d245372932bf4e9840bb5"
-    };
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
+    // ── FIREBASE (opcionalno — radi i offline bez njega) ────
+    let db = null;
+    function inicijalizujFirebase() {
+        try {
+            if (typeof firebase === "undefined") return;
+            const firebaseConfig = {
+                apiKey: "AIzaSyBCl3LAUXyw47c81od5Gqcb3FAIexysQBw",
+                authDomain: "autolovac-pro.firebaseapp.com",
+                projectId: "autolovac-pro",
+                storageBucket: "autolovac-pro.firebasestorage.app",
+                messagingSenderId: "118844372336",
+                appId: "1:118844372336:web:9d245372932bf4e9840bb5"
+            };
+            if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+            db = firebase.firestore();
+        } catch(e) {
+            console.warn("Firebase nije dostupan — radimo samo lokalno.", e);
+        }
+    }
+    inicijalizujFirebase();
 
     // ── STATE ──────────────────────────────────────────────
     let bazaMane = {};
@@ -749,42 +772,95 @@
         "P2201": { opis: "NOx senzor — kvar u krugu", cena: 250 },
     };
 
-    // ── ČEKLIST STRUKTURA ─────────────────────────────────
+    // ── CEK LISTA STRUKTURA ────────────────────────────────
     const cekLista = {
-        "Spoljašnost i limarija": {
+        "Karoserija i limarija": {
             ikona: "fa-car-burst",
             stavke: [
-                { id: "zazori",  tekst: "Zazori na haubi, vratima i gepeku su neujednačeni (tragovi udesa / farbanja)", kazna: 500 },
-                { id: "rdja",    tekst: "Korozija na pragovima, rubovima točkova i ispod blatobrana", kazna: 600 },
-                { id: "stakla",  tekst: "Pukotine/ogrebotine na šoferšajbni ili nestandardna stakla na vozilu", kazna: 200 },
-                { id: "gume",    tekst: "Stanje guma (DOT datum > 6 god), neravnomjerna pohabanost ili oštećenja felni", kazna: 350 },
+                { id: "zazori_hauba",    tekst: "Zazori haube, vrata i gepeka su neujednaceni ili asimetricni — znak udesa ili loseg farbanja u servisu", kazna: 600 },
+                { id: "rdja_pragovi",    tekst: "Korozija na pragovima i donjim ivicama vrata — proveriti magnetom i lupkanjem dlanom (supljina = rdja iznutra)", kazna: 700 },
+                { id: "rdja_dno",        tekst: "Rdja, krpe ili popravke na dnu vozila, nosacima, ramenu karoserije i longerima — proveriti lampom odozdo", kazna: 900 },
+                { id: "farbanje",        tekst: "Nejednaka debljina laka (meriti aparat debljinomer), razlike u nijansama boje, tragovi gletovanja ili folije", kazna: 500 },
+                { id: "staklo",          tekst: "Pukotine ili duboke ogrebotine na vetrobranskom staklu, nestandardna (ne OEM) stakla ili razlicita godista stakla", kazna: 300 },
+                { id: "gume_stanje",     tekst: "Dubina sare guma ispod 3 mm, DOT stariji od 6 godina ili neravnomerna pohabanost (simptom loseg trapa ili balansa)", kazna: 400 },
+                { id: "felne",           tekst: "Ostecene, savijene ili pukle felne — proveriti vizuelno i pritisnuti svaku gumo da se oseti slobodna igra", kazna: 300 },
+                { id: "svetla_spolj",    tekst: "Ne rade poziciona, kratka, duga, maglenka ili stop svetla — proveriti svako svetlo posebno u toku pregleda", kazna: 150 },
+                { id: "branici_stanje",  tekst: "Branici nisu original, lose montirani, imaju pukotine ili se razlikuju u nijansama boje od ostatka auta", kazna: 250 }
             ]
         },
-        "Enterijer i elektronika": {
-            ikona: "fa-gauge-high",
+        "Enterijer i tapaciranje": {
+            ikona: "fa-couch",
             stavke: [
-                { id: "klima",       tekst: "Klima ne radi ili ne hladi ravnomjerno (gori lampica A/C)", kazna: 250 },
-                { id: "potrosnost",  tekst: "Pohabanost volana, mjenjača i sedišta NE odgovara prikazanoj kilometraži", kazna: 150 },
-                { id: "elektronika", tekst: "Ne rade podizaci prozora, centralna brava ili gori lampica motora / vazdusnog jastuka", kazna: 200 },
-                { id: "miris",       tekst: "Vlaga ili miris plesni u kabini (provjeri pod tepiha i gepeka)", kazna: 200 },
+                { id: "km_konzistentnost",  tekst: "Pohabanost volana, rucice menjaca, pedale i sedista NE odgovara kilometrazi na brojacu — sumnja na tocanje km", kazna: 300 },
+                { id: "vlaga_plesen",       tekst: "Miris vlage, plesni ili trulezi u kabini — podici tepih u noznom prostoru i gepeku, proveriti gumu vrata", kazna: 500 },
+                { id: "enterijer_ostecenja",tekst: "Pukotine na tabli, odlepljene lajsne, pokidane unutrasnje rucice vrata ili osteceno tapaciranje plafona/stubova", kazna: 200 },
+                { id: "sedista_stanje",     tekst: "Pocepana, propadnuta ili skripava sedista — proveriti mehanizam podesiivanja, grejanje i ventilaciju sedista", kazna: 250 },
+                { id: "pojasevi",           tekst: "Sigurnosni pojasevi se ne uvlace automatski, vidljivo su osteceni ili su zamenjeni nenamenskim — bezbedonosni rizik", kazna: 400 },
+                { id: "airbag_lampica",     tekst: "Gori lampica vazdusnog jastuka (Airbag) — moze znaciti deaktiviran jastuk, pokidan konektor ili tocanje km", kazna: 500 },
+                { id: "brisaci_stanje",     tekst: "Brisaci ostavljaju pruge, preskucu ili skripaju — proveriti i gumu pozadinskog brisaca i pumpu za pranje", kazna: 100 }
+            ]
+        },
+        "Elektronika i sistemi": {
+            ikona: "fa-microchip",
+            stavke: [
+                { id: "klima_rad",        tekst: "Klima ne hladi ili ne greje ravnomerno — proveriti kompetsor (pali li se?), punjenje freona i rezim grejanja", kazna: 350 },
+                { id: "podizaci_brave",   tekst: "Ne rade elektricni podizaci prozora (sve cetiri strane), centralna brava ili daljinski upravljac — cest kvar", kazna: 200 },
+                { id: "infotainment",     tekst: "Ekran se zamrzava, resetuje ili ima mrtve piksele — proveriti navigaciju, Bluetooth, kameru i Apple CarPlay/Android Auto", kazna: 300 },
+                { id: "lampice_tabla",    tekst: "Gore lampice motora, DPF, AdBlue, traction control, ABS ili ESP na instrument tabli — odmah uraditi OBD dijagnostiku", kazna: 400 },
+                { id: "farovi_stanje",    tekst: "Ksenon ili LED farovi imaju kondenzaciju iznutra, ne rade svi segmenti matriksnih svetala ili ne kalibrisu se", kazna: 400 },
+                { id: "elektricna_rucna", tekst: "Elektronska rucna kocnica (EPB) se ne aktivira ili ne pusta, ili pravi buku pri aktiviranju — skupa zamena", kazna: 400 },
+                { id: "baterija_12v",     tekst: "Baterija stara vise od 4-5 godina ili motoru je potrebno vise pokusaja za paljenje — proveriti napon multimetrom", kazna: 150 },
+                { id: "punjac_hibrid",    tekst: "Na hibridima i PHEV vozilima proveriti status visokonaponske baterije i da li se punjac pravilno aktivira", kazna: 800 }
             ]
         },
         "Motorni prostor": {
             ikona: "fa-engine",
             stavke: [
-                { id: "ulje",    tekst: "Svježi tragovi ulja na bloku, ispod turbine ili na ispušnom sistemu", kazna: 300 },
-                { id: "emulzija",tekst: "Emulzija (majonez) na čepu za ulje, poklopcu glave ili u antifrizu", kazna: 700 },
-                { id: "dim",     tekst: "Crni, plavi ili gusti bijeli dim iz auspuha pri ubrzavanju", kazna: 500 },
-                { id: "zvuci",   tekst: "Neobični zvuci motora na praznom hodu (tiktanje, kucanje, šuštanje)", kazna: 400 },
+                { id: "ulje_curenje",    tekst: "Svezi tragovi ulja na bloku motora, poklopcu glave, ispod turbine, iza auspuha ili na podlozi ispod auta — proveriti lampom", kazna: 500 },
+                { id: "emulzija",        tekst: "Bela pena ili majonez-masa na cepu za ulje, unutar poklopca glave ili bela boja antifriza u ekspanzionoj posudi — pukla brtva glave motora", kazna: 1500 },
+                { id: "rashladna",       tekst: "Nivo rashladne tecnosti nizak, tecnost mutna ili rdavocrvena, mehurici u posudi pri ubrzavanju — moze biti glava motora", kazna: 700 },
+                { id: "dim_auspuh",      tekst: "Crni dim = bogata smesa (dizne/turbina), plavi dim = ulje gori (klipovi/ventili), gusti beli dim = antifriz gori", kazna: 800 },
+                { id: "zvuci_motor",     tekst: "Tiktanje, kucanje, sumanje ili zveckanje iz motora na hladnom startu ili u praznom hodu — proveriti lanac razvoda, ventile, lezajeve", kazna: 700 },
+                { id: "turbo_stanje",    tekst: "Preterana sloboda osovine turbine (meriti prstima), buka ili zvizdanje turbine pri ubrzavanju, gubitak snage na pragu", kazna: 600 },
+                { id: "kablovi_creva",   tekst: "Ispucala, tvrda ili procurela gumena creva rashladnog sistema, vakuuma i goriva — proveriti svako posebno", kazna: 250 },
+                { id: "akumulator",      tekst: "Tragovi curenja kiseline oko polova akumulatora, korozija na klestima ili akumulator ociglednog loseg stanja", kazna: 150 }
             ]
         },
-        "Probna vožnja": {
+        "Podvozje i kocnice": {
+            ikona: "fa-car-on",
+            stavke: [
+                { id: "trap_udarci",     tekst: "Tupi udarci ili lupkanje na prednjem i zadnjem trapu pri prelasku kaldrme, rupa i lezecih policajaca", kazna: 500 },
+                { id: "amortizeri",      tekst: "Auto se lata vise od jednog puta pri pritisku svakog ugla — istroseni amortizeri, proveriti i curenje ulja sa tela amortizera", kazna: 600 },
+                { id: "stabilizatori",   tekst: "Skripanje ili tapkanje pri laganom prolasku kroz krivine ili rupe — znak istrosenih gumenih cesmi i stabilizatora", kazna: 350 },
+                { id: "upravljac",       tekst: "Upravljac vuce na stranu bez kocenja, ima prekomerni slobodan hod (vise od 2 cm) ili vibrira pri vecim brzinama", kazna: 400 },
+                { id: "kocnice_efikasnost", tekst: "Vozilo produzuje put pri kocenju, vuce na jednu stranu ili pedala kocnice pada do poda — ozbiljan bezbednosni propust", kazna: 500 },
+                { id: "kocnice_disk",    tekst: "Jako pulsiranje i trzanje pri kocenju, skripanje ili zvizdanje — proveriti debljinu diskova i taban kocione obloge", kazna: 400 },
+                { id: "kocnice_rucna",   tekst: "Rucna kocnica ne drzi vozilo na nagibu, putuje previse gore ili elektronska EPB ne pusta po ukljucivanju motora", kazna: 250 },
+                { id: "homokinetski",    tekst: "Klik ili lupanje pri punoj rotaciji upravljaca (parkiranje) — znak ostecenog homokinetskog (CV) zgloba — skupa zamena", kazna: 600 }
+            ]
+        },
+        "Probna voznja i menjac": {
             ikona: "fa-road",
             stavke: [
-                { id: "trap",    tekst: "Tupi udarci ili lupkanje na trapu pri prelasku rupa i brzina", kazna: 250 },
-                { id: "kvacilo", tekst: "Zamajac trese pri polasku, krčanje sinhrona ili tvrd mjenjač", kazna: 500 },
-                { id: "kocenje", tekst: "Vozilo vuče na stranu pri kočenju ili trzanje kočionih diskova", kazna: 200 },
-                { id: "adas",    tekst: "Sistemi za pomoc u voznji se iskljucuju ili daju lazna upozorenja (drzanje trake, prednje kocenje)", kazna: 150 },
+                { id: "menjac_manual",   tekst: "Tvrdo ili grubo ubacivanje brzina, preskakanje iz brzine ili hrskt sinhrona pri menjanju — servis menjaca skup", kazna: 700 },
+                { id: "menjac_auto",     tekst: "Trzanje, klizanje, kasnjenje pri menjanju brzina automatika/DSG/CVT — moze biti softver ili mehanicki kvar menjaca", kazna: 900 },
+                { id: "kvacilo",         tekst: "Kvacilo proklizava (motor reva ali brzina ne raste), visoka tacka hvata ili zamajac trese pri polasku", kazna: 800 },
+                { id: "vibracije_brzina",tekst: "Vibracije kroz volan ili sediste pri odredjenim brzinama (obicno 80-130 km/h) — znak nebalansiranih tocka ili kvara kardana", kazna: 300 },
+                { id: "zvuci_voznja",    tekst: "Brujannje iz zadnje osovine, sumanje lezajeva tocka ili tucanje pri promeni smera — proveriti lezajeve i diferecijal", kazna: 500 },
+                { id: "kardani_homokin", tekst: "Vibracije ili lupanje pri ubrzavanju iz mesta ili pri promeni smera — kardan i homokinetski zglobovi", kazna: 600 },
+                { id: "cetiri_tocka",    tekst: "Na 4WD/AWD vozilima: ukljucuje li se zadnja osovina, ima li vibracija ili buke u transfernoj kutiji ili diferecijalu", kazna: 700 },
+                { id: "kocenje_probe",   tekst: "Uraditi naglo kocenje na sigurnom mestu — vozilo ide pravo, ABS reaguje, pedala je cvrsta i daje poverenje", kazna: 500 }
+            ]
+        },
+        "Papiri i istorija vozila": {
+            ikona: "fa-file-shield",
+            stavke: [
+                { id: "servisna_knjizica", tekst: "Servisna knjizica nije kompletna, servisi nisu redovni ili ne postoji ulje-zapis — nepoznata istorija odrzavanja", kazna: 400 },
+                { id: "tehnicki_pregled",  tekst: "Tehnicki pregled istice uskoro (manje od 2 meseca) ili je vozilo imalo problema na posednjem pregledu", kazna: 200 },
+                { id: "broj_vlasnika",     tekst: "Vozilo je imalo vise od 2-3 vlasnika za kratko vreme — proveriti razlog prodaje svakog prethodnog vlasnika", kazna: 200 },
+                { id: "sertifikat_poreklo",tekst: "Vozilo uvezeno iz inostranstva — proveriti da li su placene sve dazbine i da li postoji kompletna dokumentacija", kazna: 300 },
+                { id: "osiguranje_steta",  tekst: "Provera u bazi osiguravajucih kuca — da li je vozilo bilo prijavljeno kao totalna steta ili velik popravka", kazna: 500 },
+                { id: "vin_tablica",       tekst: "VIN broj na tabli, staklu, ramenu i u papirima mora biti isti — razlika je alarm za ukraden auto ili zamenu karoserije", kazna: 1000 }
             ]
         }
     };
@@ -803,25 +879,89 @@
             Object.keys(bazaMane).sort().forEach(m => {
                 markaEl.appendChild(new Option(m, m));
             });
+            // Separator + opcija za ostale marke
+            const sep = document.createElement("option");
+            sep.disabled = true;
+            sep.textContent = "──────────────";
+            markaEl.appendChild(sep);
+            markaEl.appendChild(new Option("⊕  Ostale marke (unesi rucno)", "__ostalo__"));
             markaEl.disabled = false;
         } catch(e) {
             markaEl.innerHTML = '<option value="">⚠ Greška pri učitavanju baze</option>';
         }
     }
     ucitajBazu();
-    azurirajHeaderDugme();
+
+    // Pokrenuti nakon ucitavanja DOM-a — garantuje da btn-istorija-header postoji
+    document.addEventListener("DOMContentLoaded", function() {
+        azurirajHeaderDugme();
+    });
+    // Fallback ako je DOMContentLoaded vec prosao
+    if (document.readyState !== "loading") {
+        azurirajHeaderDugme();
+    }
 
     // ── SELECTS ────────────────────────────────────────────
     function osveziModele() {
         const m = markaEl.value;
+        const ostaloWrap = document.getElementById("ostalo-wrap");
+        const standardniSelekti = document.getElementById("standardni-selekti");
+
+        resetujEkran();
+
+        if (m === "__ostalo__") {
+            // Rucni unos
+            ostaloWrap.style.display = "block";
+            standardniSelekti.style.display = "none";
+            document.getElementById("ostalo-marka").value = "";
+            document.getElementById("ostalo-model").value = "";
+            document.getElementById("ostalo-godiste").value = "";
+            return;
+        }
+
+        // Standardni tok
+        ostaloWrap.style.display = "none";
+        standardniSelekti.style.display = "block";
         modelEl.innerHTML = '<option value="">— Izaberite model —</option>';
         godisteEl.innerHTML = '<option value="">— Izaberite godište —</option>';
         godisteEl.disabled = true;
-        resetujEkran();
+
         if (!m) { modelEl.disabled = true; return; }
         Object.keys(bazaMane[m]).sort().forEach(mdl => modelEl.appendChild(new Option(mdl, mdl)));
         modelEl.disabled = false;
         azurirajKorake(1);
+    }
+
+    function osveziOstalo() {
+        const marka   = document.getElementById("ostalo-marka").value.trim();
+        const model   = document.getElementById("ostalo-model").value.trim();
+        const godiste = document.getElementById("ostalo-godiste").value.trim();
+        if (marka && model && godiste) {
+            // Aktiviraj pregled sa rucno unesenim podacima
+            aktivirajPregledOstalo(marka, model, godiste);
+        }
+    }
+
+    function aktivirajPregledOstalo(marka, model, godiste) {
+        // Sacuvaj privremeno u bazaMane da ostalo kodovi rade
+        if (!bazaMane["__ostalo__"]) bazaMane["__ostalo__"] = {};
+        if (!bazaMane["__ostalo__"][model]) bazaMane["__ostalo__"][model] = {};
+        bazaMane["__ostalo__"][model][godiste] = "Marka i model nisu u bazi — primenjen je opsti ceklist. Proverite sve standardne tacke pregleda i obavezno uradite OBD dijagnostiku.";
+
+        // Privremeno postavi vrednosti za ostale funkcije koje citaju markaEl.value itd.
+        markaEl._ostaloMarka   = marka;
+        markaEl._ostaloModel   = model;
+        markaEl._ostaloGodiste = godiste;
+
+        const napomena = bazaMane["__ostalo__"][model][godiste];
+        document.getElementById("tekst-mane").textContent = napomena;
+        document.getElementById("savet-boks").style.display = "block";
+
+        iscrtajCekListu();
+        document.getElementById("cek-lista-modul").style.display = "block";
+        document.getElementById("price-bar").style.display = "block";
+        izracunajCenu();
+        azurirajKorake(2);
     }
 
     function osveziGodista() {
@@ -848,8 +988,20 @@
         if (fh) fh.style.display = "block";
     }
 
+    // Helper — vraca {marka, model, godiste} bez obzira da li je standardno ili rucni unos
+    function getVozilo() {
+        if (markaEl.value === "__ostalo__") {
+            return {
+                marka:   (markaEl._ostaloMarka   || "Ostalo"),
+                model:   (markaEl._ostaloModel   || "Nepoznat model"),
+                godiste: (markaEl._ostaloGodiste || "Nepoznato godiste")
+            };
+        }
+        return { marka: markaEl.value, model: modelEl.value, godiste: godisteEl.value };
+    }
+
     function aktivirajPregled() {
-        const m = markaEl.value, mdl = modelEl.value, g = godisteEl.value;
+        const {marka: m, model: mdl, godiste: g} = getVozilo();
         if (!g) { resetujEkran(); return; }
 
         document.getElementById("tekst-mane").textContent = bazaMane[m][mdl][g];
@@ -1004,7 +1156,7 @@
     }
 
     function osveziTekstIzvestaja() {
-        const m = markaEl.value, mdl = modelEl.value, g = godisteEl.value;
+        const {marka: m, model: mdl, godiste: g} = getVozilo();
         const datum = new Date().toLocaleDateString("sr-Latn-RS", { day: "2-digit", month: "2-digit", year: "numeric" });
         const fin = Math.max(0, Math.round(pocetnaCena - ukupanOdbitak));
 
@@ -1059,7 +1211,7 @@
     function generisiPDF() {
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF({ unit: "mm", format: "a4" });
-        const m = markaEl.value, mdl = modelEl.value, g = godisteEl.value;
+        const {marka: m, model: mdl, godiste: g} = getVozilo();
         const datum = new Date().toLocaleDateString("sr-Latn-RS", { day: "2-digit", month: "2-digit", year: "numeric" });
         const fin = Math.max(0, Math.round(pocetnaCena - ukupanOdbitak));
 
@@ -1197,7 +1349,7 @@
 
     // ── FIREBASE ───────────────────────────────────────────
     function snimiUBazu() {
-        const m = markaEl.value, mdl = modelEl.value, g = godisteEl.value;
+        const {marka: m, model: mdl, godiste: g} = getVozilo();
         const fin = Math.max(0, Math.round(pocetnaCena - ukupanOdbitak));
 
         const podatci = {
@@ -1290,6 +1442,7 @@
         const lista = ucitajIstoriju();
         const btn = document.getElementById("btn-istorija-header");
         const broj = document.getElementById("btn-istorija-broj");
+        if (!btn) return;
         if (lista.length > 0) {
             btn.style.display = "flex";
             broj.textContent = lista.length;
@@ -1299,7 +1452,7 @@
     }
 
     function sacuvajUIstoriju() {
-        const m = markaEl.value, mdl = modelEl.value, g = godisteEl.value;
+        const {marka: m, model: mdl, godiste: g} = getVozilo();
         const fin = Math.max(0, Math.round(pocetnaCena - ukupanOdbitak));
         const lista = ucitajIstoriju();
 
@@ -1350,42 +1503,56 @@
                 </div>`;
         } else {
             kontejner.innerHTML = lista.map(p => `
-                <div onclick="otvorDetalj(${p.id})" style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:10px;cursor:pointer;transition:border-color 0.2s" onmouseover="this.style.borderColor='rgba(245,166,35,0.3)'" onmouseout="this.style.borderColor='var(--border)'">
+                <div data-id="${p.id}" class="istorija-kartica" style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:10px;cursor:pointer;transition:border-color 0.2s">
                     <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
                         <div>
                             <div style="font-size:15px;font-weight:800;color:#fff">${p.marka} ${p.model}</div>
                             <div style="font-size:12px;color:var(--text3);margin-top:2px">${p.godiste} &nbsp;·&nbsp; ${p.datum}</div>
                         </div>
                         <div style="display:flex;align-items:center;gap:8px">
-                            <span style="font-size:16px;font-weight:900;color:var(--gold)">${p.finalnaCena.toLocaleString("sr-RS")} €</span>
-                            <button onclick="event.stopPropagation();obrisiIzIstorije(${p.id})" style="background:none;border:none;color:var(--text3);cursor:pointer;font-size:14px;padding:4px" title="Obrisi pregled">
+                            <span style="font-size:16px;font-weight:900;color:var(--gold)">${(p.finalnaCena||0).toLocaleString("sr-RS")} €</span>
+                            <button data-obrisi="${p.id}" style="background:none;border:none;color:var(--text3);cursor:pointer;font-size:14px;padding:4px" title="Obrisi pregled">
                                 <i class="fa-solid fa-trash"></i>
                             </button>
                         </div>
                     </div>
                     <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:${p.fotografije && p.fotografije.length > 0 ? '10px' : '0'}">
                         <span style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:4px 9px;font-size:11px;color:var(--text2)">
-                            Oglas: ${p.pocetnaCena.toLocaleString("sr-RS")} €
+                            Oglas: ${(p.pocetnaCena||0).toLocaleString("sr-RS")} €
                         </span>
                         <span style="background:var(--red-dim);border:1px solid rgba(239,68,68,0.2);border-radius:6px;padding:4px 9px;font-size:11px;color:#fca5a5">
-                            Odbitak: -${p.ukupanOdbitak.toLocaleString("sr-RS")} €
+                            Odbitak: -${(p.ukupanOdbitak||0).toLocaleString("sr-RS")} €
                         </span>
                         ${p.detaljiMana && p.detaljiMana.length > 0 ? `<span style="background:var(--yellow-dim);border:1px solid rgba(234,179,8,0.2);border-radius:6px;padding:4px 9px;font-size:11px;color:var(--yellow)">${p.detaljiMana.length} ${p.detaljiMana.length === 1 ? 'mana' : 'mane/mana'}</span>` : `<span style="background:var(--green-dim);border:1px solid rgba(34,197,94,0.2);border-radius:6px;padding:4px 9px;font-size:11px;color:var(--green)">Bez mana</span>`}
-                        ${p.obdKodovi && p.obdKodovi.length > 0 ? `<span style="background:var(--red-dim);border:1px solid rgba(239,68,68,0.2);border-radius:6px;padding:4px 9px;font-size:11px;color:#fca5a5"><i class="fa-solid fa-laptop-medical" style="margin-right:3px"></i>${p.obdKodovi.length} OBD ${p.obdKodovi.length === 1 ? 'greska' : 'greske'}</span>` : ""}
+                        ${p.obdKodovi && p.obdKodovi.length > 0 ? `<span style="background:var(--red-dim);border:1px solid rgba(239,68,68,0.2);border-radius:6px;padding:4px 9px;font-size:11px;color:#fca5a5"><i class="fa-solid fa-laptop-medical" style="margin-right:3px"></i>${p.obdKodovi.length} OBD</span>` : ""}
                     </div>
                     ${p.fotografije && p.fotografije.length > 0 ? `
-                    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:5px">
+                    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-bottom:10px">
                         ${p.fotografije.slice(0,4).map((src, fi) => `
                             <div style="position:relative;border-radius:6px;overflow:hidden;aspect-ratio:1">
                                 <img src="${src}" style="width:100%;height:100%;object-fit:cover;display:block">
                                 ${fi === 3 && p.fotografije.length > 4 ? `<div style="position:absolute;inset:0;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:800">+${p.fotografije.length - 4}</div>` : ""}
                             </div>`).join("")}
                     </div>` : ""}
-                    <div style="margin-top:10px;font-size:11px;color:var(--text3);display:flex;align-items:center;gap:4px">
-                        <i class="fa-solid fa-chevron-right" style="color:var(--gold);font-size:9px"></i> Klikni za detaljan pregled
+                    <div style="margin-top:8px;font-size:11px;color:var(--gold);display:flex;align-items:center;gap:5px;font-weight:600">
+                        <i class="fa-solid fa-chevron-right" style="font-size:9px"></i> Otvori detaljan izvestaj
                     </div>
                 </div>`).join("");
-        }
+
+            // Event delegation — radi pouzdano za sve klikove
+            kontejner.addEventListener("click", function(e) {
+                const obrisiBtn = e.target.closest("[data-obrisi]");
+                if (obrisiBtn) {
+                    e.stopPropagation();
+                    obrisiIzIstorije(Number(obrisiBtn.dataset.obrisi));
+                    return;
+                }
+                const kartica = e.target.closest(".istorija-kartica");
+                if (kartica) {
+                    otvorDetalj(Number(kartica.dataset.id));
+                }
+            });
+        } // kraj else bloka
 
         document.getElementById("istorija-modal").style.display = "block";
         document.body.style.overflow = "hidden";
@@ -1393,99 +1560,115 @@
 
     function otvorDetalj(id) {
         const lista = ucitajIstoriju();
-        const p = lista.find(x => x.id === id);
-        if (!p) return;
+        const p = lista.find(x => String(x.id) === String(id));
+        if (!p) { prikaziToast("Pregled nije pronadjen", "warn"); return; }
+
+        // Normalizacija starih zapisa koji nemaju sva polja
+        if (!p.detaljiMana) p.detaljiMana = [];
+        if (!p.obdKodovi) p.obdKodovi = [];
+        if (!p.fotografije) p.fotografije = [];
+        if (!p.napomenaProizvodjaca) p.napomenaProizvodjaca = "";
 
         document.getElementById("detalj-naslov").textContent = `${p.marka} ${p.model}`;
         document.getElementById("istorija-prikaz-lista").style.display = "none";
         document.getElementById("istorija-prikaz-detalj").style.display = "block";
+        document.getElementById("istorija-modal").scrollTop = 0;
 
         let html = `
-            <!-- Zaglavlje -->
             <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:10px">
-                <div style="font-size:13px;color:var(--text3);margin-bottom:4px">${p.godiste} &nbsp;·&nbsp; ${p.datum}</div>
-                <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
-                    <div style="flex:1;min-width:100px;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center">
-                        <div style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Oglas</div>
-                        <div style="font-size:18px;font-weight:800;color:var(--text)">${p.pocetnaCena.toLocaleString("sr-RS")} €</div>
+                <div style="font-size:13px;color:var(--text3);margin-bottom:12px">${p.godiste} &nbsp;·&nbsp; ${p.datum}</div>
+                <div style="display:flex;gap:8px;flex-wrap:wrap">
+                    <div style="flex:1;min-width:90px;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center">
+                        <div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Oglas</div>
+                        <div style="font-size:17px;font-weight:800;color:var(--text)">${(p.pocetnaCena||0).toLocaleString("sr-RS")} €</div>
                     </div>
-                    <div style="flex:1;min-width:100px;background:var(--red-dim);border:1px solid rgba(239,68,68,0.2);border-radius:8px;padding:12px;text-align:center">
-                        <div style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Odbitak</div>
-                        <div style="font-size:18px;font-weight:800;color:#fca5a5">-${p.ukupanOdbitak.toLocaleString("sr-RS")} €</div>
+                    <div style="flex:1;min-width:90px;background:var(--red-dim);border:1px solid rgba(239,68,68,0.2);border-radius:8px;padding:12px;text-align:center">
+                        <div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Odbitak</div>
+                        <div style="font-size:17px;font-weight:800;color:#fca5a5">-${(p.ukupanOdbitak||0).toLocaleString("sr-RS")} €</div>
                     </div>
-                    <div style="flex:1;min-width:100px;background:var(--gold-dim);border:1px solid rgba(245,166,35,0.3);border-radius:8px;padding:12px;text-align:center">
-                        <div style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Vrednost</div>
-                        <div style="font-size:18px;font-weight:800;color:var(--gold)">${p.finalnaCena.toLocaleString("sr-RS")} €</div>
+                    <div style="flex:1;min-width:90px;background:var(--gold-dim);border:1px solid rgba(245,166,35,0.3);border-radius:8px;padding:12px;text-align:center">
+                        <div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Vrednost</div>
+                        <div style="font-size:17px;font-weight:800;color:var(--gold)">${(p.finalnaCena||0).toLocaleString("sr-RS")} €</div>
                     </div>
                 </div>
             </div>`;
 
-        // Napomena proizvođača
         if (p.napomenaProizvodjaca) {
             html += `
             <div style="background:rgba(245,166,35,0.07);border:1px solid rgba(245,166,35,0.2);border-left:3px solid var(--gold);border-radius:8px;padding:14px 16px;margin-bottom:10px">
-                <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--gold);margin-bottom:6px"><i class="fa-solid fa-triangle-exclamation" style="margin-right:5px"></i>Poznate mane generacije</div>
-                <div style="font-size:13px;color:var(--text2);line-height:1.6">${p.napomenaProizvodjaca}</div>
+                <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--gold);margin-bottom:8px">
+                    <i class="fa-solid fa-triangle-exclamation" style="margin-right:5px"></i>Poznate mane ove generacije
+                </div>
+                <div style="font-size:13px;color:var(--text2);line-height:1.7">${p.napomenaProizvodjaca}</div>
             </div>`;
         }
 
-        // OBD greske
-        if (p.obdKodovi && p.obdKodovi.length > 0) {
+        if (p.obdKodovi.length > 0) {
             html += `
             <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:10px">
-                <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--text3);margin-bottom:12px"><i class="fa-solid fa-laptop-medical" style="color:var(--gold);margin-right:6px"></i>OBD2 dijagnostika</div>
-                ${p.obdKodovi.map(o => `
-                <div style="background:var(--red-dim);border:1px solid rgba(239,68,68,0.2);border-radius:8px;padding:11px 14px;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center">
-                    <div>
-                        <div style="font-size:13px;font-weight:800;color:#fca5a5;font-family:monospace">${o.kod}</div>
-                        <div style="font-size:12px;color:var(--text2);margin-top:2px">${o.opis}</div>
-                    </div>
-                    <div style="font-size:12px;font-weight:700;color:var(--red);white-space:nowrap;margin-left:10px">-${o.kazna} €</div>
-                </div>`).join("")}
+                <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--text3);margin-bottom:12px">
+                    <i class="fa-solid fa-laptop-medical" style="color:var(--gold);margin-right:6px"></i>OBD2 dijagnostika
+                </div>
+                ${p.obdKodovi.map(o => {
+                    const kod = typeof o === 'string' ? o : o.kod;
+                    const opis = typeof o === 'string' ? 'Greska evidentirana na dijagnostici' : o.opis;
+                    const kazna = typeof o === 'string' ? '?' : o.kazna;
+                    return `<div style="background:var(--red-dim);border:1px solid rgba(239,68,68,0.2);border-radius:8px;padding:11px 14px;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center;gap:10px">
+                        <div>
+                            <div style="font-size:14px;font-weight:800;color:#fca5a5;font-family:monospace">${kod}</div>
+                            <div style="font-size:12px;color:var(--text2);margin-top:3px;line-height:1.4">${opis}</div>
+                        </div>
+                        <div style="font-size:12px;font-weight:700;color:var(--red);white-space:nowrap;flex-shrink:0">-${kazna} €</div>
+                    </div>`;
+                }).join("")}
             </div>`;
         }
 
-        // Mane sa cekliste
-        if (p.detaljiMana && p.detaljiMana.length > 0) {
-            // Grupisanje po kategoriji
+        if (p.detaljiMana.length > 0) {
             const poKat = {};
             p.detaljiMana.forEach(m => {
                 if (!poKat[m.kategorija]) poKat[m.kategorija] = [];
                 poKat[m.kategorija].push(m);
             });
-
             html += `
             <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:10px">
-                <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--text3);margin-bottom:12px"><i class="fa-solid fa-list-check" style="color:var(--gold);margin-right:6px"></i>Evidentirane mane</div>
+                <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--text3);margin-bottom:12px">
+                    <i class="fa-solid fa-list-check" style="color:var(--gold);margin-right:6px"></i>Evidentirane mane (${p.detaljiMana.length})
+                </div>
                 ${Object.keys(poKat).map(kat => `
-                    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--text3);margin:10px 0 6px">${kat}</div>
+                    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--text3);margin:12px 0 6px;padding-bottom:4px;border-bottom:1px solid var(--border)">${kat}</div>
                     ${poKat[kat].map(m => `
-                    <div style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:11px 14px;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center;gap:10px">
-                        <div>
-                            <span style="display:inline-block;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:700;margin-bottom:5px;${m.status === 'KRITICNO' ? 'background:var(--red-dim);color:var(--red)' : 'background:var(--yellow-dim);color:var(--yellow)'}">${m.status}</span>
-                            <div style="font-size:13px;color:var(--text2);line-height:1.5">${m.tekst}</div>
+                    <div style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:11px 14px;margin-bottom:6px">
+                        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px">
+                            <div style="flex:1">
+                                <span style="display:inline-block;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:700;margin-bottom:6px;${m.status==='KRITICNO'||m.status==='KRITIČNO'?'background:var(--red-dim);color:var(--red)':'background:var(--yellow-dim);color:var(--yellow)'}">${m.status}</span>
+                                <div style="font-size:13px;color:var(--text2);line-height:1.5">${m.tekst}</div>
+                            </div>
+                            <div style="font-size:12px;font-weight:700;color:var(--red);white-space:nowrap;flex-shrink:0">-${m.odbitak} €</div>
                         </div>
-                        <div style="font-size:12px;font-weight:700;color:var(--red);white-space:nowrap">-${m.odbitak} €</div>
                     </div>`).join("")}
                 `).join("")}
             </div>`;
-        } else if (!p.obdKodovi || p.obdKodovi.length === 0) {
+        }
+
+        if (p.detaljiMana.length === 0 && p.obdKodovi.length === 0) {
             html += `
-            <div style="background:var(--green-dim);border:1px solid rgba(34,197,94,0.2);border-radius:12px;padding:16px;margin-bottom:10px;text-align:center">
-                <i class="fa-solid fa-circle-check" style="font-size:28px;color:var(--green);display:block;margin-bottom:8px"></i>
-                <div style="font-size:14px;font-weight:700;color:var(--green)">Vozilo je u odlicnom stanju</div>
-                <div style="font-size:12px;color:var(--text3);margin-top:4px">Nisu evidentirane mane pri pregledu.</div>
+            <div style="background:var(--green-dim);border:1px solid rgba(34,197,94,0.2);border-radius:12px;padding:24px;margin-bottom:10px;text-align:center">
+                <i class="fa-solid fa-circle-check" style="font-size:32px;color:var(--green);display:block;margin-bottom:10px"></i>
+                <div style="font-size:14px;font-weight:700;color:var(--green);margin-bottom:4px">Vozilo je u odlicnom stanju</div>
+                <div style="font-size:12px;color:var(--text3)">Nisu evidentirane mane pri pregledu.</div>
             </div>`;
         }
 
-        // Fotografije
-        if (p.fotografije && p.fotografije.length > 0) {
+        if (p.fotografije.length > 0) {
             html += `
             <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:10px">
-                <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--text3);margin-bottom:12px"><i class="fa-solid fa-images" style="color:var(--gold);margin-right:6px"></i>Fotografije ostecenja (${p.fotografije.length})</div>
+                <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--text3);margin-bottom:12px">
+                    <i class="fa-solid fa-images" style="color:var(--gold);margin-right:6px"></i>Fotografije ostecenja (${p.fotografije.length})
+                </div>
                 <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:7px">
                     ${p.fotografije.map(src => `
-                    <div style="border-radius:8px;overflow:hidden;aspect-ratio:1">
+                    <div style="border-radius:8px;overflow:hidden;aspect-ratio:1;cursor:pointer" onclick="window.open('${src}')">
                         <img src="${src}" style="width:100%;height:100%;object-fit:cover;display:block">
                     </div>`).join("")}
                 </div>
@@ -1493,7 +1676,6 @@
         }
 
         document.getElementById("detalj-sadrzaj").innerHTML = html;
-        document.getElementById("istorija-modal").scrollTop = 0;
     }
 
     function vratiSeNaListu() {
@@ -1515,27 +1697,35 @@
 
     // ── SNIMI U BAZU + ISTORIJU ────────────────────────────
     function snimiUBazu() {
-        const m = markaEl.value, mdl = modelEl.value, g = godisteEl.value;
+        const {marka: m, model: mdl, godiste: g} = getVozilo();
         const fin = Math.max(0, Math.round(pocetnaCena - ukupanOdbitak));
 
+        // Uvek snimi lokalno
         sacuvajUIstoriju();
+        prikaziToast("Sacuvano lokalno", "ok");
 
-        const podatci = {
-            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-            datum: new Date().toLocaleDateString("sr-RS"),
-            marka: m, model: mdl, godiste: g,
-            pocetnaCena, ukupanOdbitak,
-            finalnaCena: fin,
-            obdKodovi: aktivniOBD,
-            mane: Object.fromEntries(
-                Object.entries(stanjeStavki).filter(([_, v]) => v.status !== "OK")
-                    .map(([k, v]) => [k, { status: v.status, odbitak: v.odbitak }])
-            )
-        };
+        // Firebase — samo ako je dostupan
+        if (!db) return;
 
-        db.collection("inspekcije").add(podatci)
-            .then(() => prikaziToast("Sacuvano lokalno i u bazi", "ok"))
-            .catch(() => prikaziToast("Sacuvano lokalno", "ok"));
+        try {
+            const podatci = {
+                timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                datum: new Date().toLocaleDateString("sr-RS"),
+                marka: m, model: mdl, godiste: g,
+                pocetnaCena, ukupanOdbitak,
+                finalnaCena: fin,
+                obdKodovi: aktivniOBD,
+                mane: Object.fromEntries(
+                    Object.entries(stanjeStavki).filter(([_, v]) => v.status !== "OK")
+                        .map(([k, v]) => [k, { status: v.status, odbitak: v.odbitak }])
+                )
+            };
+            db.collection("inspekcije").add(podatci)
+                .then(() => prikaziToast("Sacuvano lokalno i u oblaku", "ok"))
+                .catch(() => {}); // lokalno vec sacuvano
+        } catch(e) {
+            console.warn("Firebase upis nije uspeo:", e);
+        }
     }
 
     // ── TOAST ──────────────────────────────────────────────
