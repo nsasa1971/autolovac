@@ -1047,10 +1047,10 @@
                         <button class="btn-ocena ok aktivno" onclick="oceni('${st.id}','OK',this,0)">
                             <i class="fa-solid fa-check"></i> OK
                         </button>
-                        <button class="btn-ocena minus" onclick="oceni('${st.id}','MANA',this,${st.kazna})">
+                        <button class="btn-ocena minus" onclick="oceni('${st.id}','MANA',this,${Math.round(st.kazna * 0.25)})">
                             <i class="fa-solid fa-minus"></i> Mana
                         </button>
-                        <button class="btn-ocena kriticno" onclick="oceni('${st.id}','KRITIČNO',this,${st.kazna * 1.5})">
+                        <button class="btn-ocena kriticno" onclick="oceni('${st.id}','KRITIČNO',this,${st.kazna})">
                             <i class="fa-solid fa-xmark"></i> Kritično
                         </button>
                     </div>`;
@@ -1195,14 +1195,17 @@
             }
         });
 
-        if (!ima) t += `  ✓ Vozilo je u odličnom stanju.\n\n`;
+        if (!ima) t += `  ✓ Vozilo je u odlicnom stanju.\n\n`;
 
         t += `── KALKULACIJA ─────────────────\n\n`;
-        t += `Početna cena:     ${pocetnaCena.toLocaleString("sr-RS")} €\n`;
+        t += `  Napomena: "Mana" = pregovarački argument\n`;
+        t += `  (25% od cene popravke). "Kriticno" = puna\n`;
+        t += `  procenjena cena popravke.\n\n`;
+        t += `Pocetna cena:     ${pocetnaCena.toLocaleString("sr-RS")} €\n`;
         t += `Ukupni odbitak:  -${Math.round(ukupanOdbitak).toLocaleString("sr-RS")} €\n`;
         t += `────────────────────────────────\n`;
         t += `REALNA VREDNOST: ${fin.toLocaleString("sr-RS")} €\n\n`;
-        t += `Generisano pomoću AutoLovac PRO`;
+        t += `Generisano pomocu AutoLovac PRO`;
 
         document.getElementById("report-tekst").textContent = t;
     }
