@@ -1713,9 +1713,11 @@
         const stavkaRed = (tekst, status, iznos) => {
             if (y > 265) { doc.addPage(); novaStranica(); y = 18; }
 
-            const tekstSirina = W - PAD * 2 - 30; // prostor za tekst
-            const lines = doc.splitTextToSize(tekst, tekstSirina - 8);
-            const visina = Math.max(10, lines.length * 5 + 4);
+            const pillSirina = 22;
+            const iznosSirina = 28;
+            const tekstSirina = W - PAD * 2 - 4 - pillSirina - iznosSirina - 8;
+            const lines = doc.splitTextToSize(tekst, tekstSirina);
+            const visina = Math.max(12, lines.length * 5.2 + 5);
 
             // Pozadina stavke
             const bgBoja = status === "KRITIČNO"
@@ -1732,24 +1734,28 @@
                 : status === "MANA" ? boja("#ca8a04")
                 : boja("#16a34a");
             doc.setFillColor(...pillBoja);
-            doc.roundedRect(PAD + 7, y + 2, 18, 5, 1, 1, "F");
+            doc.roundedRect(PAD + 7, y + (visina - 6) / 2, pillSirina, 6, 1, 1, "F");
             doc.setTextColor(255, 255, 255);
-            doc.setFontSize(6);
+            doc.setFontSize(6.5);
             doc.setFont("helvetica", "bold");
-            doc.text(status === "KRITIČNO" ? "KRIT." : status, PAD + 16, y + 5.5, { align: "center" });
+            doc.text(
+                status === "KRITIČNO" ? "KRIT." : status,
+                PAD + 7 + pillSirina / 2, y + (visina - 6) / 2 + 4.2,
+                { align: "center" }
+            );
 
             // Tekst stavke
             doc.setTextColor(...boja("#1e293b"));
             doc.setFontSize(8);
             doc.setFont("helvetica", "normal");
-            doc.text(lines, PAD + 28, y + 5.5);
+            doc.text(lines, PAD + 7 + pillSirina + 3, y + 5.5);
 
-            // Iznos desno
+            // Iznos — fiksna desna kolona, ne prekriva tekst
             if (iznos) {
                 doc.setFont("helvetica", "bold");
                 doc.setTextColor(...boja("#dc2626"));
-                doc.setFontSize(9);
-                doc.text(iznos, W - PAD - 2, y + 5.5, { align: "right" });
+                doc.setFontSize(8.5);
+                doc.text(iznos, W - PAD - 2, y + visina / 2 + 1.5, { align: "right" });
             }
 
             y += visina + 2;
