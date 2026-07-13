@@ -405,8 +405,8 @@
             bottom: 0;
             left: 0;
             right: 0;
-            padding: 14px 16px 20px;
-            background: linear-gradient(to top, var(--bg) 60%, transparent);
+            padding: 10px 16px 20px;
+            background: linear-gradient(to top, var(--bg) 70%, transparent);
             display: none;
             z-index: 100;
         }
@@ -416,11 +416,11 @@
             background: var(--surface);
             border: 1px solid var(--border2);
             border-radius: var(--radius);
-            padding: 14px 20px;
+            padding: 10px 16px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 12px;
+            gap: 10px;
             box-shadow: 0 -4px 30px rgba(0,0,0,0.6);
         }
         .price-bar-left { display: flex; flex-direction: column; gap: 2px; }
@@ -428,17 +428,53 @@
         .price-bar-sub { font-size: 11px; color: var(--text3); }
         .price-bar-sub span { color: var(--red); font-weight: 600; }
         .price-val {
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 900;
             color: var(--gold);
             letter-spacing: -1px;
         }
-        .price-diff {
-            font-size: 13px;
-            font-weight: 600;
+        .nav-ikone {
+            display: flex;
+            gap: 6px;
+            align-items: center;
         }
-        .price-diff.negative { color: var(--red); }
-        .price-diff.zero { color: var(--text3); }
+        .nav-btn {
+            width: 40px;
+            height: 40px;
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: var(--text3);
+            font-size: 14px;
+            position: relative;
+        }
+        .nav-btn:hover, .nav-btn.aktivan { border-color: rgba(245,166,35,0.4); color: var(--gold); }
+        .nav-btn span {
+            font-size: 8px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            line-height: 1;
+        }
+        .nav-badge {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            background: var(--gold);
+            color: #1a0e00;
+            border-radius: 99px;
+            padding: 1px 4px;
+            font-size: 8px;
+            font-weight: 800;
+            display: none;
+        }
 
         /* PROGRESS INDICATOR */
         .progress-steps {
@@ -705,11 +741,6 @@
     </div>
 </div>
 
-<!-- POVRATAK NA VRH -->
-<button class="btn-vrh" id="btn-vrh" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-    <i class="fa-solid fa-chevron-up"></i>
-</button>
-
 <!-- KAKO KORISTITI MODAL -->
 <div id="uputstvo-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:200;overflow-y:auto;padding:20px 16px 40px">
     <div style="max-width:520px;margin:0 auto">
@@ -821,15 +852,32 @@
     </div>
 </div>
 
-<!-- BOTTOM PRICE BAR -->
+<!-- BOTTOM NAV BAR -->
 <div class="price-bar" id="price-bar">
     <div class="price-bar-inner">
         <div class="price-bar-left">
             <div class="price-bar-label">Realna vrednost</div>
             <div class="price-bar-sub">Odbitak: <span id="odbitak-txt">0 €</span></div>
-        </div>
-        <div style="text-align:right">
             <div class="price-val" id="finalna-cena">5.000 €</div>
+        </div>
+        <div class="nav-ikone">
+            <button class="nav-btn" onclick="scrollDoForme()" title="Novi pregled">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <span>Pregled</span>
+            </button>
+            <button class="nav-btn" onclick="otvorIstoriju()" title="Moji pregledi" id="nav-btn-istorija">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                <span>Istorija</span>
+                <span class="nav-badge" id="nav-badge-broj"></span>
+            </button>
+            <button class="nav-btn" onclick="otvorUputstvo()" title="Kako koristiti">
+                <i class="fa-solid fa-circle-question"></i>
+                <span>Pomoć</span>
+            </button>
+            <button class="nav-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Na vrh">
+                <i class="fa-solid fa-chevron-up"></i>
+                <span>Vrh</span>
+            </button>
         </div>
     </div>
 </div>
@@ -1833,15 +1881,9 @@
 
     // ── STICKY HEADER + BACK TO TOP ───────────────────────
     const header  = document.querySelector('.header');
-    const btnVrh  = document.getElementById('btn-vrh');
     window.addEventListener('scroll', () => {
         const y = window.scrollY;
-        if (header) {
-            header.classList.toggle('skrolovan', y > 60);
-        }
-        if (btnVrh) {
-            btnVrh.classList.toggle('vidljivo', y > 300);
-        }
+        if (header) header.classList.toggle('skrolovan', y > 60);
     }, { passive: true });
 
     function otvorUputstvo() {
@@ -1855,15 +1897,14 @@
     }
 
     function azurirajHeaderDugme() {
-        const lista = ucitajIstoriju();
-        const broj = document.getElementById("btn-istorija-broj");
-        if (!broj) return;
-        if (lista.length > 0) {
-            broj.textContent = lista.length;
-            broj.style.display = "block";
-        } else {
-            broj.style.display = "none";
-        }
+        const lista    = ucitajIstoriju();
+        const broj     = document.getElementById("btn-istorija-broj");
+        const navBadge = document.getElementById("nav-badge-broj");
+        [broj, navBadge].forEach(el => {
+            if (!el) return;
+            if (lista.length > 0) { el.textContent = lista.length; el.style.display = "block"; }
+            else { el.style.display = "none"; }
+        });
     }
 
     function sacuvajUIstoriju() {
