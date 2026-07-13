@@ -405,8 +405,8 @@
             bottom: 0;
             left: 0;
             right: 0;
-            padding: 10px 16px 20px;
-            background: linear-gradient(to top, var(--bg) 70%, transparent);
+            padding: 14px 16px 20px;
+            background: linear-gradient(to top, var(--bg) 60%, transparent);
             display: none;
             z-index: 100;
         }
@@ -416,11 +416,11 @@
             background: var(--surface);
             border: 1px solid var(--border2);
             border-radius: var(--radius);
-            padding: 10px 16px;
+            padding: 14px 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 10px;
+            gap: 12px;
             box-shadow: 0 -4px 30px rgba(0,0,0,0.6);
         }
         .price-bar-left { display: flex; flex-direction: column; gap: 2px; }
@@ -428,52 +428,10 @@
         .price-bar-sub { font-size: 11px; color: var(--text3); }
         .price-bar-sub span { color: var(--red); font-weight: 600; }
         .price-val {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: 900;
             color: var(--gold);
             letter-spacing: -1px;
-        }
-        .nav-ikone {
-            display: flex;
-            gap: 6px;
-            align-items: center;
-        }
-        .nav-btn {
-            width: 40px;
-            height: 40px;
-            background: var(--surface2);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 3px;
-            cursor: pointer;
-            transition: all 0.2s;
-            color: var(--text3);
-            font-size: 14px;
-            position: relative;
-        }
-        .nav-btn:hover, .nav-btn.aktivan { border-color: rgba(245,166,35,0.4); color: var(--gold); }
-        .nav-btn span {
-            font-size: 8px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
-            line-height: 1;
-        }
-        .nav-badge {
-            position: absolute;
-            top: 4px;
-            right: 4px;
-            background: var(--gold);
-            color: #1a0e00;
-            border-radius: 99px;
-            padding: 1px 4px;
-            font-size: 8px;
-            font-weight: 800;
-            display: none;
         }
 
         /* PROGRESS INDICATOR */
@@ -741,6 +699,11 @@
     </div>
 </div>
 
+<!-- POVRATAK NA VRH -->
+<button class="btn-vrh" id="btn-vrh" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <i class="fa-solid fa-chevron-up"></i>
+</button>
+
 <!-- KAKO KORISTITI MODAL -->
 <div id="uputstvo-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:200;overflow-y:auto;padding:20px 16px 40px">
     <div style="max-width:520px;margin:0 auto">
@@ -852,32 +815,15 @@
     </div>
 </div>
 
-<!-- BOTTOM NAV BAR -->
+<!-- BOTTOM PRICE BAR -->
 <div class="price-bar" id="price-bar">
     <div class="price-bar-inner">
         <div class="price-bar-left">
             <div class="price-bar-label">Realna vrednost</div>
             <div class="price-bar-sub">Odbitak: <span id="odbitak-txt">0 €</span></div>
-            <div class="price-val" id="finalna-cena">5.000 €</div>
         </div>
-        <div class="nav-ikone">
-            <button class="nav-btn" onclick="scrollDoForme()" title="Novi pregled">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <span>Pregled</span>
-            </button>
-            <button class="nav-btn" onclick="otvorIstoriju()" title="Moji pregledi" id="nav-btn-istorija">
-                <i class="fa-solid fa-clock-rotate-left"></i>
-                <span>Istorija</span>
-                <span class="nav-badge" id="nav-badge-broj"></span>
-            </button>
-            <button class="nav-btn" onclick="otvorUputstvo()" title="Kako koristiti">
-                <i class="fa-solid fa-circle-question"></i>
-                <span>Pomoć</span>
-            </button>
-            <button class="nav-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Na vrh">
-                <i class="fa-solid fa-chevron-up"></i>
-                <span>Vrh</span>
-            </button>
+        <div style="text-align:right">
+            <div class="price-val" id="finalna-cena">5.000 €</div>
         </div>
     </div>
 </div>
@@ -1015,144 +961,144 @@
         "Karoserija i limarija": {
             ikona: "fa-car-burst",
             stavke: [
-                { id: "zazori",    tekst: "Zazori haube, vrata i gepeka su neujednaceni ili asimetricni — znak udesa ili farbanja u servisu", kazna: 600 },
-                { id: "rdja",      tekst: "Korozija na pragovima, donjim ivicama vrata i ispod blatobrana — proveriti magnetom i lupkanjem", kazna: 700 },
-                { id: "farbanje",  tekst: "Razlika u nijansama boje, tragovi gletovanja ili folije — proveriti pod direktnim svetlom", kazna: 500 },
-                { id: "staklo",    tekst: "Pukotine ili duboke ogrebotine na vetrobranskom staklu, nestandardna stakla na vozilu", kazna: 300 },
-                { id: "gume_felne",tekst: "Gume stare vise od 6 godina (DOT broj), dubina sare ispod 3mm ili ostecene/savijene felne", kazna: 400 }
+                { id: "zazori",     tekst: "Zazori haube, vrata i gepeka su neujednačeni ili asimetrični — znak udesa ili farbanja u servisu", kazna: 600 },
+                { id: "rdja",       tekst: "Korozija na pragovima, donjim ivicama vrata i ispod blatobrana — proveriti magnetom i lupkanjem", kazna: 700 },
+                { id: "farbanje",   tekst: "Razlika u nijansama boje, tragovi gletovanja ili folije — proveriti pod direktnim svetlom", kazna: 500 },
+                { id: "staklo",     tekst: "Pukotine ili duboke ogrebotine na vetrobranskom staklu, nestandardna stakla na vozilu", kazna: 300 },
+                { id: "gume_felne", tekst: "Gume starije od 6 godina (DOT broj), dubina šare ispod 3 mm ili oštećene/savijene felne", kazna: 400 }
             ]
         },
         "Enterijer i elektronika": {
             ikona: "fa-gauge-high",
             stavke: [
-                { id: "km_habanje",  tekst: "Pohabanost volana, pedale i rucice menjaca NE odgovara kilometrazi — sumnja na tocanje brojcana km", kazna: 300 },
-                { id: "vlaga",       tekst: "Miris vlage ili plesni u kabini — podici tepih u noznom prostoru i gepeku, proveriti uglove", kazna: 400 },
-                { id: "airbag",      tekst: "Gori lampica vazdusnog jastuka ili motora na instrument tabli — obavezna OBD dijagnostika", kazna: 500 },
-                { id: "klima",       tekst: "Klima kompressor se ne ukljucuje ili ne hladi — proveriti pritiskom na A/C dugme i pratiti zvuk", kazna: 350 }
+                { id: "km_habanje", tekst: "Pohabanost volana, pedale i ručice menjača NE odgovara kilometraži — sumnja na točanje brojčanih km", kazna: 300 },
+                { id: "vlaga",      tekst: "Miris vlage ili plesni u kabini — podići tepih u nožnom prostoru i gepeku, proveriti uglove", kazna: 400 },
+                { id: "airbag",     tekst: "Gori lampica vazdušnog jastuka ili motora na instrument tabli — obavezna OBD dijagnostika", kazna: 500 },
+                { id: "klima",      tekst: "Klima kompresor se ne uključuje ili ne hladi — proveriti pritiskom na A/C dugme i pratiti zvuk", kazna: 350 }
             ]
         },
         "Motorni prostor": {
             ikona: "fa-engine",
             stavke: [
-                { id: "ulje_cur",  tekst: "Svezi tragovi ulja na bloku motora, ispod turbine ili na podlozi ispod parkiranog auta", kazna: 500 },
-                { id: "emulzija",  tekst: "Bela pena (majonez) na cepu za ulje ili u ekspanzionoj posudi antifriza — pukla brtva glave motora", kazna: 1500 },
-                { id: "rashladna", tekst: "Nivo antifriza nizak, tecnost mutna ili rdjavocrvena, mehurici u posudi pri ubrzavanju motora", kazna: 700 },
+                { id: "ulje_cur",  tekst: "Sveži tragovi ulja na bloku motora, ispod turbine ili na podlozi ispod parkiranog auta", kazna: 500 },
+                { id: "emulzija",  tekst: "Bela pena (majonez) na čepu za ulje ili u ekspanzionoj posudi antifriza — pukla brtva glave motora", kazna: 1500 },
+                { id: "rashladna", tekst: "Nivo antifriza nizak, tečnost mutna ili rdjavocrvena, mehurići u posudi pri ubrzavanju motora", kazna: 700 },
                 { id: "dim",       tekst: "Crni dim (dizne/turbina), plavi dim (ulje gori) ili gusti beli dim (antifriz gori) iz auspuha", kazna: 800 },
                 { id: "zvuci_mot", tekst: "Tiktanje, kucanje ili zveckanje iz motora pri hladnom paljenju ili u praznom hodu", kazna: 700 }
             ]
         },
-        "Podvozje i voznja": {
+        "Podvozje i vožnja": {
             ikona: "fa-road",
             stavke: [
-                { id: "trap",      tekst: "Tupi udarci i lupkanje na trapu pri prelasku kaldrme, rupa i lezecih policajaca", kazna: 500 },
-                { id: "amort",     tekst: "Auto se lata vise od jednom pri pritisku na svaki ugao — istroseni amortizeri", kazna: 500 },
-                { id: "upravljac", tekst: "Upravljac vuce na stranu, ima slobodan hod veci od 2 cm ili vibrira pri vecim brzinama", kazna: 400 },
-                { id: "kocnice",   tekst: "Trzanje ili pulsiranje pri kocenju, skripanje, vozilo vuce na stranu ili pedala pada do poda", kazna: 400 },
-                { id: "homokin",   tekst: "Klik ili lupanje pri punoj rotaciji volana pri parkiranju — ostecen homokinetski zglob", kazna: 500 },
-                { id: "menjac",    tekst: "Tvrdo menjanje brzina, trzanje automatika/DSG pri polascu ili kvacilo proklizava pri ubrzavanju", kazna: 700 }
+                { id: "trap",      tekst: "Tupi udarci i lupkanje na trapu pri prelasku kaldrme, rupa i ležećih policajaca", kazna: 500 },
+                { id: "amort",     tekst: "Auto se ljulja više od jednom pri pritisku na svaki ugao — istrošeni amortizeri", kazna: 500 },
+                { id: "upravljac", tekst: "Upravljač vuče na stranu, ima slobodan hod veći od 2 cm ili vibrira pri većim brzinama", kazna: 400 },
+                { id: "kocnice",   tekst: "Trzanje ili pulsiranje pri kočenju, škripanje, vozilo vuče na stranu ili pedala pada do poda", kazna: 400 },
+                { id: "homokin",   tekst: "Klik ili lupanje pri punoj rotaciji volana pri parkiranju — oštećen homokinetski zglob", kazna: 500 },
+                { id: "menjac",    tekst: "Tvrdo menjanje brzina, trzanje automatika/DSG pri polasku ili kvačilo proklizava pri ubrzavanju", kazna: 700 }
             ]
         },
         "Papiri i istorija": {
             ikona: "fa-file-shield",
             stavke: [
-                { id: "servisna",  tekst: "Servisna knjizica nije kompletna ili servisi nisu redovni — nepoznata istorija odrzavanja", kazna: 400 },
-                { id: "tehnicki",  tekst: "Tehnicki pregled istice za manje od 2 meseca ili je vozilo imalo propusta na poslednjem pregledu", kazna: 200 },
-                { id: "vlasnici",  tekst: "Vise od 2-3 vlasnika za kratko vreme ili nejasan razlog prodaje svakog prethodnog vlasnika", kazna: 200 },
-                { id: "vin",       tekst: "VIN broj na tabli, staklu i u papirima mora biti identican — razlika znaci ukraden auto ili zamenu karoserije", kazna: 1000 },
-                { id: "uvoz",      tekst: "Vozilo uvezeno — proveriti da li su placene sve dazbine i da li postoji kompletna dokumentacija", kazna: 300 }
+                { id: "servisna", tekst: "Servisna knjižica nije kompletna ili servisi nisu redovni — nepoznata istorija održavanja", kazna: 400 },
+                { id: "tehnicki", tekst: "Tehnički pregled ističe za manje od 2 meseca ili je vozilo imalo propusta na poslednjem pregledu", kazna: 200 },
+                { id: "vlasnici", tekst: "Više od 2-3 vlasnika za kratko vreme ili nejasan razlog prodaje svakog prethodnog vlasnika", kazna: 200 },
+                { id: "vin",      tekst: "VIN broj na tabli, staklu i u papirima mora biti identičan — razlika znači ukraden auto ili zamenu karoserije", kazna: 1000 },
+                { id: "uvoz",     tekst: "Vozilo uvezeno — proveriti da li su plaćene sve dažbine i da li postoji kompletna dokumentacija", kazna: 300 }
             ]
         }
     };
 
-    // ── DETALJNA CEK LISTA (55 stavki) ────────────────────
+    // ── DETALJNA CEK LISTA (54 stavke) ────────────────────
     const cekListaDetaljna = {
         "Karoserija i limarija": {
             ikona: "fa-car-burst",
             stavke: [
-                { id: "d_zazori",       tekst: "Zazori haube, vrata i gepeka su neujednaceni ili asimetricni — znak udesa ili farbanja u servisu", kazna: 600 },
-                { id: "d_rdja_prag",    tekst: "Korozija na pragovima i donjim ivicama vrata — proveriti magnetom i lupkanjem dlanom", kazna: 700 },
-                { id: "d_rdja_dno",     tekst: "Rdja, krpe ili popravke na dnu vozila, nosacima i longerima — proveriti lampom odozdo", kazna: 900 },
-                { id: "d_farbanje",     tekst: "Nejednaka debljina laka, razlike u nijansama boje, tragovi gletovanja ili folije", kazna: 500 },
-                { id: "d_staklo",       tekst: "Pukotine ili duboke ogrebotine na vetrobranskom staklu, nestandardna stakla na vozilu", kazna: 300 },
-                { id: "d_gume",         tekst: "Dubina sare ispod 3mm, DOT stariji od 6 godina, neravnomerna pohabanost guma", kazna: 400 },
-                { id: "d_felne",        tekst: "Ostecene, savijene ili pukle felne — proveriti vizuelno i pritisnuti svaku gumo", kazna: 300 },
-                { id: "d_svetla",       tekst: "Ne rade poziciona, kratka, duga, maglenka ili stop svetla — proveriti svako posebno", kazna: 150 },
-                { id: "d_branici",      tekst: "Branici nisu original, lose montirani ili se razlikuju u nijansama boje od auta", kazna: 250 }
+                { id: "d_zazori",    tekst: "Zazori haube, vrata i gepeka su neujednačeni ili asimetrični — znak udesa ili farbanja u servisu", kazna: 600 },
+                { id: "d_rdja_prag", tekst: "Korozija na pragovima i donjim ivicama vrata — proveriti magnetom i lupkanjem dlanom", kazna: 700 },
+                { id: "d_rdja_dno",  tekst: "Rđa, krpe ili popravke na dnu vozila, nosačima i lonžeronima — proveriti lampom odozdo", kazna: 900 },
+                { id: "d_farbanje",  tekst: "Nejednaka debljina laka, razlike u nijansama boje, tragovi gletovanja ili folije", kazna: 500 },
+                { id: "d_staklo",    tekst: "Pukotine ili duboke ogrebotine na vetrobranskom staklu, nestandardna stakla na vozilu", kazna: 300 },
+                { id: "d_gume",      tekst: "Dubina šare ispod 3 mm, DOT stariji od 6 godina, neravnomerna pohabanost guma", kazna: 400 },
+                { id: "d_felne",     tekst: "Oštećene, savijene ili pukle felne — proveriti vizuelno i pritisnuti svaku gumu", kazna: 300 },
+                { id: "d_svetla",    tekst: "Ne rade poziciona, kratka, duga, maglenka ili stop svetla — proveriti svako posebno", kazna: 150 },
+                { id: "d_branici",   tekst: "Branici nisu originalni, loše montirani ili se razlikuju u nijansama boje od auta", kazna: 250 }
             ]
         },
         "Enterijer i tapaciranje": {
             ikona: "fa-couch",
             stavke: [
-                { id: "d_km",           tekst: "Pohabanost volana, pedale i sedista NE odgovara kilometrazi — sumnja na tocanje km", kazna: 300 },
-                { id: "d_vlaga",        tekst: "Miris vlage ili plesni u kabini — podici tepih u noznom prostoru i gepeku", kazna: 500 },
-                { id: "d_enterijer",    tekst: "Pukotine na tabli, odlepljene lajsne, pokidane rucice vrata ili ostecen plafon", kazna: 200 },
-                { id: "d_sedista",      tekst: "Pocepana ili propadnuta sedista — proveriti mehanizam podesavanja i grejanje", kazna: 250 },
-                { id: "d_pojasevi",     tekst: "Sigurnosni pojasevi se ne uvlace automatski ili su vidljivo osteceni", kazna: 400 },
-                { id: "d_airbag",       tekst: "Gori lampica vazdusnog jastuka — deaktiviran jastuk, pokidan konektor ili tocanje km", kazna: 500 },
-                { id: "d_brisaci",      tekst: "Brisaci ostavljaju pruge, preskucu ili skripaju — proveriti i pozadinski i pumpu", kazna: 100 }
+                { id: "d_km",        tekst: "Pohabanost volana, pedale i sedišta NE odgovara kilometraži — sumnja na točanje km", kazna: 300 },
+                { id: "d_vlaga",     tekst: "Miris vlage ili plesni u kabini — podići tepih u nožnom prostoru i gepeku", kazna: 500 },
+                { id: "d_enterijer", tekst: "Pukotine na tabli, odlepljene lajsne, pokidane ručice vrata ili oštećen plafon", kazna: 200 },
+                { id: "d_sedista",   tekst: "Pocepana ili propadnuta sedišta — proveriti mehanizam podešavanja i grejanje", kazna: 250 },
+                { id: "d_pojasevi",  tekst: "Sigurnosni pojasevi se ne uvlače automatski ili su vidljivo oštećeni", kazna: 400 },
+                { id: "d_airbag",    tekst: "Gori lampica vazdušnog jastuka — deaktiviran jastuk, pokidan konektor ili točanje km", kazna: 500 },
+                { id: "d_brisaci",   tekst: "Brisači ostavljaju pruge, preskakuju ili škripaju — proveriti i zadnji brisač i pumpu", kazna: 100 }
             ]
         },
         "Elektronika i sistemi": {
             ikona: "fa-microchip",
             stavke: [
-                { id: "d_klima",        tekst: "Klima ne hladi ili ne greje ravnomerno — proveriti kompresor, freon i resoe", kazna: 350 },
-                { id: "d_podizaci",     tekst: "Ne rade elektricni podizaci prozora, centralna brava ili daljinski upravljac", kazna: 200 },
+                { id: "d_klima",        tekst: "Klima ne hladi ili ne greje ravnomerno — proveriti kompresor, freon i rešoe", kazna: 350 },
+                { id: "d_podizaci",     tekst: "Ne rade električni podizači prozora, centralna brava ili daljinski upravljač", kazna: 200 },
                 { id: "d_infotainment", tekst: "Ekran se zamrzava, resetuje ili ima mrtve piksele — navigacija, Bluetooth, kamera", kazna: 300 },
                 { id: "d_lampice",      tekst: "Gore lampice motora, DPF, AdBlue, ABS ili ESP na instrument tabli — OBD dijagnostika", kazna: 400 },
-                { id: "d_farovi",       tekst: "Ksenon ili LED farovi imaju kondenzaciju, ne rade svi segmenti ili se ne kalibrisu", kazna: 400 },
-                { id: "d_epb",          tekst: "Elektronska rucna kocnica se ne aktivira ili ne pusta — skupa zamena", kazna: 400 },
-                { id: "d_baterija",     tekst: "Baterija stara vise od 5 godina ili motoru treba vise pokusaja za paljenje", kazna: 150 },
-                { id: "d_hibrid",       tekst: "Na hibridima i PHEV vozilima proveriti visokonaponsku bateriju i punjac", kazna: 800 }
+                { id: "d_farovi",       tekst: "Ksenon ili LED farovi imaju kondenzaciju, ne rade svi segmenti ili se ne kalibrišu", kazna: 400 },
+                { id: "d_epb",          tekst: "Elektronska ručna kočnica se ne aktivira ili ne pušta — skupa zamena", kazna: 400 },
+                { id: "d_baterija",     tekst: "Baterija starija od 5 godina ili motoru treba više pokušaja za paljenje", kazna: 150 },
+                { id: "d_hibrid",       tekst: "Na hibridima i PHEV vozilima proveriti visokonaponsku bateriju i punjač", kazna: 800 }
             ]
         },
         "Motorni prostor": {
             ikona: "fa-engine",
             stavke: [
-                { id: "d_ulje",         tekst: "Svezi tragovi ulja na bloku motora, poklopcu glave, ispod turbine ili na podlozi", kazna: 500 },
-                { id: "d_emulzija",     tekst: "Bela pena na cepu za ulje ili bela boja antifriza u posudi — pukla brtva glave motora", kazna: 1500 },
-                { id: "d_rashladna",    tekst: "Nivo antifriza nizak, tecnost mutna ili mehurici u posudi pri ubrzavanju", kazna: 700 },
-                { id: "d_dim",          tekst: "Crni dim (dizne), plavi dim (ulje gori) ili gusti beli dim (antifriz gori)", kazna: 800 },
-                { id: "d_zvuci",        tekst: "Tiktanje, kucanje ili zveckanje iz motora na hladnom startu ili u praznom hodu", kazna: 700 },
-                { id: "d_turbo",        tekst: "Preterana sloboda osovine turbine, buka ili zvizdanje pri ubrzavanju", kazna: 600 },
-                { id: "d_creva",        tekst: "Ispucala ili procurela gumena creva rashladnog sistema, vakuuma ili goriva", kazna: 250 },
-                { id: "d_akum",         tekst: "Tragovi curenja kiseline oko polova akumulatora ili korozija na klestima", kazna: 150 }
+                { id: "d_ulje",     tekst: "Sveži tragovi ulja na bloku motora, poklopcu glave, ispod turbine ili na podlozi", kazna: 500 },
+                { id: "d_emulzija", tekst: "Bela pena na čepu za ulje ili bela boja antifriza u posudi — pukla brtva glave motora", kazna: 1500 },
+                { id: "d_rashladna",tekst: "Nivo antifriza nizak, tečnost mutna ili mehurići u posudi pri ubrzavanju", kazna: 700 },
+                { id: "d_dim",      tekst: "Crni dim (dizne), plavi dim (ulje gori) ili gusti beli dim (antifriz gori)", kazna: 800 },
+                { id: "d_zvuci",    tekst: "Tiktanje, kucanje ili zveckanje iz motora na hladnom startu ili u praznom hodu", kazna: 700 },
+                { id: "d_turbo",    tekst: "Preterana sloboda osovine turbine, buka ili zviždanje pri ubrzavanju", kazna: 600 },
+                { id: "d_creva",    tekst: "Ispucala ili procurela gumena creva rashladnog sistema, vakuuma ili goriva", kazna: 250 },
+                { id: "d_akum",     tekst: "Tragovi curenja kiseline oko polova akumulatora ili korozija na kleštima", kazna: 150 }
             ]
         },
-        "Podvozje i kocnice": {
+        "Podvozje i kočnice": {
             ikona: "fa-car-on",
             stavke: [
-                { id: "d_trap",         tekst: "Tupi udarci ili lupkanje na trapu pri prelasku kaldrme, rupa i lezecih policajaca", kazna: 500 },
-                { id: "d_amort",        tekst: "Auto se lata vise od jednom pri pritisku na svaki ugao — istroseni amortizeri", kazna: 600 },
-                { id: "d_stab",         tekst: "Skripanje ili tapkanje pri prolasku kroz krivine — istrosene gumene cesme stabilizatora", kazna: 350 },
-                { id: "d_uprav",        tekst: "Upravljac vuce na stranu, slobodan hod veci od 2cm ili vibrira pri vecim brzinama", kazna: 400 },
-                { id: "d_koc_ef",       tekst: "Produzeni put kocenja, vozilo vuce na stranu ili pedala kocnice pada do poda", kazna: 500 },
-                { id: "d_koc_disk",     tekst: "Trzanje pri kocenju, skripanje ili zvizdanje — proveriti debljinu diskova i obloge", kazna: 400 },
-                { id: "d_rucna",        tekst: "Rucna kocnica ne drzi na nagibu ili EPB ne pusta po ukljucivanju motora", kazna: 250 },
-                { id: "d_homokin",      tekst: "Klik ili lupanje pri punoj rotaciji volana — ostecen homokinetski zglob", kazna: 600 }
+                { id: "d_trap",     tekst: "Tupi udarci ili lupkanje na trapu pri prelasku kaldrme, rupa i ležećih policajaca", kazna: 500 },
+                { id: "d_amort",    tekst: "Auto se ljulja više od jednom pri pritisku na svaki ugao — istrošeni amortizeri", kazna: 600 },
+                { id: "d_stab",     tekst: "Škripanje ili tapkanje pri prolasku kroz krivine — istrošene gumene čaure stabilizatora", kazna: 350 },
+                { id: "d_uprav",    tekst: "Upravljač vuče na stranu, slobodan hod veći od 2 cm ili vibrira pri većim brzinama", kazna: 400 },
+                { id: "d_koc_ef",   tekst: "Produženi put kočenja, vozilo vuče na stranu ili pedala kočnice pada do poda", kazna: 500 },
+                { id: "d_koc_disk", tekst: "Trzanje pri kočenju, škripanje ili zviždanje — proveriti debljinu diskova i obloge", kazna: 400 },
+                { id: "d_rucna",    tekst: "Ručna kočnica ne drži na nagibu ili EPB ne pušta po uključivanju motora", kazna: 250 },
+                { id: "d_homokin",  tekst: "Klik ili lupanje pri punoj rotaciji volana — oštećen homokinetski zglob", kazna: 600 }
             ]
         },
-        "Probna voznja i menjac": {
+        "Probna vožnja i menjač": {
             ikona: "fa-road",
             stavke: [
-                { id: "d_men_man",      tekst: "Tvrdo menjanje brzina, preskakanje iz brzine ili krckanje sinhrona", kazna: 700 },
-                { id: "d_men_auto",     tekst: "Trzanje, klizanje ili kasnjenje pri menjanju automatika, DSG ili CVT", kazna: 900 },
-                { id: "d_kvac",         tekst: "Kvacilo proklizava pri ubrzavanju, visoka tacka hvata ili zamajac trese", kazna: 800 },
-                { id: "d_vibr",         tekst: "Vibracije kroz volan ili sediste pri odredjenim brzinama (80-130 km/h)", kazna: 300 },
-                { id: "d_zvuci_v",      tekst: "Brujannje iz zadnje osovine ili sumanje lezajeva tocka pri promeni smera", kazna: 500 },
-                { id: "d_kard",         tekst: "Vibracije ili lupanje pri ubrzavanju iz mesta — kardan i homokinetski zglobovi", kazna: 600 },
-                { id: "d_4wd",          tekst: "Na 4WD/AWD vozilima: ukljucuje li se zadnja osovina, buka u transfernoj kutiji", kazna: 700 },
-                { id: "d_koc_probe",    tekst: "Naglo kocenje na sigurnom mestu — vozilo ide pravo, ABS reaguje, pedala cvrsta", kazna: 500 }
+                { id: "d_men_man",   tekst: "Tvrdo menjanje brzina, preskakanje iz brzine ili krčkanje sinhrona", kazna: 700 },
+                { id: "d_men_auto",  tekst: "Trzanje, klizanje ili kašnjenje pri menjanju automatika, DSG ili CVT", kazna: 900 },
+                { id: "d_kvac",      tekst: "Kvačilo proklizava pri ubrzavanju, visoka tačka hvata ili zamajac trese", kazna: 800 },
+                { id: "d_vibr",      tekst: "Vibracije kroz volan ili sedište pri određenim brzinama (80–130 km/h)", kazna: 300 },
+                { id: "d_zvuci_v",   tekst: "Brujanje iz zadnje osovine ili šumanje ležajeva točka pri promeni smera", kazna: 500 },
+                { id: "d_kard",      tekst: "Vibracije ili lupanje pri ubrzavanju iz mesta — kardan i homokinetski zglobovi", kazna: 600 },
+                { id: "d_4wd",       tekst: "Na 4WD/AWD vozilima: uključuje li se zadnja osovina, buka u transfernoj kutiji", kazna: 700 },
+                { id: "d_koc_probe", tekst: "Naglo kočenje na sigurnom mestu — vozilo ide pravo, ABS reaguje, pedala čvrsta", kazna: 500 }
             ]
         },
         "Papiri i istorija vozila": {
             ikona: "fa-file-shield",
             stavke: [
-                { id: "d_servisna",     tekst: "Servisna knjizica nije kompletna ili servisi nisu redovni — nepoznata istorija", kazna: 400 },
-                { id: "d_tehnicki",     tekst: "Tehnicki pregled istice za manje od 2 meseca ili je imao propusta na pregledu", kazna: 200 },
-                { id: "d_vlasnici",     tekst: "Vise od 2-3 vlasnika za kratko vreme — proveriti razlog prodaje svakog", kazna: 200 },
-                { id: "d_steta",        tekst: "Provera u bazi osiguravajucih kuca — prijavljena totalna steta ili velika popravka", kazna: 500 },
-                { id: "d_uvoz",         tekst: "Vozilo uvezeno — proveriti dazbine i kompletnost dokumentacije", kazna: 300 },
-                { id: "d_vin",          tekst: "VIN broj na tabli, staklu i u papirima mora biti identican — razlika je alarm", kazna: 1000 }
+                { id: "d_servisna", tekst: "Servisna knjižica nije kompletna ili servisi nisu redovni — nepoznata istorija", kazna: 400 },
+                { id: "d_tehnicki", tekst: "Tehnički pregled ističe za manje od 2 meseca ili je imao propusta na pregledu", kazna: 200 },
+                { id: "d_vlasnici", tekst: "Više od 2-3 vlasnika za kratko vreme — proveriti razlog prodaje svakog", kazna: 200 },
+                { id: "d_steta",    tekst: "Provera u bazi osiguravajućih kuća — prijavljena totalna šteta ili velika popravka", kazna: 500 },
+                { id: "d_uvoz",     tekst: "Vozilo uvezeno — proveriti dažbine i kompletnost dokumentacije", kazna: 300 },
+                { id: "d_vin",      tekst: "VIN broj na tabli, staklu i u papirima mora biti identičan — razlika je alarm", kazna: 1000 }
             ]
         }
     };
@@ -1881,9 +1827,11 @@
 
     // ── STICKY HEADER + BACK TO TOP ───────────────────────
     const header  = document.querySelector('.header');
+    const btnVrh  = document.getElementById('btn-vrh');
     window.addEventListener('scroll', () => {
         const y = window.scrollY;
         if (header) header.classList.toggle('skrolovan', y > 60);
+        if (btnVrh) btnVrh.classList.toggle('vidljivo', y > 300);
     }, { passive: true });
 
     function otvorUputstvo() {
