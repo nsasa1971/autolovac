@@ -561,12 +561,12 @@
                 <button onclick="postaviRezim('brzi')" id="btn-rezim-brzi" style="background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:16px 10px;cursor:pointer;transition:all 0.2s;text-align:center">
                     <i class="fa-solid fa-bolt" style="font-size:22px;color:var(--gold);display:block;margin-bottom:8px"></i>
                     <div style="font-size:13px;font-weight:800;color:#fff;margin-bottom:4px">Brzi pregled</div>
-                    <div style="font-size:11px;color:var(--text3);line-height:1.4">25 tacaka<br>~15 minuta</div>
+                    <div style="font-size:11px;color:var(--text3);line-height:1.4">25 tačaka<br>~15 minuta</div>
                 </button>
                 <button onclick="postaviRezim('detaljni')" id="btn-rezim-detaljni" style="background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:16px 10px;cursor:pointer;transition:all 0.2s;text-align:center">
                     <i class="fa-solid fa-magnifying-glass" style="font-size:22px;color:var(--gold);display:block;margin-bottom:8px"></i>
                     <div style="font-size:13px;font-weight:800;color:#fff;margin-bottom:4px">Detaljni pregled</div>
-                    <div style="font-size:11px;color:var(--text3);line-height:1.4">54 tačaka<br>~45 minuta</div>
+                    <div style="font-size:11px;color:var(--text3);line-height:1.4">54 tačke<br>~45 minuta</div>
                 </button>
             </div>
         </div>
@@ -1002,7 +1002,7 @@
             ? Object.values(cekLista).reduce((s,k) => s + k.stavke.length, 0)
             : Object.values(cekListaDetaljna).reduce((s,k) => s + k.stavke.length, 0);
 
-        prikaziToast(`${rezim === 'brzi' ? 'Brzi' : 'Detaljni'} pregled — ${br} tacaka`, "ok");
+        prikaziToast(`${rezim === 'brzi' ? 'Brzi pregled — 25 tačaka' : 'Detaljni pregled — 54 tačke'}`, "ok");
 
         iscrtajCekListu();
         document.getElementById("cek-lista-modul").style.display = "block";
