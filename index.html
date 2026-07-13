@@ -91,22 +91,6 @@
         .logo-icon i { font-size: 22px; color: var(--gold); }
         .logo-text h1 { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; color: #fff; text-align: left; line-height: 1.1; }
         .logo-text span { font-size: 12px; color: var(--text2); font-weight: 500; }
-        .header-badges {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-        .badge {
-            background: var(--surface2);
-            border: 1px solid var(--border);
-            border-radius: 99px;
-            padding: 5px 12px;
-            font-size: 11px;
-            color: var(--text2);
-            font-weight: 600;
-        }
-        .badge i { margin-right: 4px; font-size: 10px; }
         .badge.gold { border-color: rgba(245,166,35,0.3); color: var(--gold); background: var(--gold-glow); }
 
         /* CARDS */
@@ -490,14 +474,9 @@
                 <span>Digitalni asistent za pregled vozila</span>
             </div>
         </div>
-        <div class="header-badges">
-            <div class="badge gold"><i class="fa-solid fa-database"></i> 15+ marki</div>
-            <div class="badge"><i class="fa-solid fa-laptop-medical"></i> OBD2 baza</div>
-            <div class="badge"><i class="fa-solid fa-file-pdf"></i> PDF izvestaj</div>
-        </div>
         <button id="btn-istorija-header" onclick="otvorIstoriju()" style="margin-top:14px;width:100%;align-items:center;justify-content:center;gap:10px;background:var(--surface2);border:1px solid var(--border2);border-radius:10px;padding:12px 16px;color:var(--text2);font-size:13px;font-weight:700;cursor:pointer;transition:all 0.2s;display:none">
             <i class="fa-solid fa-clock-rotate-left" style="color:var(--gold)"></i>
-            <span>Moji sacuvani pregledi</span>
+            <span>Moji sačuvani pregledi</span>
             <span id="btn-istorija-broj" style="background:var(--gold-dim);border:1px solid rgba(245,166,35,0.3);color:var(--gold);border-radius:99px;padding:2px 9px;font-size:11px;font-weight:800"></span>
         </button>
     </div>
