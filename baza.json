@@ -1,644 +1,848 @@
 {
   "Volkswagen": {
     "Golf": {
-      "2004-2008 (Golf 5)": "Rdja je ozbiljan problem — obavezno proveriti magnetom pragove, donje ivice vrata i zadnje lukove tocka. Motor 2.0 TDI 140KS (BKD) ima notorni problem sa pucanjem glave motora: proveriti boju rashladne tecnosti (mlecno bela znaci emulzija ulja i vode) i da li ima ulja u ekspanzionoj posudi. Siemens piezo dizne na BKD su skupe i osetljive — OBD dijagnostika je neophodna pre kupovine. Motor 1.9 TDI (BXE, ASZ) mehanicki je neunisstiv, ali proveriti zamajac sa dvostrukom masom — da li trza i udara pri polasku i zaustavljanju. Na benzincima 2.0 FSI naslage uglja se talozse na usisnim ventilima zbog direktnog ubrizgavanja — motor moze mucati u praznom hodu.",
-      "2009-2013 (Golf 6)": "Motor 1.6 TDI (CAY) poznat je po problemima sa EGR ventilom koji se zapusava i usisnom granom — auto ulazi u rezim zastite i gubi snagu. DPF filter proveriti — da li je regeneracija funkcionalna ili je filter mehanicki iskljucen. Benzinci 1.2 TSI i 1.4 TSI (motorska serija EA111) imaju kriticne probleme sa lancem razvoda koji se isteze vec od 60.000-80.000 km — na hladnom motoru pri paljenju cujete li karakteristicno zveckanje? DSG7 (suvo kvacilo, DQ200) trza i kliza pri malim brzinama i polascu, posebno na hladnom — to je konstruktivna mana, ne rezim odrzavanja.",
-      "2013-2019 (Golf 7)": "Vodena pumpa na 2.0 TDI (EA288) rano curi i izaziva pregrevanje — proveriti nivo i boju rashladne tecnosti i pogledati da li ima tragova na podlozi ispod auta. Infotainment ekrani (RCD 510, Discover Media) se zamrzavaju i resetuju. Elektronska rucna kocnica (EPB) zna da zakazuje i ne pusta kola — skupo za servis. DSG7 na 1.6 TDI trza u zimskim uslovima. Motor 1.4 TSI sa ACT (iskljucivanje cilindara) pouzdan ali pratiti potrosnju ulja.",
-      "2020+ (Golf 8)": "Lansiran sa gomilom softverskih gresaka koje su muicile prve godisste. Kapacitivni tasteri upravljacke table, ekran i digitalni kokpit znaju da se resetuju u toku voznje. Proveriti verziju softvera — azuriranje 0084 i novije popravljaju deo problema. DSG7 i dalje trza pri polascu. Motor 2.0 TDI pouzdan mehanicki ali pratiti AdBlue sistem. Motor 1.5 eTSI (48V mild-hibrid) — proveriti stanje 48V baterije i BSG motora."
+      "2004-2008 (Golf 5)": "Rđa na pragovima i rubovima — proveriti magnetom. Motor 2.0 TDI 140KS (BKD) ima notorni problem sa pucanjem glave: proveriti boju rashladne tečnosti (mlečno bela = emulzija ulja i vode). Siemens piezo dizne skupe i osetljive — OBD dijagnostika obavezna. Motor 1.9 TDI mehanički pouzdan, ali proveriti zamajac sa dvostrukom masom — da li trza pri polasku. Benzinci 2.0 FSI imaju naslage uglja na usisnim ventilima.",
+      "2009-2013 (Golf 6)": "Motor 1.6 TDI poznat po začepljenom EGR ventilu i usisnoj grani — auto ulazi u režim zaštite. DPF filter — proveriti da li je regeneracija funkcionalna. Benzinci 1.2 TSI i 1.4 TSI (EA111) imaju kritičan problem sa lancem razvoda koji se isteže već od 60.000 km — na hladnom motoru čujete li zveckanje? DSG7 (suvo kvačilo) trza pri polasku, posebno na hladnom.",
+      "2013-2019 (Golf 7)": "Vodena pumpa na 2.0 TDI rano curi i izaziva pregrevanje — proveriti nivo rashladne tečnosti i tragove ispod auta. Infotainment ekrani se zamrzavaju. Elektronska ručna kočnica (EPB) zakazuje. DSG7 na 1.6 TDI trza zimi. Motor 1.4 TSI sa ACT pouzdan — pratiti potrošnju ulja.",
+      "2020+ (Golf 8)": "Kapacitivni tasteri i ekran se resetuju u toku vožnje — proveriti verziju softvera. DSG7 trza pri polasku. Motor 2.0 TDI pouzdan mehanički — pratiti AdBlue. Motor 1.5 eTSI (48V mild-hibrid) — proveriti stanje 48V baterije."
     },
     "Passat": {
-      "2005-2010 (B6)": "Najkriticniji problem: osovina uljne pumpe na 2.0 TDI (BKP, BMR) puca bez upozorenja i unistava turbo i motor u potpunosti — proveriti servisnu istoriju da li je preventivno menjan ovaj deo (preporuka na 120.000 km). Rdja oko LED svetala za tablicu na gepeku je esteticka ali cesta. DSG6 menjac pouzdan ako se redovno menja ulje, DSG7 trza. Zadnja multilink osovina osetljiva na nase puteve — lupkanje i tapkanje pri prelasku rupa?",
-      "2011-2014 (B7)": "Generalno bolji od B6 ali deli iste osnove. DSG7 na 1.6 TDI trza na hladnom. DPF filter — pitati za istoriju regeneracija, da li je rucno regenerisan ili mehanicki ugasen. RNS 510 navigacija zamrzava se. Proveriti stanje vodoravnih indikatora EPS upravljaca.",
-      "2015-2023 (B8)": "Poznati problem sa nestankom rashladne tecnosti bez vidljivog spoljnog curenja — ozbiljan signal koji moze ukazivati na puknucu brtvu glave motora. LED farovi sa matriksnim sistemom izuzetno skupi za popravku — proveriti rad svakog segmenta. Greske na Front Assist radaru i prednjoj kameri — dijagnostika obavezna. Elektronska rucna kocnica zakazuje. Motor 2.0 TDI (EA288) pouzdan ali pratiti AdBlue i DPF."
+      "2005-2010 (B6)": "Kritično: osovina uljne pumpe na 2.0 TDI (BKP, BMR) puca bez upozorenja i uništava turbo i motor — proveriti servisnu istoriju, preventivna zamena preporučena na 120.000 km. Rđa oko svetala za tablicu na gepeku. DSG6 pouzdan uz redovnu zamenu ulja, DSG7 trza.",
+      "2011-2014 (B7)": "Generalno bolji od B6, ali deli iste osnove. DSG7 na 1.6 TDI trza na hladnom. DPF filter — pitati za istoriju regeneracija. RNS 510 navigacija se zamrzava. Proveriti stanje EPS upravljača.",
+      "2015-2023 (B8)": "Poznati problem sa nestankom rashladne tečnosti bez vidljivog spoljašnjeg curenja — moguća pukla brtva glave. LED farovi sa matriksnim sistemom skupi za popravku. Greške na Front Assist radaru. Elektronska ručna kočnica zakazuje. Motor 2.0 TDI (EA288) pouzdan, pratiti AdBlue i DPF."
     },
     "Polo": {
-      "2009-2017 (6R/6C)": "Motor 1.2 TSI (CBZB, EA111) ima isti kriticni problem sa istezanjem lanca razvoda kao Golf 6 — zveckanje pri hladnom paljenju je alarm. Proveriti da li je lanac vec menjan. Klapne grejanja i klimatizacije (Climatronic) cesto zakazuju — proveriti da li greje ravnomerno na levoj i desnoj strani. Mehurici u ekspanzionoj posudi rashladnog sistema su los znak.",
-      "2017+ (AW)": "Infotainment MIB2 (Composition Beat, Colour) zamrzava se i gubi GPS signal. Motor 1.0 TSI (CHZB, DKLA) pouzdan ali proveriti stanje zamajca i kvacila. DSG7 trza. Rdja ispod prednjih blatobrana na ranijim primercima je bila cesta — proveriti."
+      "2009-2017 (6R/6C)": "Motor 1.2 TSI (CBZB, EA111) — kritičan problem sa istezan jem lanca razvoda kao Golf 6. Zveckanje pri hladnom paljenju je alarm. Klapne grejanja i klimatizacije često zakazuju — proveriti ravnomernost grejanja.",
+      "2017+ (AW)": "Infotainment MIB2 se zamrzava i gubi GPS signal. Motor 1.0 TSI pouzdan — proveriti stanje zamajca i kvačila. DSG7 trza. Rđa ispod prednjih blatobrana na ranijim primercima."
     },
     "Tiguan": {
-      "2007-2016 (Mk1)": "Rdja na prednjem delu krova, oko panoramskog krova i na A-stubu — proveriti paznjiivo. DSG7 suvo kvacilo (DQ200) trza i kliza — karakteristicno za ovu generaciju. 4Motion (Haldex kvacilo) — da li se ukljucuje zadnja osovina? Proveriti EGR i DPF na dizelasima. Proveriti stanje farbanja ispod kape motora.",
-      "2016+ (Mk2)": "Motor 2.0 TDI (EA288) i CP4 pumpa visokog pritiska — ovo je ozbiljan rizik. Pumpa moze pukine i rasuti metalne opiljke kroz ceo sistem goriva, sto zahteva zamenu svih komponenti (dizne, vodovi, rezervoar) — bukvalno desetine hiljada evra. Proveriti servisnu istoriju i boju goriva u filteru. DSG7 trzanje standardno. LED farovi skupi. Proveriti 4Motion Haldex kvacilo."
+      "2007-2016 (Mk1)": "Rđa na prednjem delu krova, oko panoramskog krova i na A-stubu. DSG7 suvo kvačilo trza i kliza. 4Motion (Haldex kvačilo) — da li se uključuje zadnja osovina? Proveriti EGR i DPF.",
+      "2016+ (Mk2)": "Motor 2.0 TDI i CP4 pumpa visokog pritiska — ozbiljan rizik. Pumpa može puknuti i rasuti metalne opiljke kroz ceo sistem goriva što zahteva zamenu svega (dizne, vodovi, rezervoar) — desetine hiljada evra. DSG7 trzanje standardno. LED farovi skupi."
     },
     "Touran": {
-      "2003-2010 (Mk1)": "Rdja na donjim ivicama kliznih vrata i na pragu ispod njih — obavezno proveriti. EGR ventil i DPF filter cesti problemi na 1.9 TDI i 2.0 TDI. Proveriti mehanizam kliznih vrata i gumice — skupo za popravku.",
-      "2010-2015 (Mk2)": "DSG7 trzanje na 1.6 TDI i 2.0 TDI — standardno za ovu seriju. Gumice i brtve kliznih vrata pucaju i stvaraju propuh i buku. Otpornicki sklop ventilatora grejanja cesto zakazuje — greje samo na najvecoj brzini ventilatora.",
-      "2015+ (Mk3)": "MQB platforma, generalno bolji auto. 1.5 TSI pouzdan ali proveriti DSG7. Proveriti stanje kliznih vrata i mehanizma. Proveriti softverske greske na Discover Pro navigaciji."
+      "2003-2010 (Mk1)": "Rđa na donjim ivicama kliznih vrata i na pragu ispod njih. EGR ventil i DPF filter česti problemi na 1.9 TDI i 2.0 TDI. Mehanizam kliznih vrata — proveriti stanje gumice i šine.",
+      "2010-2015 (Mk2)": "DSG7 trzanje na 1.6 TDI i 2.0 TDI. Gumice i brtve kliznih vrata pucaju. Otpornički sklop ventilatora grejanja često zakazuje — greje samo na najvećoj brzini.",
+      "2015+ (Mk3)": "MQB platforma, generalno bolji auto. Motor 1.5 TSI pouzdan — proveriti DSG7. Proveriti stanje kliznih vrata i mehanizma. Discover Pro navigacija se zamrzava."
     },
     "Sharan": {
-      "1995-2010 (Mk1)": "Rdja je ozbiljan problem na svim ovim godistima — pragovi, donje ivice vrata, klizna vrata iznutra. Motor 1.9 TDI mehanicki pouzdan. Mehanizam kliznih vrata se habaju i skupo servisiraju. Proveriti svu elektroniku — starost auta je faktor.",
-      "2010-2022 (Mk2)": "DSG6 ili DSG7 zavisno od motora — proveriti na trzanje. Panoramski krov — gumice i odvodi cepaju i propustaju vodu. Treci red sedista — proveriti mehanizam sklapanja i stanje tapaciringa."
+      "1995-2010 (Mk1)": "Rđa je ozbiljan problem na svim godištima — pragovi, donje ivice vrata, klizna vrata iznutra. Motor 1.9 TDI mehanički pouzdan. Mehanizam kliznih vrata se habu i skupo servisira.",
+      "2010-2022 (Mk2)": "DSG6 ili DSG7 — proveriti na trzanje. Panoramski krov — gumice i odvodi se čepe i propuštaju vodu. Treći red sedišta — proveriti mehanizam sklapanja i stanje tapaciranja."
+    },
+    "Caddy": {
+      "2004-2015 (Mk3)": "Motor 1.9 TDI i 2.0 TDI pouzdani. EGR ventil se začepljuje. Proveriti stanje kliznih vrata i mehanizma. Rđa na donjim ivicama vrata i pragovima.",
+      "2015+ (Mk4)": "Motor 2.0 TDI pouzdan. DSG7 na pojedinim verzijama trza. Proveriti AdBlue sistem i DPF. Proveriti stanje infotainment sistema."
+    },
+    "T-Roc": {
+      "2017+": "Motor 1.0 TSI i 1.5 TSI pouzdani, 2.0 TSI odličan. DSG7 trza pri sporom manevrisanju. Proveriti stanje panoramskog krova i odvode. Proveriti greške na kamerama i senzorima."
+    },
+    "ID.3": {
+      "2020+": "Električno vozilo. Proveriti kapacitet baterije (test vožnje na hladnom). Rani primerci imali softverske greške — proveriti verziju softvera. Proveriti stanje punjača i konektora."
+    },
+    "ID.4": {
+      "2021+": "Električni SUV. Proveriti kapacitet baterije i dometa pri niskim temperaturama. Infotainment sistem znao da se resetuje na ranijim primercima. Proveriti stanje AWD sistema na verzijama sa dva motora."
     }
   },
   "Skoda": {
     "Octavia": {
-      "2004-2013 (A5)": "Identicna platforma sa Golf 5/6 — sve iste mane: 2.0 TDI glava motora na BKD, EGR na 1.6/1.9 TDI, lanac na 1.4 TSI. Prekidaci i dugmici enterijera se ljuste i gule — vizuelno lose. Kompresor klime (York kompresori) cesto otkazuje — proveriti hladjenje. Rdja ispod prednjih blatobrana karakteristicna.",
-      "2013-2020 (A6)": "Zvucna izolacija slaba pri brzinama iznad 110 km/h — buka iz sertva. Motor 1.6 TDI — EGR i dizne osetljivi. Motor 2.0 TDI — vodena pumpa rano curi. DSG7 trzanje. Columbus navigacija se zamrzava. Proveriti stanje karoserije — cesti udarci na parkingu zbog sire karoserije.",
-      "2020+ (A7)": "Softverske greske kao Golf 8 pri lansiranju — proveriti da li je softver azuriran. Motor 2.0 TDI mehanicki pouzdan — pratiti AdBlue nivo i DPF status. DSG7 trza. Proveriti rad LED farova i senzora."
+      "2004-2013 (A5)": "Identična platforma sa Golf 5/6 — sve iste mane: 2.0 TDI glava motora na BKD, EGR na 1.6/1.9 TDI, lanac na 1.4 TSI. Prekidači i dugmići enterijera se ljušte. Kompresor klime (York kompresori) često otkazuje. Rđa ispod prednjih blatobrana.",
+      "2013-2020 (A6)": "Zvučna izolacija slaba pri brzinama iznad 110 km/h. Motor 1.6 TDI — EGR i dizne osetljivi. Motor 2.0 TDI — vodena pumpa rano curi. DSG7 trzanje. Columbus navigacija se zamrzava.",
+      "2020+ (A7)": "Softverske greške kao Golf 8 pri lansiranju — proveriti verziju softvera. Motor 2.0 TDI mehanički pouzdan — pratiti AdBlue i DPF. DSG7 trza. Proveriti rad LED farova i senzora."
     },
     "Superb": {
-      "2008-2015 (Mk2)": "Mehanizam podizanja gepeka (panoramski gepek) — kablovi u sarci gepek vrata pucaju i gepek otkazuje. Rdja na donjim ivicama prednjih i zadnjih vrata. Motor 2.0 TDI 170KS (CBAB) dobar ali proveriti stanje turbine i EGR ventila. DSG6 pouzdan uz redovnu zamenu ulja.",
-      "2015-2023 (Mk3)": "Hromovane lajsne na pragovima se ljuste i korodiraju od soli. Plasticni delovi unutrasnjosti (A-stub, gornji deo table) skripaju na neravnom putu. DSG7 trza na 2.0 TSI i 2.0 TDI 190KS. Proveriti stanje elektricnih sedista i funkciju masaze."
+      "2008-2015 (Mk2)": "Mehanizam podizanja gepeka — kablovi u šarci gepek vrata pucaju i gepek otkazuje. Rđa na donjim ivicama prednjih i zadnjih vrata. Motor 2.0 TDI 170KS (CBAB) dobar — proveriti turbinu i EGR. DSG6 pouzdan uz redovnu zamenu ulja.",
+      "2015-2023 (Mk3)": "Hromovane lajsne na pragovima se ljušte i korodiraju od soli. Plastični delovi unutrašnjosti škripaju na neravnom putu. DSG7 trza na 2.0 TSI i 2.0 TDI 190KS. Proveriti stanje el. sedišta.",
+      "2023+ (Mk4)": "Nova platforma MQB Evo. Motor 2.0 TDI i 1.5 TSI pouzdani. Proveriti softverske greške na digitalnom kokpitu i Columbus Pro navigaciji."
     },
     "Fabia": {
-      "2007-2014 (Mk2)": "Motor 1.4 TDI sa PD jedinicnim injektorima — poznat po ostecinaju klipnjaca pri losem odrzavanju ulja. Proveriti servisnu istoriju ulja. Motor 1.2 HTP pouzdan ali star. Rdja na donjim ivicama blatobrana i vrata na starijim primercima.",
-      "2014-2021 (Mk3)": "Motor 1.0 MPI pouzdan ali bez snage. Motor 1.2 TSI — isti problemi sa lancem kao Golf 6, proveriti. Zadnji trap (samarasti amortizeri) — lupkanje na kaldrmi? Plastika enterijera jeftina.",
-      "2021+ (Mk4)": "Nova MQB-A0 platforma, moderniji auto. Motor 1.0 TSI pouzdan. DSG7 trza. Proveriti greske na digitalnom kokpitu i Amundsen navigaciji."
+      "2007-2014 (Mk2)": "Motor 1.4 TDI sa PD jediničnim injektorima — poznat po oštećenju klipnjača pri lošem održavanju ulja. Motor 1.2 HTP pouzdan ali star. Rđa na donjim ivicama blatobrana i vrata.",
+      "2014-2021 (Mk3)": "Motor 1.0 MPI pouzdan. Motor 1.2 TSI — isti problemi sa lancem kao Golf 6. Zadnji trap — lupkanje na kaldrmi? Plastika enterijera jeftina.",
+      "2021+ (Mk4)": "Nova MQB-A0 platforma, moderniji auto. Motor 1.0 TSI pouzdan. DSG7 trza. Proveriti greške na digitalnom kokpitu i Amundsen navigaciji."
     },
     "Rapid": {
-      "2012-2019": "Osnovan i relativno pouzdan auto. Motor 1.6 TDI (CAYC) — EGR ventil cest problem, proveriti OBD. Plasticni enterijer jeftinijeg kvaliteta, skripanje karakteristicno. Rdja ispod blatobrana na starijim primercima."
+      "2012-2019": "Osnovan i relativno pouzdan. Motor 1.6 TDI (CAYC) — EGR ventil čest problem. Plastični enterijer jeftinijeg kvaliteta, škripanje karakteristično. Rđa ispod blatobrana."
     },
     "Kodiaq": {
-      "2016+": "Motor 2.0 TDI i CP4 pumpa — isti ozbiljan rizik kao Tiguan Mk2, vid gore. DSG7 trzanje standardno. Teski auto koji brzo trosi gume i kocnice — proveriti debljinu diskova i taban guma. Proveriti stanje 4x4 Haldex kvacila. LED farovi skupi za zamenu."
+      "2016-2021": "Motor 2.0 TDI i CP4 pumpa — isti ozbiljan rizik kao Tiguan Mk2 — proveriti boju goriva u filteru. DSG7 trzanje standardno. Težak auto koji brzo troši gume i kočnice. Proveriti stanje 4x4 Haldex kvačila.",
+      "2021+": "Facelift — isti motori, poboljšan enterijer. Proveriti softverske greške na Columbus Pro ekranu. Motor 2.0 TDI — pratiti AdBlue i CP4 rizik."
     },
     "Kamiq": {
-      "2019+": "Manji gradski SUV na MQB-A0 platformi. Motor 1.0 TSI pouzdan. DSG7 trza pri polascu. Proveriti stanje enterijera — plastika niskog sjaja se grebe lako. Proveriti rad parktronika i kamere."
+      "2019+": "Manji gradski SUV na MQB-A0 platformi. Motor 1.0 TSI pouzdan. DSG7 trza pri polasku. Plastika niskog sjaja se grebe lako. Proveriti rad parktronika i kamere za vožnju unazad."
+    },
+    "Karoq": {
+      "2017+": "Zamena za Yeti. Motor 1.5 TSI i 2.0 TDI pouzdani. DSG7 trzanje standardno. Proveriti stanje 4x4 Haldex sistema na AWD verzijama. Proveriti CP4 rizik na 2.0 TDI."
+    },
+    "Scala": {
+      "2019+": "Motor 1.0 TSI i 1.5 TSI pouzdani. DSG7 trza. Proveriti stanje infotainment sistema i greške na senzorima. Dobra opcija u klasi."
     }
   },
   "Audi": {
     "A3": {
-      "2003-2012 (8P)": "Podizaci prozora — plasticna klisa unutar vrata lomi se i ostavlja prozor zaglavljenim (est kvar). Motor 2.0 TDI BKD (do 2008) ima isti ozbiljan problem sa pucanjem glave motora kao Golf 5. Motori 1.8 TFSI i 2.0 TFSI (BPY, BZB) trose ulje — proveriti potrosnju.",
-      "2012-2020 (8V)": "DSG7 (suvo kvacilo) zvecka i kliza, posebno na hladnom. MMI sistem sa ekranom koji elektricno izlazi iz table — mehanizam motorica je osetljiv i zaglavljuje se. Motor 1.4 TFSI sa COD (iskljucivanje cilindara) proveriti na potrosnju ulja.",
-      "2020+ (8Y)": "Virtuelni kokpit zna da razvija mrtve piksele na starijim primercima. Proveriti greske na kamerama (surround view), senzorima parkiranja i adaptivnom tempostatu. Motor 1.5 TFSI pouzdan."
+      "2003-2012 (8P)": "Podizači prozora — plastična klisa unutar vrata lomi se i ostavlja prozor zaglavljenim. Motor 2.0 TDI BKD (do 2008) ima isti ozbiljan problem sa pucanjem glave kao Golf 5. Motori 1.8 TFSI i 2.0 TFSI troše ulje.",
+      "2012-2020 (8V)": "DSG7 (suvo kvačilo) zvecka i kliza, posebno na hladnom. MMI sistem sa ekranom koji električno izlazi iz table — mehanizam se zaglavljuje. Motor 1.4 TFSI sa COD — proveriti potrošnju ulja.",
+      "2020+ (8Y)": "Virtuelni kokpit zna da razvija mrtve piksele. Proveriti greške na kamerama (surround view), senzorima parkiranja i adaptivnom tempostatu. Motor 1.5 TFSI pouzdan."
     },
     "A4": {
-      "2008-2015 (B8)": "Motor 2.0 TFSI benzinac trosi ogromne kolicine ulja — do 1 litar na 1000 km; proveriti nivo ulja i tragove na ispu/auspuhu. Motor 2.0 TDI (CAGA, CAHA) nosi rizik od pucanja CP4 pumpe i metalnih opiljaka u sistemu goriva. Multitronic CVT menjac — proveriti trzanje i klizanje, skupo za popravku. Rdja na donjim ivicama gepeka.",
-      "2015-2023 (B9)": "S-Tronic kvacilo osetljivo pri manjim brzinama, posebno na vecim motorima. Curenje antifriza na kucisto termostata — isti simptomi kao B8. Matrix LED farovi skupi za servis. Virtuelni kokpit — mrtvi pikseli na ranijim primercima."
-    },
-    "A6": {
-      "2004-2011 (C6)": "Multitronic CVT menjac (sa remenom) — traka se trosi i kliza; uvek proveriti servisnu istoriju menjaca i da li je menjan. Vazdusni jastuci zadnje osovine na Allroad verziji skupi za zamenu. Proveriti stanje Xenon balasta i punjaca farova.",
-      "2011-2018 (C7)": "Curenje ulja iz kucista razvoda i bregastih osovina cest je problem. Matrix LED farovi (opcija) skupi za popravku. S-Tronic 7-stepeni na 3.0 TDI pouzdan ali proveriti stanje ulja menjaca."
+      "2008-2015 (B8)": "Motor 2.0 TFSI benzinac troši ogromne količine ulja — do 1 litar na 1.000 km. Motor 2.0 TDI — CP4 pumpa visokog pritiska može puknuti i rasuti metalne opiljke kroz sistem goriva. Multitronic CVT menjač — proveriti trzanje i klizanje. Rđa na donjim ivicama gepeka.",
+      "2015-2023 (B9)": "S-Tronic kvačilo osetljivo pri manjim brzinama. Curenje antifriza na kućištu termostata. Matrix LED farovi skupi za servis. Virtuelni kokpit — mrtvi pikseli na ranijim primercima."
     },
     "A5": {
-      "2007-2016 (Mk1)": "Motor 2.0 TFSI trosi ulje kao i A4 B8. Multitronic CVT isti problemi. Panoramski krov na Sportback — odvodi se zacepljuju i voda curi u unutrasnjost. Zadnja osovina osetljiva i skupa za servis.",
-      "2016+ (Mk2)": "Motor 2.0 TFSI i dalje ima potrosnju ulja na ranijim primercima. S-Tronic kvacilo proveriti. Virtuelni kokpit — mrtvi pikseli. Proveriti stanje B&O audio sistema ako je montiran."
+      "2007-2016 (Mk1)": "Motor 2.0 TFSI troši ulje kao i A4 B8. Multitronic CVT isti problemi. Panoramski krov na Sportback — odvodi se začepljuju i voda curi u unutrašnjost. Zadnja osovina osetljiva i skupa za servis.",
+      "2016+ (Mk2)": "Motor 2.0 TFSI i dalje može imati potrošnju ulja. S-Tronic kvačilo proveriti. Virtuelni kokpit — mrtvi pikseli. Proveriti stanje B&O audio sistema."
+    },
+    "A6": {
+      "2004-2011 (C6)": "Multitronic CVT menjač (sa remenom) — traka se troši i kliza; uvek proveriti servisnu istoriju menjača. Vazdušni jastuci zadnje osovine na Allroad verziji skupi za zamenu. Proveriti stanje Xenon balasta.",
+      "2011-2018 (C7)": "Curenje ulja iz kućišta razvoda i bregastih osovina čest je problem. Matrix LED farovi skupi za popravku. S-Tronic 7-stepeni na 3.0 TDI pouzdan, proveriti ulje menjača.",
+      "2018+ (C8)": "Kompleksna elektronika. Motor V6 TDI i 2.0 TFSI pouzdani. 48V mild-hibrid sistem — proveriti BSG motor. MMI Touch Plus ekran — proveriti osetljivost i greške."
+    },
+    "A7": {
+      "2010-2018 (4G)": "Iste napomene kao A6 C7. Proveriti stanje krovnih linija i brtvi panoramskog krova. S-Tronic pouzdan — pratiti ulje menjača.",
+      "2018+ (4K)": "Iste napomene kao A6 C8. Elektrohidraulički steper (EHPS) na pojedinim verzijama osetljiv. Proveriti stanje 48V sistema."
     },
     "Q3": {
-      "2011-2018 (8U)": "Farbanje krova se mehuri i lupa, posebno oko panoramskog krova. DSG7 suvo kvacilo trza. Gumice zadnjih amortizera brzo popustaju — lupkanje na neravnom putu. Proveriti stanje 4x4 Quattro/Haldex sistema.",
-      "2018+ (F3)": "Virtuelni kokpit i MMI Touch zna da gresi. Motor 1.5 TFSI — proveriti stanje lanca razvoda. DSG7 trzanje standardno."
+      "2011-2018 (8U)": "Farbanje krova se mehuri i ljušti, posebno oko panoramskog krova. DSG7 suvo kvačilo trza. Gumice zadnjih amortizera brzo popuštaju. Proveriti stanje 4x4 Quattro/Haldex sistema.",
+      "2018+ (F3)": "Virtuelni kokpit i MMI Touch grešom. Motor 1.5 TFSI — proveriti stanje lanca razvoda. DSG7 trzanje standardno."
     },
     "Q5": {
-      "2008-2016 (8R)": "Motor 2.0 TFSI (CDNB, CDNC) — velika potrosnja ulja i problem sa servo pumpom upravljaca. Quattro sistem skup za servis — proveriti stanje transferne kutije i diferenciala. Proveriti hladnjak ulja motora.",
-      "2017+ (FY)": "Motori TFSI i dalje mogu trosite ulje — proveriti. MMI Touch i virtuelni kokpit greske. Motor 2.0 TDI — CP4 pumpa rizik, proveriti boju goriva u filteru."
+      "2008-2016 (8R)": "Motor 2.0 TFSI (CDNB, CDNC) — velika potrošnja ulja i problem sa servo pumpom upravljača. Quattro sistem skup za servis. Proveriti hladnjak ulja motora.",
+      "2017+ (FY)": "Motori TFSI mogu trošiti ulje — proveriti. MMI Touch i virtuelni kokpit greške. Motor 2.0 TDI — CP4 pumpa rizik, proveriti boju goriva u filteru."
     },
     "Q7": {
-      "2006-2015 (Mk1)": "Vazdusno oslanjanje (Airmatic) — balonci pucaju i kompresori crkavaju, skupo za zamenu. Motor 3.0 TDI pouzdan ali proveriti stanje turbina i EGR sistema. Proveriti stanje transferne kutije i diferencijala.",
-      "2015+ (Mk2)": "Kompleksna elektronika — proveriti sve sisteme dijagnostikom. Vazdusno oslanjanje i dalje prisutno (opcija). Proveriti stanje e-Tron hibridnog sistema ako je prisutan."
+      "2006-2015 (Mk1)": "Vazdušno oslanjanje (Airmatic) — balončići pucaju i kompresori propadaju, skupo za zamenu. Motor 3.0 TDI pouzdan — proveriti stanje turbina i EGR sistema. Proveriti stanje transferne kutije.",
+      "2015+ (Mk2)": "Kompleksna elektronika — proveriti sve sisteme dijagnostičkim uređajem. Vazdušno oslanjanje i dalje prisutno. Proveriti stanje e-Tron hibridnog sistema ako je prisutan."
+    },
+    "Q8": {
+      "2018+": "Vrhunski SUV sa kompleksnom elektronikom. Motor V6 TDI i TFSI pouzdani. Proveriti stanje 48V mild-hibridnog sistema. Air Suspension — proveriti visinu vozila. MMI Navigation Plus — proveriti sve ekrane."
+    },
+    "TT": {
+      "2006-2014 (8J)": "Motor 2.0 TFSI troši ulje. S-Tronic kvačilo proveriti na trzanje. Proveriti stanje MagneRide oslanjanja ako je prisutno. Konzolni poklopac se često lomi.",
+      "2014+ (8S)": "Motor 2.0 TFSI pouzdan. Virtuelni kokpit (Audi Virtual Cockpit) odličan. Proveriti stanje S-Tronic menjača i Quattro sistema na AWD verzijama."
     }
   },
   "BMW": {
     "Serija 1": {
-      "2004-2011 (E81/E87)": "Motor N47 diesel (118d, 120d, 123d) ima lanac razvoda smesten SA ZADNJE strane motora — servis zamene lanca zahteva vadjenje agregata i kosta enormno. Zveckanje pri hladnom paljenju je alarm. Proveriti i ventilator hladjenja — cesto crkava elektronski. Benzinac N43 (116i, 118i) — direktno ubrizgavanje, naslage uglja na ventilima.",
-      "2011-2019 (F20)": "EPS servoletva osetljiva — lupka i vibrira kroz volan. EGR hladnjak na dizelima moze da se proba rashladnom tecnoscu i unisti motor — POSTOJI OPOZIV, proveriti obavezno. Proveriti stanje turbine i DPF filtera na dizelima."
+      "2004-2011 (E81/E87)": "Motor N47 diesel (118d, 120d, 123d) ima lanac razvoda smešten SA ZADNJE strane motora — servis zamene lanca zahteva vađenje agregata i košta enormno. Zveckanje pri hladnom paljenju je alarm. Benzinac N43 (116i, 118i) — direktno ubrizgavanje, naslage uglja na ventilima.",
+      "2011-2019 (F20)": "EPS servoletva osetljiva — lupka i vibrira kroz volan. EGR hladnjak na dizelima može se probiti rashladnom tečnošću i uništiti motor — POSTOJI OPOZIV, proveriti obavezno. Proveriti stanje turbine i DPF filtera.",
+      "2019+ (F40)": "Novi motor B38/B48 benzinac pouzdan. Proveriti softverske greške na iDrive 7 sistemu. Proveriti stanje elektrohidrauličnog upravljača."
+    },
+    "Serija 2": {
+      "2014-2021 (F22/F45)": "Motor B47 diesel pouzdan. Serija Active Tourer (F45) — preveriti stanje prednjeg pogona (FWD platformi neobično za BMW). Proveriti DSG menjač na trzanje na F45.",
+      "2021+ (G42/U06)": "Motor B48 benzinac odličan. Proveriti iDrive 8 sistem i greške na kamerama. Hibridni sistem na Active Tourer — proveriti stanje PHEV baterije."
     },
     "Serija 3": {
-      "2005-2011 (E90)": "Motor N47 (318d, 320d, 325d) — isti katastrofalni lanac SA ZADNJE STRANE. Ako auto ima vise od 100.000 km i lanac nije menjan — to je vremenska bomba. Modul za zakljucavanje volana (ELV) kvari se i sprecava paljenje. VANOS sistem na benzincima (N46, N52) — proveriti rad promenljivih faza.",
-      "2012-2019 (F30)": "EPS servoletva (elektricna) daje los osecaj i lupka — cesta prituzba vlasnika. EGR hladnjak na N47 i N57 — isti rizik od pozara (opoziv!). Proveriti stanje turbine, DPF filtera i SCR sistema na novijim dizelima.",
-      "2019+ (G20)": "Kompleksna iDrive 7 elektronika. Proveriti sve asistencije (kamera, radar) — skupi za kalibraciju. Motor B48 benzinac pouzdan, B47 diesel — pratiti lanac razvoda."
+      "2005-2011 (E90)": "Motor N47 diesel (318d, 320d, 325d) — isti katastrofalni lanac SA ZADNJE STRANE. Ako auto ima više od 100.000 km i lanac nije menjan — to je tempirana bomba. Modul za zaključavanje volana (ELV) kvari se i sprečava paljenje. VANOS sistem na benzincima — proveriti rad promenljivih faza.",
+      "2012-2019 (F30)": "EPS servoletva (električna) lupka — česta pritužba vlasnika. EGR hladnjak na N47 i N57 — isti rizik od požara (opoziv!). Proveriti stanje turbine, DPF filtera i SCR sistema.",
+      "2019+ (G20)": "Kompleksna iDrive 7 elektronika. Proveriti sve asistencije (kamera, radar). Motor B48 benzinac pouzdan, B47 diesel — pratiti lanac razvoda i DPF."
+    },
+    "Serija 4": {
+      "2013-2020 (F32)": "Iste napomene kao F30 Serija 3. Proveriti stanje panoramskog krova na Coupé verzijama. Motor B47/N47 diesel — lanac razvoda.",
+      "2020+ (G22)": "Kontroverzni dizajn ali odličan auto. Motor B48 i B57 pouzdani. Proveriti iDrive 8 i greške na kamerama."
     },
     "Serija 5": {
-      "2003-2010 (E60)": "CCC iDrive modul (navigacija i ekran) cesto zakazuje — skupa zamena. Usisne klapne grane na M57 dieselu (520d, 525d, 530d) mogu se otkinuti i upasti u motor — KRITICNO. Elektrohidraulicni upravljac — proveriti nivo tecnosti i da li ne propusta. VANOS na benzincima.",
-      "2010-2017 (F10)": "Vazdusni jastuci zadnje osovine na karavan verziji (F11) pucaju i skupi su za zamenu. N47/B47 lanac i dalje kriticna tacka na 2.0d motoru. Elektromotori sedista i masaza — cesti kvarovi. Head-Up displej zna da otkazuje.",
-      "2017+ (G30)": "Motori B47 i B57 diesel generalno bolji. Na odredjenim verzijama prisutan 48V mild-hibrid sistem koji je skup za servis van ovlascenih radionica. Proveriti iDrive 7 sistem, sve kamere i senzore. Laser farovi (opcija) — servis astronomski skup."
+      "2003-2010 (E60)": "CCC iDrive modul (navigacija i ekran) često zakazuje — skupa zamena. Usisne klapne grane na M57 dizelu (520d, 525d, 530d) mogu se otkinuti i upasti u motor — KRITIČNO. Elektrohidraulični upravljač — proveriti nivo tečnosti. VANOS na benzincima.",
+      "2010-2017 (F10)": "Vazdušni jastuci zadnje osovine na karavan verziji (F11) pucaju i skupi su za zamenu. N47/B47 lanac i dalje kritična tačka na 2.0d motoru. Elektromotori sedišta i masaža — česti kvarovi.",
+      "2017+ (G30)": "Motor B47 i B57 diesel generalno bolji. 48V mild-hibrid sistem skup za servis van ovlašćenih radionica. Proveriti iDrive 7, sve kamere i senzore. Laserski farovi (opcija) — servis astronomski skup."
     },
     "Serija 7": {
-      "2008-2015 (F01)": "Kompleksna elektronika sa 30+ upravljackih jedinica — obavezna puna dijagnostika. Vazdusno oslanjanje skupo. Proveriti stanje V8 i V12 motora na curenje ulja i stanje turbina.",
-      "2015+ (G11)": "Karbonsko-aluminijumska karoserija — komplikovana i skuplja za popravku. Laser farovi standardni — servis enormno skup. Proveriti Touch Command tablet i stanje njegove baterije."
+      "2008-2015 (F01)": "Kompleksna elektronika sa 30+ upravljačkih jedinica — obavezna puna dijagnostika. Vazdušno oslanjanje skupo. Proveriti stanje V8 i V12 motora na curenje ulja i stanje turbina.",
+      "2015+ (G11)": "Karbonsko-aluminijumska karoserija — komplikovanija i skuplja za popravku. Laserski farovi standardni — servis enormno skup. Proveriti Touch Command tablet i stanje njegove baterije."
+    },
+    "X1": {
+      "2009-2015 (E84)": "Motor N47 diesel — isti lanac SA ZADNJE STRANE kao E90. Proveriti EPS upravljač na lupkanje. xDrive Haldex sistema — proveriti stanje kvačila.",
+      "2015-2022 (F48)": "Motor B47 diesel pouzdan. Proveriti iDrive 6 navigaciju i greške na kamerama. xDrive sistem dobar.",
+      "2022+ (U11)": "Nova platforma, sada i FWD verzija. Motor B48 pouzdan. Proveriti iDrive 8 i greške na elektičnim sistemima."
     },
     "X3": {
-      "2003-2010 (E83)": "Transferna kutija i xDrive sistem skupi za servis. Plasticni enterijer brzo habana. Proveriti stanje kardana i Guibove spone.",
-      "2010-2017 (F25)": "Motor N47 — isti kriticni problem sa lancem SA ZADNJE STRANE kao E90. Proveriti EGR i DPF. EPS servoletka trza. Proveriti stanje xDrive elektricnog kvacila.",
-      "2017+ (G01)": "Motori B47/B48 pouzdaniji. Proveriti iDrive 6/7. LED farovi sa adptivnom funkcijom skupi za kalibraciju. xDrive elektricna spojnica — proveriti stanje."
+      "2003-2010 (E83)": "Transferna kutija i xDrive sistem skupi za servis. Plastični enterijer brzo habanja. Proveriti stanje kardana i Guibove spojnice.",
+      "2010-2017 (F25)": "Motor N47 — isti kritični problem sa lancem SA ZADNJE STRANE kao E90. Proveriti EGR i DPF. EPS servoletka trza. Proveriti stanje xDrive električne spojnice.",
+      "2017+ (G01)": "Motori B47/B48 pouzdaniji. Proveriti iDrive 6/7. LED farovi sa adaptivnom funkcijom skupi za kalibraciju. xDrive električna spojnica — proveriti stanje."
     },
     "X5": {
-      "2006-2013 (E70)": "Vazdusno oslanjanje (VDC) standardno — balonci pucaju i kompresori crkavaju. Motor N57 pouzdan ali odrzavanje skupo. Proveriti diferencijal i transfernu kutiju xDrive sistema.",
-      "2013-2018 (F15)": "EPS upravljac trza na vecim brzinama. Motor N57 pouzdan. Proveriti panoramski krov i odvode. Na PHEV verziji (xDrive40e) — proveriti stanje visokonaponske baterije.",
-      "2018+ (G05)": "Kompleksna elektronika, laser farovi skupi. Motor B57 pouzdan ali proveriti AdBlue. Driving Assistant Professional — kalibracija senzora skupa."
+      "2006-2013 (E70)": "Vazdušno oslanjanje (VDC) standardno — balončići pucaju i kompresori propadaju. Motor N57 pouzdan ali odrzavanje skupo. Proveriti diferencijal i transfernu kutiju xDrive sistema.",
+      "2013-2018 (F15)": "EPS upravljač trza na većim brzinama. Motor N57 pouzdan. Proveriti panoramski krov i odvode. Na PHEV verziji (xDrive40e) — proveriti stanje visokonaponske baterije.",
+      "2018+ (G05)": "Kompleksna elektronika, laserski farovi skupi. Motor B57 pouzdan ali proveriti AdBlue. Driving Assistant Professional — kalibracija senzora skupa."
+    },
+    "X6": {
+      "2008-2014 (E71)": "Iste napomene kao E70 X5. SUV kupé oblika — veći otpor vetra, veća potrošnja. Proveriti stanje panoramskog krova.",
+      "2014-2019 (F16)": "Iste napomene kao F15 X5. Proveriti stanje B&O audio sistema i iDrive 6.",
+      "2019+ (G06)": "Iste napomene kao G05 X5. Laserski farovi skupi za zamenu."
     }
   },
   "Mercedes-Benz": {
+    "A-Klasa": {
+      "2012-2018 (W176)": "7G-DCT menjač trza i kliza pri malim brzinama i polasku — karakteristična mana ove generacije. Motor 1.5 CDI (OM607) pouzdan. Prednji trap osetljiv na naše puteve.",
+      "2018+ (W177)": "MBUX ekran i touchpad osetljivi — ispod stakla se pojavljuju prašina i mrlje. Motor 1.3 Turbo (M282, razvijen sa Renaultom) — proveriti lanac i potrošnju ulja. Parktronic i kamera — proveriti greške."
+    },
+    "B-Klasa": {
+      "2011-2018 (W246)": "7G-DCT menjač isti problemi sa trzanjem kao A-Klasa W176. Motor 1.6/2.0 CDI pouzdan. Proveriti stanje panoramskog krova i odvode. Prednji trap osetljiv.",
+      "2018+ (W247)": "MBUX sistem proveriti. Motor 1.3T i 1.5 CDI — iste napomene kao A-Klasa W177. Električna B250e — proveriti bateriju."
+    },
     "C-Klasa": {
-      "2000-2007 (W203)": "Elektronska kolona volana (EIS) zna da zaglavi i sprecava paljenje — skupo za dijagnozu i popravku. Kompresor klime cesto otkazuje. Rdja ispod prednjih blatobrana i na donjim ivicama vrata. Automatski menjac 722.6 pouzdan ako se redovno menja ulje.",
-      "2007-2014 (W204)": "Zadnji most (podramna konstrukcija, tzv. kolijevka) truli i moze pasti u voznji — KRITICNO, proveriti magnetom i vizuelno svaki centimetar. Motor OM651 (200 CDI, 220 CDI) — piezo dizne skupe, vodena pumpa rano curi. Proveriti stanje 7G-Tronic menjaca i nivo ulja.",
-      "2014-2021 (W205)": "AIRMATIC ogibljenje skupo za servis — proveriti visinu vozila i rok kompresora. Proveriti greske na DISTRONIC tempostatu i prednjoj kameri — skupi za zamenu. 9G-Tronic menjac trza na hladnom."
+      "2000-2007 (W203)": "Elektronska kolona volana (EIS) zna da zaglavi i sprečava paljenje — skupo za dijagnozu. Kompresor klime često otkazuje. Rđa ispod prednjih blatobrana i na donjim ivicama vrata. Automatski menjač 722.6 pouzdan uz redovnu zamenu ulja.",
+      "2007-2014 (W204)": "Zadnji most (podramna konstrukcija) truli i može pasti u vožnji — KRITIČNO, proveriti magnetom svaki centimetar. Motor OM651 (200 CDI, 220 CDI) — piezo dizne skupi, vodena pumpa rano curi. Proveriti stanje 7G-Tronic menjača.",
+      "2014-2021 (W205)": "AIRMATIC oslanjanje skupo za servis. Proveriti greške na DISTRONIC tempostatu i prednjoj kameri. 9G-Tronic menjač trza na hladnom.",
+      "2021+ (W206)": "Nova generacija. Motor OM654 diesel pouzdan. Proveriti MBUX Hyperscreen ekran i greške na ADAS sistemima. 9G-Tronic poboljšan."
     },
     "E-Klasa": {
-      "2002-2009 (W211)": "SBC kocioni sistem (Sensotronic Brake Control) na verzijama PRE 2006 — kvari se bez upozorenja i ne moze da koci, izuzetno skupo za popravku; IZBEGAVATI ove godiste. Vazdusno oslanjanje AIRMATIC — balonci pucaju. Motor OM642 V6 diesel — curenje ulja sa vise mesta.",
-      "2009-2016 (W212)": "Motor OM651 (4-cilindar diesel) — lanac razvoda zvecka na hladnom startu — proveriti obavezno. Sedista od 'Artico' eko-koze propadaju i ljuste se. BlueTEC sistem (AdBlue, NOx senzor) — proveriti stanje.",
-      "2016-2023 (W213)": "Motor 9G-Tronic trza na hladnom, posebno zimi. MBUX ekran (opcija) — proveriti greske. Motor OM654 diesel — dobar, proveriti AdBlue i DPF."
+      "2002-2009 (W211)": "SBC kočioni sistem (Sensotronic Brake Control) na verzijama PRE 2006 — kvari se bez upozorenja i ne može da koči, izuzetno skupo za popravku — IZBEGAVATI ova godišta. Vazdušno oslanjanje AIRMATIC — balončići pucaju. Motor OM642 V6 diesel — curenje ulja sa više mesta.",
+      "2009-2016 (W212)": "Motor OM651 (4-cilindar diesel) — lanac razvoda zvecka na hladnom startu. Sedišta od 'Artico' eko-kože propadaju i ljušte se. BlueTEC sistem (AdBlue, NOx senzor) — proveriti stanje.",
+      "2016-2023 (W213)": "Motor 9G-Tronic trza na hladnom, posebno zimi. MBUX ekran (opcija) — proveriti greške. Motor OM654 diesel — dobar, proveriti AdBlue i DPF.",
+      "2023+ (W214)": "Nova generacija. Kompleksna elektronika i MBUX Hyperscreen. Motor OM654 i benzinac M256 pouzdani. Proveriti stanje sve elektronike."
     },
-    "A-Klasa": {
-      "2012-2018 (W176)": "7G-DCT menjac trza i kliza pri malim brzinama i polascu — karakteristicna mana ove generacije. Motor 1.5 CDI (OM607) pouzdan. Prednji trap osetljiv na nase puteve — proveriti amortizere i poluge.",
-      "2018+ (W177)": "MBUX ekran i touchpad osetljivi — ispod stakla se pojavljuju prasina i tacke. Motor 1.3 Turbo (M282, razvijen sa Renaultom) — proveriti lanac i potrosnju ulja. Parktronic i kamera — proveriti greske."
-    },
-    "GLC": {
-      "2015-2022 (X253)": "AIRMATIC ogibljenje skupo za servis. 9G-Tronic menjac — proveriti ulje i trzanje. Motor OM654 diesel dobar, pratiti AdBlue i DPF. DISTRONIC i ATTENTION ASSIST — proveriti greske senzora.",
-      "2022+ (X254)": "MBUX Hyperscreen — kompleksna elektronika, proveriti sve ekrane. E-ACTIVE BODY CONTROL (opcija) izuzetno skupo za servis. Mild-hibridni sistem (EQ Boost) — proveriti stanje."
+    "S-Klasa": {
+      "2005-2013 (W221)": "Vazdušno oslanjanje AIRMATIC — balončići pucaju i kompresori propadaju. Kompleksna elektronika — obavezna puna dijagnostika. ABC aktivno oslanjanje (na AMG) skupo za servis.",
+      "2013-2020 (W222)": "Magic Body Control — kamere za skeniranje puta skupo za kalibraciju. Laserski farovi skupi. Proveriti sve ADAS sisteme. Motor OM651 i OM642 — pratiti ulje.",
+      "2020+ (W223)": "MBUX Hyperscreen sa tri ekrana — komplikovana elektronika. Motor R6 i V8 pouzdani. Proveriti stanje E-ACTIVE BODY CONTROL sistema."
     },
     "GLA": {
-      "2013-2019 (X156)": "Iste mane kao A-Klasa W176 — 7G-DCT trzanje, osetljiv prednji trap. Rdja ispod pragova. Proveriti stanje 4MATIC sistema.",
-      "2019+ (H247)": "Iste napomene kao A-Klasa W177. Proveriti MBUX sistem i kamere. 4MATIC elektricno kvacilo zadnje osovine — proveriti stanje."
+      "2013-2019 (X156)": "Iste mane kao A-Klasa W176 — 7G-DCT trzanje, osetljiv prednji trap. Rđa ispod pragova. Proveriti stanje 4MATIC sistema.",
+      "2019+ (H247)": "Iste napomene kao A-Klasa W177. Proveriti MBUX sistem i kamere. 4MATIC električna spojnica zadnje osovine — proveriti stanje."
+    },
+    "GLB": {
+      "2019+": "Motor 1.3T i 2.0T pouzdani. 4MATIC sistem dobar. Proveriti MBUX sistem i greške na kamerama. Treći red sedišta — proveriti mehanizam sklapanja."
+    },
+    "GLC": {
+      "2015-2022 (X253)": "AIRMATIC oslanjanje skupo za servis. 9G-Tronic menjač — proveriti ulje i trzanje. Motor OM654 diesel dobar, pratiti AdBlue i DPF. DISTRONIC i ATTENTION ASSIST — proveriti greške senzora.",
+      "2022+ (X254)": "MBUX Hyperscreen — kompleksna elektronika. E-ACTIVE BODY CONTROL (opcija) izuzetno skupo za servis. Mild-hibridni sistem (EQ Boost) — proveriti stanje."
+    },
+    "GLE": {
+      "2015-2019 (W166)": "Vazdušno oslanjanje AIRMATIC standardno — proveriti visinu i kompresore. Motor OM642 V6 diesel — curenje ulja. 9G-Tronic menjač — proveriti ulje.",
+      "2019+ (W167)": "48V EQ Boost sistem — proveriti stanje. Motor OM654 i benzinac M256 pouzdani. MBUX — proveriti greške. Proveriti stanje ADAS paketa."
     },
     "Vito": {
-      "2014+ (W447)": "Motor OM651 diesel — lanac zvecka na hladnom (kao E-Klasa W212). Proveriti stanje kliznih vrata i mehanizma. Na vecim kilometrazama proveriti stanje zadnjih amortizera i opruga — brzo se trosi u komercijalnoj upotrebi."
+      "2014+ (W447)": "Motor OM651 diesel — lanac razvoda zvecka na hladnom startu kao E-Klasa W212. Proveriti stanje kliznih vrata i mehanizma. Na većim kilometražama proveriti stanje zadnjih amortizera i opruga."
+    },
+    "Sprinter": {
+      "2006-2018 (W906)": "Motor OM646/OM651 diesel pouzdani ali EGR ventil se često začepljuje. Proveriti stanje AdBlue sistema na novijim. Rđa ispod blatobrana i na pragovima. Proveriti stanje upravljačke letve.",
+      "2018+ (W907)": "Motor OM654 diesel dobar. Proveriti MBUX sistem i greške na kamerama. Na 4WD verzijama proveriti stanje 4x4 sistema."
     }
   },
   "Renault": {
     "Megane": {
-      "2002-2008 (Megane 2)": "BSI elektronski modul otkaze bez ociglednog razloga, teze dijagnosticiranje. Motor 1.9 dCi pouzdan ali EGR ventil cesto zapusa. Proveriti stanje kucista rezervoara za gorivo — rdja.",
-      "2008-2016 (Megane 3)": "Motor 1.5 dCi (K9K) ima poznat problem sa letecim lezajevima radilice na vecim kilometrazama — proveriti buku iz motora pri hladnom startu. Elektronika sitnicava (kartica daljinskog upravljaca, senzori). Proveriti stanje DPF filtera.",
-      "2016-2022 (Megane 4)": "R-Link 2 multimedija cesto se resetuje i smrzava — spor procesor. Zazori gepek vrata na prvim primercima grebu branik. Proveriti stanje 1.3 TCe motora (razvijen sa Mercedesom) — lanac."
+      "2002-2008 (Megane 2)": "BSI elektronski modul otkazuje bez razloga — teška dijagnoza. Motor 1.9 dCi pouzdan ali EGR ventil često zapušava. Rđa na kućištu rezervoara za gorivo.",
+      "2008-2016 (Megane 3)": "Motor 1.5 dCi (K9K) ima poznat problem sa letećim ležajevima radilice na većim kilometražama — proveriti buku iz motora pri hladnom startu. Elektronika sitničava (kartica daljinskog, senzori). Proveriti stanje DPF filtera.",
+      "2016-2022 (Megane 4)": "R-Link 2 multimedija se resetuje i smrzava — spor procesor. Zazori gepek vrata na prvim primercima grebu branik. Proveriti stanje 1.3 TCe motora (razvijen sa Mercedesom) — lanac.",
+      "2022+ (Megane E-Tech)": "Električno vozilo. Proveriti kapacitet baterije (60 kWh). Proveriti softverske greške na OpenR Link sistemu. Proveriti stanje punjača i konektora."
     },
     "Clio": {
-      "2005-2012 (Clio 3)": "Motor 1.5 dCi pouzdan ali proveriti EGR ventil. Kablovi u prevoju gepek vrata pucaju — gepek ostaje bez osvetljenja ili se blokira. Proveriti stanje plasticnih delova koji se lako lomne.",
-      "2012-2019 (Clio 4)": "Zvucna izolacija izuzetno loša — buka gume i aerodinamike. Plasticni delovi enterijera skripaju. Stabilizatorske gumice i zglobovi trapa brzo se trose na srpskim putevima.",
-      "2019+ (Clio 5)": "EDC menjac (duplo kvacilo) osetljiv — proveriti na trzanje pri polascu. Proveriti rad Easy Link multimedije i greske na kamerama."
+      "2005-2012 (Clio 3)": "Motor 1.5 dCi pouzdan ali proveriti EGR ventil. Kablovi u prevoju gepek vrata pucaju — gepek ostaje bez osvetljenja ili se blokira.",
+      "2012-2019 (Clio 4)": "Izuzetno loša zvučna izolacija. Plastični delovi enterijera škripaju. Stabilizatorske gumice i zglobovi trapa brzo se troše na srpskim putevima.",
+      "2019+ (Clio 5)": "EDC menjač (duplo kvačilo) osetljiv — proveriti na trzanje pri polasku. Proveriti rad Easy Link multimedije i greške na kamerama."
     },
     "Duster": {
-      "2010-2017 (Mk1)": "Mehanicki pouzdan i pogodan za nase puteve. Motor 1.5 dCi (K9K) odlican. 4WD sistem (Haldex) pouzdan ali proveriti stanje kvacila. Zvucna izolacija slaba — buka na brzini.",
+      "2010-2017 (Mk1)": "Mehanički pouzdan i pogodan za naše puteve. Motor 1.5 dCi (K9K) odličan. 4WD sistem (Haldex) pouzdan — proveriti stanje kvačila. Zvučna izolacija slaba.",
       "2017-2023 (Mk2)": "Motor 1.3 TCe turbo benzinac — proveriti stanje turbine i nivo ulja. MediaNAV sistem zastareo ali funkcionalan. 4WD i dalje pouzdan.",
-      "2023+ (Mk3)": "Nova CMF-B platforma, moderniji auto. Proveriti greske na novom medianom sistemu. Motor 1.0 TCe pouzdan."
+      "2023+ (Mk3)": "Nova CMF-B platforma. Motor 1.2 TCe hibrid i 1.3 TCe pouzdani. Proveriti novi infotainment sistem. Hibridni sistem proveriti stanje."
     },
     "Laguna": {
-      "2001-2007 (Mk2)": "Jedna od najnepouzdanijih klasa u istoriji — BSI i BCM elektronski moduli otkazuju bez razloga. Preverti svaki elektronic pre kupovine. Izuzetno rizicna kupovina.",
-      "2007-2015 (Mk3)": "Malo bolji od Mk2, ali i dalje nestabilan po pitanju elektronike. Proveriti svaki modul pre kupovine. Motor 2.0 dCi pouzdan mehanicki."
+      "2001-2007 (Mk2)": "Jedna od najnepouzdanijih klasa u istoriji — BSI i BCM elektronski moduli otkazuju bez razloga. Proveriti svaki električni sistem pre kupovine. Izuzetno rizična kupovina.",
+      "2007-2015 (Mk3)": "Malo bolji od Mk2, ali i dalje nestabilan po pitanju elektronike. Motor 2.0 dCi pouzdan mehanički. Proveriti sve module pre kupovine."
     },
     "Kadjar": {
-      "2015-2022": "Motor 1.5 dCi pouzdan. Proveriti stanje 4WD kvacila (Haldex na 4WD verzijama). Infotainment R-Link 2 spor. Proveriti stanje karoserije — tanka zastita od korozije."
+      "2015-2022": "Motor 1.5 dCi pouzdan. Proveriti stanje 4WD kvačila (Haldex na 4WD verzijama). Infotainment R-Link 2 spor. Proveriti stanje karoserije — tanka zaštita od korozije."
+    },
+    "Arkana": {
+      "2019+": "Motor 1.3 TCe i hibridni sistem (E-Tech) pouzdani. Proveriti softverske greške na OpenR Link sistemu. Hibridni EDC menjač — proveriti stanje."
+    },
+    "Talisman": {
+      "2015-2022": "Motor 1.5 i 2.0 dCi pouzdani. EDC menjač — proveriti trzanje. Proveriti stanje R-Link 2 multimedije. 4Control sistem (zadnje upravljive točkove) — proveriti stanje."
+    },
+    "Scenic": {
+      "2009-2016 (Mk3)": "Motor 1.5 dCi pouzdan. BSI elektronika sitničava. Proveriti stanje kliznih vrata i mehanizma. Rđa ispod blatobrana.",
+      "2016-2022 (Mk4)": "Motor 1.5 dCi i 1.3 TCe pouzdani. R-Link 2 multimedija spora. Proveriti stanje guma (nestandardne dimenzije skuplje)."
     }
   },
   "Peugeot": {
     "308": {
-      "2007-2013 (T7)": "BSI elektronski modul — kvar bez upozorenja, skupo za popravku. Motor 1.6 THP benzinac (razvijen sa BMW-om, oznaka EP6) trosi ulje i ima ozbiljan problem sa lancem razvoda koji se rano isteze — KRITICNO proveriti.",
-      "2013-2021 (T9)": "Motor 1.5 i 1.6 BlueHDi — rezervoar za AdBlue od plasticnog materijala crkava i propusta, zamena je izuzetno skupa. Ekran na dodir cesto ne reaguje ili reaguje sporo. Motor 1.2 PureTech — proveriti stanje lanca razvoda.",
-      "2021+ (T9 facelift)": "i-Cockpit sa malim volanom neobican za vozniju. Motor 1.5 BlueHDi — AdBlue sistem i DPF proveriti. Proveriti rad digitalnog kokpita."
+      "2007-2013 (T7)": "BSI elektronski modul — kvar bez upozorenja, skupo za popravku. Motor 1.6 THP benzinac (razvijen sa BMW-om, oznaka EP6) troši ulje i ima ozbiljan problem sa lancem razvoda koji se rano isteže — KRITIČNO proveriti.",
+      "2013-2021 (T9)": "Motor 1.5 i 1.6 BlueHDi — rezervoar za AdBlue od plastičnog materijala propadaju i propušta, zamena je izuzetno skupa. Ekran na dodir često ne reaguje. Motor 1.2 PureTech — proveriti stanje lanca razvoda.",
+      "2021+ (T9 facelift)": "i-Cockpit sa malim volanom neobičan za vožnju. Motor 1.5 BlueHDi — AdBlue sistem i DPF proveriti. Proveriti rad digitalnog kokpita."
     },
     "207/208": {
-      "2006-2012 (207)": "BSI modul — kvar bez upozorenja. Motor 1.4 HDi pouzdan. Proveriti rdju ispod blatobrana i na donjim ivicama vrata.",
-      "2012-2019 (208 Mk1)": "Motor 1.2 PureTech (EB2 serija) — poznato curenje ulja i problem sa lancem razvoda koji se rano isteze. Proveriti nivo ulja pre svakog testiranja. Termostati su osetljivi.",
-      "2019+ (208 Mk2)": "i-Cockpit vizuelno atraktivan ali neergonomican za vozace koji visoko sede. Proveriti greske na digitalnoj tabli i senzorima."
+      "2006-2012 (207)": "BSI modul — kvar bez upozorenja. Motor 1.4 HDi pouzdan. Proveriti rđu ispod blatobrana i na donjim ivicama vrata.",
+      "2012-2019 (208 Mk1)": "Motor 1.2 PureTech (EB2 serija) — poznato curenje ulja i problem sa lancem razvoda koji se rano isteže. Proveriti nivo ulja pre svakog testiranja. Termostati osetljivi.",
+      "2019+ (208 Mk2)": "i-Cockpit vizuelno atraktivan ali neergonomičan za vozače koji visoko sede. Proveriti greške na digitalnoj tabli i senzorima. Motor 1.2 PureTech — i dalje proveriti lanac."
     },
     "3008": {
-      "2009-2016 (Mk1)": "EAT6 automat trza. BSI elektronika sitnicava. Motor 1.6 THP — isti lanac problem kao na 308 T7.",
-      "2016-2023 (Mk2)": "EAT8 automat poboljsan ali proveriti na trzanje. Motor 1.5 i 2.0 BlueHDi — AdBlue sistem i DPF proveriti. Grip Control sistem dobar. Proveriti stanje panoramskog krova."
+      "2009-2016 (Mk1)": "EAT6 automat trza. BSI elektronika sitničava. Motor 1.6 THP — isti lanac problem kao na 308 T7.",
+      "2016-2023 (Mk2)": "EAT8 automat poboljšan. Motor 1.5 i 2.0 BlueHDi — AdBlue sistem i DPF proveriti. Grip Control sistem dobar. Proveriti stanje panoramskog krova.",
+      "2023+ (Mk3)": "Nova platforma i potpuno novi enterijer. Motor 1.2 PureTech hibrid i 1.6 THP — proveriti lanceve. Proveriti i-Cockpit Amplify ekran."
     },
     "2008": {
-      "2013-2019 (Mk1)": "Motor 1.2 PureTech — proveriti lanac razvoda i curenje ulja. BSI elektronika sitnicava. Proveriti stanje enterijera — plastika se grebe.",
-      "2019+ (Mk2)": "Motor 1.2 PureTech poboljsan ali i dalje proveriti lanac. EAT8 automat — proveriti trzanje. i-Cockpit digitalna tabla — proveriti greske."
+      "2013-2019 (Mk1)": "Motor 1.2 PureTech — proveriti lanac razvoda i curenje ulja. BSI elektronika sitničava. Proveriti stanje enterijera.",
+      "2019+ (Mk2)": "Motor 1.2 PureTech poboljšan ali i dalje proveriti lanac. EAT8 automat — proveriti trzanje. i-Cockpit digitalna tabla — proveriti greške. Električna verzija (e-2008) — proveriti bateriju."
+    },
+    "508": {
+      "2011-2018 (Mk1)": "Motor 2.0 BlueHDi pouzdan. EAT6 menjač — proveriti stanje. Proveriti rad HYbrid4 sistema ako je prisutan. Active suspension skupo.",
+      "2018+ (Mk2)": "Atraktivan dizajn. Motor 1.5 i 2.0 BlueHDi pouzdani. EAT8 menjač poboljšan. i-Cockpit — proveriti greške na ekranu. PHEV verzija — proveriti bateriju."
     }
   },
   "Opel": {
     "Astra": {
-      "2004-2010 (H)": "CIM modul u volanu gubi kontakt — sirena ne radi, upravljac reaguje sporo. Motor 1.7 CDTI — alternator cesto crkava. Proveriti rdju na pragu vrata i ispod blatobrana.",
-      "2010-2015 (J)": "M32 manuelni menjac — bruje lezajevi u 5. i 6. brzini, skupo za popravku. Tezi auto koji trosi vise goriva od deklarisanog. Proveriti stanje elektronike OPC verzija.",
-      "2015-2021 (K)": "Motor 1.6 CDTI — lanac razvoda pocinje da zvecka vec pri paljenju na hladnom motoru, posebno zimi. Matrix LED farovi skupi za servis. Proveriti stanje 6AT automatskog menjaca.",
-      "2021+ (L)": "Nova PSA platforma (Stellantis). Motor 1.2 Turbo — proveriti lanac razvoda (isti PureTech motor kao Peugeot). AGS automatizovani menjac spor i neprijatan."
+      "2004-2010 (H)": "CIM modul u volanu gubi kontakt — sirena ne radi, upravljač reaguje sporo. Motor 1.7 CDTI — alternator često propadaju. Proveriti rđu na pragu vrata i ispod blatobrana.",
+      "2010-2015 (J)": "M32 manuelni menjač — bruje ležajevi u 5. i 6. brzini, skupo za popravku. Teži auto koji troši više goriva od deklarisanog.",
+      "2015-2021 (K)": "Motor 1.6 CDTI — lanac razvoda počinje da zvecka već pri paljenju na hladnom motoru, posebno zimi. Matrix LED farovi skupi za servis.",
+      "2021+ (L)": "Nova PSA platforma. Motor 1.2 Turbo — proveriti lanac razvoda (isti PureTech motor kao Peugeot). AGS automatizovani menjač spor i neprijatan. Električna verzija (Astra-e) — proveriti bateriju."
     },
     "Insignia": {
-      "2008-2017 (Mk1)": "Prednji trap slozene geometrije — skup za servis i osetljiv na nase puteve. FlexRide ogibljenje skupo. Proveriti stanje AGR (EGR) ventila na dizelima i automatskog menjaca.",
-      "2017+ (Mk2)": "Poboljsan auto, bolja zvucna izolacija. CVT menjac na pojedinim verzijama osetljiv — proveriti. LED farovi skupi za popravku."
+      "2008-2017 (Mk1)": "Prednji trap složene geometrije — skup za servis i osetljiv na naše puteve. FlexRide oslanjanje skupo. Proveriti stanje AGR (EGR) ventila na dizelima i automatskog menjača.",
+      "2017+ (Mk2)": "Poboljšan auto, bolja zvučna izolacija. CVT menjač na pojedinim verzijama osetljiv. LED farovi skupi za popravku."
     },
     "Corsa": {
-      "2006-2014 (D)": "Motor 1.3 CDTi pouzdan ali EGR ventil zapusa. Rdja ispod blatobrana karakteristicna. Elektronika (BCM modul) sitnicava.",
-      "2014-2019 (E)": "Motor 1.0 Turbo (SIDI) — poznat po pregorevanju klipa i problemu sa brtvu glave. Proveriti pazu, boju rashladne tecnosti i da li ima emulzije ulja.",
-      "2019+ (F)": "Sada PSA platforma (Peugeot 208). Motor 1.2 PureTech — proveriti lanac i curenje ulja. Proveriti stanje nove digitalne table."
+      "2006-2014 (D)": "Motor 1.3 CDTi pouzdan ali EGR ventil se začepljuje. Rđa ispod blatobrana karakteristična. Elektronika (BCM modul) sitničava.",
+      "2014-2019 (E)": "Motor 1.0 Turbo (SIDI) — poznat po pregorevanju klipa i problemu sa brtvu glave motora. Proveriti boju rashladne tečnosti i da li ima emulzije ulja.",
+      "2019+ (F)": "Sada PSA platforma (Peugeot 208). Motor 1.2 PureTech — proveriti lanac i curenje ulja. Električna Corsa-e — proveriti kapacitet baterije."
     },
     "Mokka": {
-      "2012-2020 (Mk1)": "Motor 1.4 Turbo (A14NET) — problem sa lancem razvoda na vecim kilometrazama. Proveriti stanje 4WD sistema (All-Wheel Drive). Rdja ispod blatobrana cesta.",
-      "2020+ (Mk2)": "Nova PSA platforma. Motor 1.2 PureTech — isti problemi sa lancem. Elektricna verzija (Mokka-e) — proveriti stanje baterije."
+      "2012-2020 (Mk1)": "Motor 1.4 Turbo (A14NET) — problem sa lancem razvoda na većim kilometražama. Proveriti stanje 4WD sistema (All-Wheel Drive). Rđa ispod blatobrana česta.",
+      "2020+ (Mk2)": "Nova PSA platforma. Motor 1.2 PureTech — isti problemi sa lancem. Električna Mokka-e — proveriti stanje baterije."
+    },
+    "Zafira": {
+      "2005-2014 (B)": "Poznati problem sa paljenjem u kabini zbog greške u sistemu grejanja (opoziv!). M32 menjač sa bučnim ležajevima. Proveriti stanje kliznih vrata i trećeg reda sedišta.",
+      "2014-2019 (C)": "Isti motor kao Astra J. Proveriti stanje unutrašnjih vrata gepeka (pucaju kablovi). Proveriti sistem grejanja."
     }
   },
   "Fiat": {
     "Punto": {
-      "1999-2010 (Classic)": "City servo volan cesto crkava — proveriti tezinu upravljanja. Motori 1.2 benzin — cest problem sa brtvu glave i curenjem poklopca ventila. Rdja na pragovima i donjim ivicama vrata karakteristicna za ovu generaciju.",
-      "2005-2018 (Grande Punto)": "Rdja na pragovima i ispod blatobrana. Motor 1.3 Multijet pouzdan. Proveriti stanje zamajca. Plastika enterijera jeftina i lako se lomi."
+      "1999-2010 (Classic)": "City servo volan često propadaju. Benzinci 1.2 — čest problem sa brtvom glave i curenjem poklopca ventila. Rđa na pragovima i donjim ivicama vrata karakteristična.",
+      "2005-2018 (Grande Punto)": "Rđa na pragovima i ispod blatobrana. Motor 1.3 Multijet pouzdan. Proveriti stanje zamajca. Plastika enterijera jeftina i lako se lomi."
     },
     "Bravo": {
-      "2007-2014": "Plasticne poluge brisaca pucaju i preskucu na jakim kisama. Motor 1.9 JTDm mehanicki neunisstiv ali klapne usisne grane su osetljive — proveriti. Motor 1.4 T-Jet — proveriti lanac i stanje turbine."
+      "2007-2014": "Plastične poluge brisača pucaju i preskakuju na jakim kišama. Motor 1.9 JTDm mehanički pouzdan ali klapne usisne grane su osetljive. Motor 1.4 T-Jet — proveriti lanac i stanje turbine."
     },
     "500": {
-      "2007-2015 (Mk1)": "Simpaticno vozilo ali slaba zvucna izolacija. Motor 1.3 Multijet pouzdan. Dualogic automatizovani menjac (robotizovano kvacilo) trza snazno — nije pravi automat. Proveriti stanje kvacila.",
-      "2015+ (Mk2)": "Uglavnom iste napomene. Proveriti rad Uconnect sistema i TomTom navigacije."
+      "2007-2015 (Mk1)": "Simpatično vozilo ali slaba zvučna izolacija. Motor 1.3 Multijet pouzdan. Dualogic automatizovani menjač trza snažno — nije pravi automat. Proveriti stanje kvačila.",
+      "2015+ (Mk2)": "Uglavnom iste napomene. Proveriti rad Uconnect sistema i TomTom navigacije.",
+      "2023+ (500e)": "Električni auto. Proveriti kapacitet baterije (24 ili 42 kWh). Uconnect 5 — proveriti greške na sistemu. Proveriti stanje punjača."
     },
     "Tipo": {
-      "2015-2023": "Prostran auto za novac ali jeftina plastika i slaba zvucna izolacija. Motor 1.3 i 1.6 MultiJet relatino pouzdan. EGR ventil i DPF proveriti. Proveriti stanje karoserije — tanka zastita."
+      "2015-2023": "Prostran auto za novac ali jeftina plastika i slaba zvučna izolacija. Motor 1.3 i 1.6 MultiJet relativno pouzdan. EGR ventil i DPF proveriti. Proveriti stanje karoserije — tanka zaštita."
     },
     "Doblo": {
-      "2010-2022 (Mk2)": "Pouzdan kombinovani automobil. Motor 1.3 i 1.6 Multijet dobri motori. Proveriti stanje kliznih vrata i mehanizma. Na vecim kilometrazama proveriti stanje automatskog menjaca i kardana."
+      "2010-2022 (Mk2)": "Pouzdan kombinovani automobil. Motor 1.3 i 1.6 Multijet dobri motori. Proveriti stanje kliznih vrata i mehanizma. Na većim kilometražama proveriti stanje automatskog menjača i kardana."
+    },
+    "Panda": {
+      "2012-2023 (Mk3)": "Gradski auto sa dobrom pouzdanošću. Motor 1.2 benzinac pouzdan. Motor 1.3 Multijet dobar. 4x4 verzija za naše puteve odlična. Proveriti stanje enterijera — plastika jeftina."
+    },
+    "500X": {
+      "2015+": "Motor 1.4 MultiAir turbo — proveriti stanje DDCT kvačila i turbine. 4WD električni motor na zadnjoj osovini — proveriti. 9AT automat spor. Proveriti stanje Uconnect sistema."
     }
   },
   "Alfa Romeo": {
     "159": {
-      "2005-2011": "Prednji trap izuzetno osetljiv i skup za odrzavanje na srpskim putevima. Tezi auto (oko 1600 kg) brzo trosi gume i prednje kocione diskove. M32 manuelni menjac grize u 6. brzini. Proveriti stanje Selespeed automatizovanog menjaca ako je prisutan — osetljiv."
+      "2005-2011": "Prednji trap izuzetno osetljiv i skup za održavanje na srpskim putevima. Teži auto (oko 1.600 kg) brzo troši gume i prednje kočione diskove. M32 manuelni menjač grize u 6. brzini. Proveriti stanje Selespeed automatizovanog menjača ako je prisutan."
     },
     "Giulietta": {
-      "2010-2020": "Kablovi u prevoju gepek vrata pucaju — gepek se blokira. DNA prekidac voznih modova zna da zablokira auto u sport modu ili da zakazuje. Unutrasnja plasticna rucica vrata se lomi — proveriti sve cetiri."
+      "2010-2020": "Kablovi u prevoju gepek vrata pucaju — gepek se blokira. DNA prekidač voznih modova zna da zaglavi auto u sport modu ili da zakazuje. Unutrašnja plastična ručica vrata se lomi — proveriti sve četiri."
     },
     "Giulia": {
-      "2016+": "Motor 2.0 Turbo pouzdan ali proveriti greske na Q4 AWD sistemu. Elektronika (IBS sistem, prednja kamera) sitnicava i skupa za dijagnozu. Skupo u ovlascenim servisima."
+      "2016+": "Motor 2.0 Turbo pouzdan ali proveriti greške na Q4 AWD sistemu. Elektronika (IBS sistem, prednja kamera) sitničava i skupa za dijagnozu. Skupo u ovlašćenim servisima."
     },
     "Stelvio": {
-      "2017+": "Iste napomene kao Giulia. Q4 AWD sistem skup za odrzavanje. Proveriti greske na senzorima adaptivnog tempomata i Lane Keeping sistemu. Proveriti stanje farbanja na prednjem braniku i pragu."
+      "2017+": "Iste napomene kao Giulia. Q4 AWD sistem skup za održavanje. Proveriti greške na senzorima adaptivnog tempomata i Lane Keeping sistemu. Proveriti stanje farbanja na prednjem braniku i pragu."
     },
     "Mito": {
-      "2008-2018": "Motor 1.4 MultiAir turbo — proveriti stanje turbine i potrosnju ulja. Dualogic menjac trza snazno. Proveriti stanje enterijera — plastika jeftinijeg kvaliteta. Rdja na donjim ivicama vrata."
+      "2008-2018": "Motor 1.4 MultiAir turbo — proveriti stanje turbine i potrošnju ulja. Dualogic menjač trza snažno. Proveriti stanje enterijera — plastika jeftinijeg kvaliteta. Rđa na donjim ivicama vrata."
+    },
+    "Tonale": {
+      "2022+": "Novi model. Motor 1.5 VGT hibrid i PHEV verzija. Proveriti softverske greške na Google infotainment sistemu. PHEV — proveriti stanje baterije i punjača."
     }
   },
   "Toyota": {
     "Yaris": {
-      "2005-2011": "Automatizovani menjac MMT/M-MT trza i spor je — nije prijatan za voznju u gradu. Lak na krovu i haubi se ljusti od sunca na juznim trzisstima — proveriti.",
-      "2011-2020": "Mehanicki izuzetno pouzdan, jedan od najpouzdanijih u klasi. Enterijer se lako grebe. Infotainment sistem zastareo i spor ali funkcionalan.",
-      "2020+ (Mk4)": "Hibridni motor (HEV) izuzetno pouzdan i ekonomican. Proveriti stanje GR Sport verzija — sportski trap osetljiv. Proveriti greske na Toyota Safety Sense sistemu."
+      "2005-2011": "Automatizovani menjač MMT/M-MT trza i spor — nije prijatan za vožnju u gradu. Lak na krovu i haubi se ljušti od sunca na južnim tržištima.",
+      "2011-2020": "Mehanički izuzetno pouzdan, jedan od najpouzdanijih u klasi. Enterijer se lako grebe. Infotainment sistem zastareo i spor ali funkcionalan.",
+      "2020+ (Mk4)": "Hibridni motor (HEV) izuzetno pouzdan i ekonomičan. Proveriti stanje GR Sport verzija — sportski trap osetljiv. Proveriti greške na Toyota Safety Sense sistemu."
     },
     "Corolla": {
-      "2006-2012 (E150)": "Jedan od najpouzdanijih automobila u klasi ikada. Proveriti samo rdju na pragovima na starijim primercima i stanje kvacila. Motor 1.6 VVT-i ili 2.0 D-4D — bez poznatih mana.",
-      "2012-2018 (E170)": "Isti nivo pouzdanosti. Vizuelno zastareo, mehanicki besprekoran. Proveriti stanje enterijera i tehnicki pregled.",
-      "2018+ (E210)": "Hibridni sistem (1.8 i 2.0 HEV) izuzetno pouzdan — bez vecih mana. Proveriti Toyota Safety Sense kameru — moze zahtevati kalibraciju."
+      "2006-2012 (E150)": "Jedan od najpouzdanijih automobila u klasi ikada. Proveriti samo rđu na pragovima na starijim primercima i stanje kvačila. Motor 1.6 VVT-i ili 2.0 D-4D — bez poznatih mana.",
+      "2012-2018 (E170)": "Isti nivo pouzdanosti. Vizuelno zastareo, mehanički besprekoran. Proveriti stanje enterijera i tehnički pregled.",
+      "2018+ (E210)": "Hibridni sistem (1.8 i 2.0 HEV) izuzetno pouzdan. Proveriti Toyota Safety Sense kameru — može zahtevati kalibraciju."
     },
     "RAV4": {
       "2005-2012 (Mk3)": "Pouzdan SUV. Proveriti stanje 4WD sistema (kardan i diferencijal). Kompresor klime zna da zakazuje.",
-      "2012-2018 (Mk4)": "CVT menjac na benzincima — proveriti ulje i stanje. Motor 2.0 D-4D diesel pouzdan. Proveriti stanje karoserije.",
-      "2018+ (Mk5)": "Hibridni AWD sistem (Dual Motor) izuzetno pouzdan. Proveriti JBL audio (sitni kvarovi poznatii). Proveriti greske na kamerama i radarskim senzorima."
-    },
-    "Avensis": {
-      "2008-2018 (T270)": "Izuzetno pouzdan i mehanicki besprekoran auto za srpske puteve. Motori 2.0 i 2.2 D-4D bez poznatih mana. Proveriti samo opste stanje trapa i tehnicko stanje."
+      "2012-2018 (Mk4)": "CVT menjač na benzincima — proveriti ulje i stanje. Motor 2.0 D-4D diesel pouzdan. Proveriti stanje karoserije.",
+      "2018+ (Mk5)": "Hibridni AWD sistem (Dual Motor) izuzetno pouzdan. Proveriti JBL audio — sitni kvarovi poznati. Proveriti greške na kamerama i radarskim senzorima."
     },
     "C-HR": {
-      "2016+": "Hibridni sistem pouzdan. Proveriti stanje nizkih pragova — lako se ostecuju pri parkingu. Zvucna izolacija slaba. Proveriti Toyota Safety Sense kameru."
+      "2016+": "Hibridni sistem pouzdan. Proveriti stanje niskih pragova — lako se oštećuju pri parkiranju. Zvučna izolacija slaba. Proveriti Toyota Safety Sense kameru."
+    },
+    "Avensis": {
+      "2008-2018 (T270)": "Izuzetno pouzdan i mehanički besprekoran auto za srpske puteve. Motori 2.0 i 2.2 D-4D bez poznatih mana. Proveriti samo opšte stanje trapa."
+    },
+    "Camry": {
+      "2011-2017 (Mk7)": "Pouzdan i prostran. Motor 2.5 benzinac i hibrid pouzdani. CVT menjač — proveriti. Proveriti stanje enterijera — kvalitetno tapaciranje.",
+      "2017+ (Mk8)": "Hibridni sistem odličan. Proveriti Toyota Safety Sense kameru i greške na sistemu. Enterijer kvalitetan."
+    },
+    "Land Cruiser": {
+      "2002-2009 (J120)": "Izuzetno pouzdan offroad auto. Motor 3.0 D-4D pouzdan. Proveriti stanje 4WD sistema i diferenci jala. Rđa ispod podvozja na starijim primercima.",
+      "2009-2021 (J150)": "Motor 3.0 D-4D i dalje odličan. Proveriti stanje prednjeg i zadnjeg diferenci jala. Vazdušno oslanjanje na višim verzijama — proveriti.",
+      "2021+ (J300)": "Motor 3.3 V6 Twin-Turbo diesel pouzdan. Kompleksna elektronika. Proveriti Toyota Safety Sense i Multiterrain Select sistem."
+    },
+    "Hilux": {
+      "2005-2015 (Mk7)": "Jedan od najpouzdanijih pikapa na svetu. Motor 3.0 D-4D pouzdan. Proveriti stanje 4WD sistema i kardana. Rđa ispod podvozja na starijim primercima.",
+      "2015+ (Mk8)": "Motor 2.4 i 2.8 GD-6 diesel pouzdani. Proveriti stanje 4WD sistema. Infotainment sistem — proveriti stanje."
     }
   },
   "Honda": {
     "Civic": {
-      "2006-2011 (Mk8)": "Motori 1.8 i-VTEC i 2.2 i-CDTi generalno pouzdani. Proveriti stanje zamajca i kvacila. Rdja na pragu vrata na starijim primercima.",
-      "2012-2017 (Mk9)": "Motor 1.6 i-DTEC izuzetno ekonomican. Proveriti greske na touch ekranu i senzorima parkiranja — sitnicavi. Proveriti stanje zadnjeg trapa.",
-      "2017+ (Mk10)": "Motor 1.5 VTEC Turbo (K20C4) — rani primerci imali problem sa mesanjem ulja i benzina u hladnim zimskim uslovima (poznat problem, proveriti). CVT menjac pouzdan."
+      "2006-2011 (Mk8)": "Motori 1.8 i-VTEC i 2.2 i-CDTi generalno pouzdani. Proveriti stanje zamajca i kvačila. Rđa na pragu vrata na starijim primercima.",
+      "2012-2017 (Mk9)": "Motor 1.6 i-DTEC izuzetno ekonomičan. Proveriti greške na touch ekranu i senzorima parkiranja. Proveriti stanje zadnjeg trapa.",
+      "2017+ (Mk10)": "Motor 1.5 VTEC Turbo — rani primerci imali problem sa mešanjem ulja i benzina u hladnim zimskim uslovima (poznat problem, proveriti). CVT menjač pouzdan.",
+      "2022+ (Mk11)": "Hibridni sistem odličan. Proveriti Honda Sensing sistem i greške na kamerama. Enterijer kvalitetan."
     },
     "CR-V": {
-      "2006-2012 (Mk3)": "Pouzdan SUV. Proveriti stanje 4WD elektromagnetnog kvacila zadnjeg diferenciala. Motor 2.2 i-CDTi dobar.",
-      "2012-2018 (Mk4)": "Bez vecih mana. Motor 1.6 i-DTEC 4WD — proveriti stanje 4WD kvacila. Proveriti stanje enterijera.",
-      "2018+ (Mk5)": "Hibridni sistem pouzdan. CVT menjac — proveriti. Honda Sensing sistem — proveriti greske na kamerama."
-    },
-    "Jazz": {
-      "2008-2015 (Mk2)": "Jedan od najpraktichunijih malih auta. Mehanicki pouzdan. Magic Seat mehanizam — proveriti gumice i da li se sklapaju bez zapreke.",
-      "2015-2020 (Mk3)": "Isti nivo pouzdanosti. Motor 1.3 benzinac skroman ali pouzdan. Automatski menjac — proveriti na trzanje."
+      "2006-2012 (Mk3)": "Pouzdan SUV. Proveriti stanje 4WD elektromagnetnog kvačila zadnjeg diferenci jala. Motor 2.2 i-CDTi dobar.",
+      "2012-2018 (Mk4)": "Motor 1.6 i-DTEC 4WD — proveriti stanje 4WD kvačila. Proveriti stanje enterijera.",
+      "2018+ (Mk5)": "Hibridni sistem pouzdan. CVT menjač — proveriti. Honda Sensing sistem — proveriti greške na kamerama."
     },
     "HR-V": {
-      "2015-2021 (Mk2)": "Motor 1.5 VTEC pouzdan. CVT menjac — proveriti stanje. Proveriti stanje 4WD sistema na AWD verzijama. Proveriti stanje zadnjeg trapa."
+      "2015-2021 (Mk2)": "Motor 1.5 VTEC pouzdan. CVT menjač — proveriti stanje. 4WD — proveriti stanje kvačila. Proveriti stanje zadnjeg trapa.",
+      "2021+ (Mk3)": "Hibridni sistem (e:HEV) odličan. Honda Sensing — proveriti greške. Proveriti stanje ekrana i infotainment sistema."
+    },
+    "Jazz": {
+      "2008-2015 (Mk2)": "Jedan od najprakti čnijih malih auta. Mehanički pouzdan. Magic Seat mehanizam — proveriti gumice i da li se pravilno sklapa.",
+      "2015-2020 (Mk3)": "Motor 1.3 benzinac pouzdan. Automatski menjač — proveriti na trzanje.",
+      "2020+ (Mk4)": "Hibridni sistem (e:HEV) bez menjača — proveriti stanje. Proveriti Honda Sensing i greške na kamerama."
+    },
+    "Accord": {
+      "2008-2015 (Mk8)": "Motor 2.0 i-VTEC i 2.2 i-CDTi pouzdani. Proveriti stanje automatskog menjača. Rđa na donjim ivicama vrata.",
+      "2015+ (Mk9/10)": "Motor 1.5 VTEC Turbo i 2.0 hibrid pouzdani. Proveriti Honda Sensing sistem. CVT menjač na benzincima — proveriti."
     }
   },
   "Ford": {
     "Focus": {
-      "2004-2010 (Mk2)": "Prednji trap slozene geometrije — skuplji od VW za servis, ali pouzdan ako se odrzava. Motor 1.6 TDCi solidan, ali EGR ventil cesto zapusa. Proveriti stanje brisaca i mehanizma.",
-      "2011-2018 (Mk3)": "PowerShift (DCT) menjac — KRITICNA mana ove generacije. Trza, kliza, sporo menja. Ford je imao sudske sporove zbog ovog menjaca. Izbegavati PowerShift verziju! Manuelni menjac pouzdan.",
-      "2018+ (Mk4)": "8F24 automatski menjac popravlja situaciju znacajno. Proveriti SYNC 3 infotainment sistem i greske na prednjoj kameri."
+      "2004-2010 (Mk2)": "Prednji trap složene geometrije — skuplji od VW za servis, ali pouzdan ako se održava. Motor 1.6 TDCi solidan, ali EGR ventil često se začepljuje.",
+      "2011-2018 (Mk3)": "PowerShift (DCT) menjač — KRITIČNA mana ove generacije. Trza, kliza, sporo menja. Ford je imao sudske sporove zbog ovog menjača. Izbegavati PowerShift verziju! Manuelni menjač pouzdan.",
+      "2018+ (Mk4)": "8F24 automatski menjač znatno bolji. Proveriti SYNC 3 infotainment sistem i greške na prednjoj kameri."
     },
     "Mondeo": {
-      "2007-2014 (Mk4)": "PowerShift menjac — isti kriticni problem kao Focus Mk3, izbegavati. Motor 2.0 TDCi pouzdan mehanicki. Proveriti EGR i DPF na dizelima.",
-      "2014-2022 (Mk5)": "Baziran na Fusion platformi. Proveriti hibridni sistem (HEV verzija). Rdja na donjim ivicama vrata. 8AT menjac bolji od PowerShifta."
+      "2007-2014 (Mk4)": "PowerShift menjač — isti kritični problem kao Focus Mk3, izbegavati. Motor 2.0 TDCi pouzdan mehanički. Proveriti EGR i DPF na dizelima.",
+      "2014-2022 (Mk5)": "Baziran na Fusion platformi. Proveriti hibridni sistem (HEV verzija). Rđa na donjim ivicama vrata. 8AT menjač bolji od PowerShifta."
     },
     "Kuga": {
       "2008-2012 (Mk1)": "Motor 2.0 TDCi dobar. Proveriti stanje 4WD sistema i servolaktricu — upozorenja u instrument tabli.",
       "2012-2019 (Mk2)": "PowerShift isti problem — izbegavati automatike. Motori 1.5/2.0 EcoBoost — proveriti rashladni sistem na curenje (poznat problem).",
-      "2019+ (Mk3)": "PHEV verzija imala problem sa pozarom baterije (opoziv!) — proveriti da li je opoziv izvrsens. Proveriti hibridni sistem i 12V bateriju."
+      "2019+ (Mk3)": "PHEV verzija imala problem sa požarom baterije (opoziv!) — proveriti da li je opoziv izvršen. Proveriti hibridni sistem i 12V bateriju."
     },
     "Fiesta": {
       "2008-2017 (Mk7)": "Pouzdan mali auto. Motor 1.5 TDCi dobar. PowerShift ako je automatik — proveriti na trzanje i klizanje.",
-      "2017+ (Mk8)": "B&O audio sistem sitnicav. Motor 1.0 EcoBoost — proveriti rashladni sistem na curenje (poznata mana rane serije — termostat i hladnjak EGR)."
+      "2017+ (Mk8)": "B&O audio sistem sitničav. Motor 1.0 EcoBoost — proveriti rashladni sistem na curenje (termostat i EGR hladnjak — poznata mana)."
     },
     "Ranger": {
-      "2011-2022 (Mk3)": "Pouzdan picap za srpske uslove. Motor 2.0 TDCi ili 3.2 TDCi — pouzdan. Proveriti stanje 4x4 sistema (4WD) i kardana. Rdja ispod safarija i podvozja na starijim primercima."
+      "2011-2022 (Mk3)": "Pouzdan pikap za srpske uslove. Motor 2.0 TDCi ili 3.2 TDCi pouzdan. Proveriti stanje 4x4 sistema (4WD) i kardana. Rđa ispod podvozja na starijim primercima.",
+      "2022+ (Mk4)": "Motor 2.0 i 3.0 EcoBlue Diesel pouzdani. Nova platforma. Proveriti SYNC 4 infotainment i greške na ADAS sistemu."
+    },
+    "Puma": {
+      "2019+": "Motor 1.0 EcoBoost mHEV (mild-hibrid) pouzdan. Proveriti SYNC 3 infotainment. Specifičan bunk u gepeku — MegaBox koritasti pod, proveriti brtve."
+    },
+    "Galaxy": {
+      "2006-2015 (Mk2)": "PowerShift menjač — izbegavati automatike. Motor 2.0 TDCi pouzdan. Proveriti stanje kliznih vrata i trećeg reda sedišta.",
+      "2015-2022 (Mk3)": "8AT menjač bolji. Motor 2.0 EcoBlue pouzdan. Proveriti SYNC 3 infotainment. Proveriti stanje kliznih vrata."
     }
   },
   "Hyundai": {
     "i30": {
-      "2007-2012 (Mk1)": "Pouzdan ali jeftina plasticna. Motor 1.6 CRDi dobar. Proveriti rdju na pragu vrata.",
-      "2012-2017 (Mk2)": "Poboljsan kvalitet gradnje. Motor 1.6 GDI benzinac — naslage uglja na ventilima zbog direktnog ubrizgavanja — moguce mucanje u praznom hodu.",
-      "2017+ (Mk3)": "N-Line i N verzije odlicne ali proveriti kocione diskove i gume na agresivne voznje. Motor 1.4/1.6 T-GDi dobar."
+      "2007-2012 (Mk1)": "Pouzdan ali jeftina plastika. Motor 1.6 CRDi dobar. Proveriti rđu na pragu vrata.",
+      "2012-2017 (Mk2)": "Poboljšan kvalitet gradnje. Motor 1.6 GDI benzinac — naslage uglja na ventilima zbog direktnog ubrizgavanja.",
+      "2017+ (Mk3)": "N-Line i N verzije odlične. Motor 1.4/1.6 T-GDi dobar. Proveriti kočione diskove na N verzijama."
+    },
+    "i20": {
+      "2008-2014 (Mk1)": "Pouzdan mali auto. Motori 1.25/1.4 benzinci bez većih mana. Proveriti koroziju blatobrana.",
+      "2014-2020 (Mk2)": "Motor 1.0 T-GDi turbo pouzdan. DCT menjač — proveriti. BlueLink sistem zna da se blokira.",
+      "2020+ (Mk3)": "Nova platforma, atraktivan dizajn. Motor 1.0 T-GDi pouzdan. DCT7 trzanje proveriti."
     },
     "Tucson": {
       "2004-2009 (Mk1)": "Stariji ali pouzdan. Proveriti 4WD sistem i kardan. Plastika izbledela na suncu.",
-      "2015-2021 (Mk3)": "Motor 1.6 T-GDi solidan. DCT menjac — proveriti na trzanje pri polascu u gradu.",
-      "2021+ (Mk4)": "Kompleksna elektronika. Proveriti HTRAC AWD sistem i greske na ekranima. Hibridni motor pouzdan."
-    },
-    "i20": {
-      "2008-2014 (Mk1)": "Pouzdan mali auto. Motori 1.25/1.4 benzinci bez vecih mana. Proveriti koroziju na blatobranu.",
-      "2014-2020 (Mk2)": "Motor 1.0 T-GDi turbo pouzdan. DCT menjac — proveriti. BlueLink sistem zna da se blokira."
+      "2015-2021 (Mk3)": "Motor 1.6 T-GDi solidan. DCT menjač — proveriti na trzanje pri polasku u gradu.",
+      "2021+ (Mk4)": "Kompleksna elektronika. Proveriti HTRAC AWD sistem i greške na ekranima. Hibridni motor pouzdan."
     },
     "Santa Fe": {
-      "2012-2018 (Mk3)": "Motor 2.2 CRDi diesel pouzdan. Proveriti stanje 4WD sistema (HTRAC) i kardana. Na vecim kilometrazama proveriti stanje lanca motora.",
-      "2018+ (Mk4)": "Motor 2.0/2.2 CRDi dobar. Proveriti stanje HTRAC AWD sistema. Proveriti greske na senzorima i kamerama."
+      "2012-2018 (Mk3)": "Motor 2.2 CRDi diesel pouzdan. Proveriti stanje 4WD sistema (HTRAC) i kardana. Na većim kilometražama proveriti stanje lanca motora.",
+      "2018+ (Mk4)": "Motor 2.0/2.2 CRDi dobar. Proveriti stanje HTRAC AWD sistema. Proveriti greške na senzorima i kamerama.",
+      "2020+ (Mk4 facelift)": "Isti motori. Proveriti hibridni sistem (HEV). Proveriti HTRAC AWD. BlueLink sistem proveriti."
+    },
+    "Ioniq": {
+      "2016-2022 (Mk1)": "Hibridni i električni sistem pouzdani. Proveriti kapacitet baterije (električna: 38 kWh). Proveriti stanje regenerativnih kočnica. Infotainment — proveriti greške.",
+      "2022+ (Ioniq 6)": "Električno vozilo. Proveriti kapacitet baterije (77 kWh). 800V punjenje — proveriti stanje konektora. Proveriti softverske greške."
+    },
+    "Kona": {
+      "2017-2023 (Mk1)": "Motor 1.0 i 1.6 T-GDi pouzdani. DCT menjač — proveriti trzanje. Električna Kona — proveriti kapacitet baterije i punj ač.",
+      "2023+ (Mk2)": "Potpuno novi dizajn i platforma. Motor 1.6 T-GDi i hibrid. Proveriti infotainment i ADAS sisteme."
     }
   },
   "Kia": {
     "Ceed": {
-      "2006-2012 (Mk1)": "Pouzdan kao i30 — ista platforma. Motor 1.6 CRDi dobar. Proveriti stanje kvacila.",
-      "2012-2018 (Mk2)": "Dobar auto za novac. Motori 1.0/1.4 T-GDi pouzdani. DCT menjac proveriti na trzanje.",
-      "2018+ (Mk3)": "DCT7 na 1.4 T-GDi znan po trzanju u gradu — proveriti. Head-Up displej zna da otkazuje."
+      "2006-2012 (Mk1)": "Pouzdan kao i30 — ista platforma. Motor 1.6 CRDi dobar. Proveriti stanje kvačila.",
+      "2012-2018 (Mk2)": "Dobar auto za novac. Motori 1.0/1.4 T-GDi pouzdani. DCT menjač proveriti na trzanje.",
+      "2018+ (Mk3)": "DCT7 na 1.4 T-GDi znan po trzanju — proveriti. Head-Up displej zna da otkazuje. Proveriti stanje Ceed SW (karavan) prtljažnih vrata."
     },
     "Sportage": {
       "2010-2015 (Mk3)": "Pouzdan SUV. Motor 2.0 CRDi — EGR ventil proveriti. 4WD sistem generalno dobar.",
-      "2015-2021 (Mk4)": "Motor 1.6 T-GDi dobar. DCT menjac — proveriti na trzanje. Senzori adaptivnog tempomata proveriti.",
-      "2021+ (Mk5)": "Atraktivan dizajn. Hibridni sistem proveriti. HTRAC AWD sistem skup za servis."
+      "2015-2021 (Mk4)": "Motor 1.6 T-GDi dobar. DCT menjač — proveriti na trzanje. Senzori adaptivnog tempomata proveriti.",
+      "2021+ (Mk5)": "Atraktivan dizajn. Hibridni sistem proveriti. HTRAC AWD sistem skup za servis. Proveriti infotainment i ADAS sisteme."
+    },
+    "Sorento": {
+      "2012-2020 (Mk2/Mk3)": "Motor 2.0 i 2.2 CRDi diesel pouzdani. Proveriti stanje 4WD sistema i kardana. Na većim kilometražama proveriti lanac motora.",
+      "2020+ (Mk4)": "Motor 2.2 CRDi i hibridni 1.6 T-GDi pouzdani. Proveriti HTRAC AWD sistem. Proveriti infotainment i greške na senzorima."
     },
     "Stinger": {
-      "2017+": "Motor 2.0 i 3.3 V6 Turbo pouzdani. Proveriti stanje zadnje osovine i potrosnju ulja na V6. Proveriti stanje kocnica — brzo se trosi na sportski voznji. AWD sistem proveriti."
+      "2017+": "Motor 2.0 i 3.3 V6 Turbo pouzdani. Proveriti stanje zadnje osovine i potrošnju ulja na V6. Proveriti stanje kočnica na sportski voženim primercima. AWD sistem proveriti."
     },
     "Rio": {
-      "2011-2017 (Mk3)": "Pouzdan i ekonomican. Motor 1.1 CRDi odlican na potrosnji. Proveriti stanje kvacila i zamajca.",
-      "2017+ (Mk4)": "Motor 1.0 T-GDi pouzdan. DCT menjac — proveriti. UVO infotainment sistem zna da se resetuje."
+      "2011-2017 (Mk3)": "Pouzdan i ekonomičan. Motor 1.1 CRDi odličan na potrošnji. Proveriti stanje kvačila i zamajca.",
+      "2017+ (Mk4)": "Motor 1.0 T-GDi pouzdan. DCT menjač — proveriti. UVO infotainment sistem zna da se resetuje."
+    },
+    "Niro": {
+      "2016+": "Hibridni i električni sistem pouzdani. Proveriti kapacitet baterije na EV verziji (64 kWh). Proveriti stanje regenerativnih kočnica. Infotainment — proveriti greške."
+    },
+    "EV6": {
+      "2021+": "Električno vozilo na E-GMP platformi. Proveriti kapacitet baterije (58 ili 77 kWh). 800V punjenje — proveriti stanje konektora i punjača. Proveriti softverske greške."
     }
   },
   "Nissan": {
     "Qashqai": {
-      "2006-2013 (Mk1)": "Rdja ispod zadnjih vrata gepeka karakteristicna — proveriti magnetom. Motori 1.5/2.0 dCi pouzdani. CVT menjac na benzincima — proveriti stanje i buku.",
-      "2013-2021 (Mk2)": "Motor 1.2 DIG-T turbo benzinac — poznat problem sa pucanjem distancionog prstena na klipovima (ozbiljan kvar). Proveriti OBD i buku iz motora. CVT menjac proveriti.",
-      "2021+ (Mk3)": "e-Power hibridni sistem nov — malo podataka o dugorocnoj pouzdanosti. Proveriti ProPILOT asistenciju."
+      "2006-2013 (Mk1)": "Rđa ispod zadnjih vrata gepeka karakteristična — proveriti magnetom. Motori 1.5/2.0 dCi pouzdani. CVT menjač na benzincima — proveriti stanje i buku.",
+      "2013-2021 (Mk2)": "Motor 1.2 DIG-T turbo benzinac — poznat problem sa pucanjem distancionog prstena na klipovima (ozbiljan kvar). Proveriti OBD i buku iz motora. CVT menjač proveriti.",
+      "2021+ (Mk3)": "e-Power hibridni sistem nov — malo podataka o dugoročnoj pouzdanosti. Proveriti ProPILOT asistenciju i greške na kamerama."
     },
     "Juke": {
-      "2010-2019 (Mk1)": "Motor 1.6 DIG-T turbo benzinac — proveriti stanje turbine. CVT menjac na benzincima — karakteristicni problemi. Plasticna unutrasnjost skripaje.",
-      "2019+ (Mk2)": "DCT menjac zamenio CVT — bolji ali proveriti na trzanje. ProPILOT asistencija — proveriti greske."
-    },
-    "Micra": {
-      "2002-2010 (K12)": "Izuzetno pouzdan mali auto. CVT menjac jedina osetljiva tacka — proveriti stanje.",
-      "2010-2016 (K13)": "Isti nivo pouzdanosti. Motor 1.2 benzinac bez poznatih mana. Rdja ispod pragova."
+      "2010-2019 (Mk1)": "Motor 1.6 DIG-T turbo benzinac — proveriti stanje turbine. CVT menjač na benzincima — karakteristični problemi. Plastična unutrašnjost škripaje.",
+      "2019+ (Mk2)": "DCT menjač zamenio CVT — bolji ali proveriti na trzanje. ProPILOT asistencija — proveriti greške. Proveriti stanje enterijera."
     },
     "X-Trail": {
-      "2013-2022 (T32)": "Motor 2.0 dCi diesel pouzdan. CVT menjac na benzincima — proveriti. 4WD sistem (All Mode) pouzdan. Proveriti stanje enterijera — plastika se grebe."
+      "2013-2022 (T32)": "Motor 2.0 dCi diesel pouzdan. CVT menjač na benzincima — proveriti. 4WD sistem (All Mode) pouzdan. Proveriti stanje enterijera — plastika se grebe.",
+      "2022+ (T33)": "e-Power hibridni sistem. Proveriti softverske greške na ProPILOT asistenciji. 4WD e-4ORCE sistem — proveriti stanje."
+    },
+    "Micra": {
+      "2002-2010 (K12)": "Izuzetno pouzdan mali auto. CVT menjač jedina osetljiva tačka — proveriti stanje.",
+      "2010-2016 (K13)": "Isti nivo pouzdanosti. Motor 1.2 benzinac bez poznatih mana. Rđa ispod pragova.",
+      "2017+ (K14)": "Potpuno novi auto. Motor 0.9 i 1.0 TCe — proveriti turbinu. ProPILOT asistencija — proveriti."
+    },
+    "Navara": {
+      "2005-2015 (D40)": "Motor 2.5 dCi diesel pouzdan. Proveriti stanje 4WD sistema i kardana. Rđa ispod podvozja na starijim primercima.",
+      "2015+ (D23)": "Motor 2.3 dCi twin-turbo pouzdan. Proveriti stanje mulji-link zadnje osovine — čest problem. 4WD sistem dobar."
+    },
+    "Leaf": {
+      "2013-2017 (Mk1)": "Električno vozilo. Proveriti kapacitet baterije — degradacija do 30% česta na starijim primercima bez aktivnog hlađenja. Proveriti stanje punjača.",
+      "2017+ (Mk2)": "Poboljšana baterija (40 ili 62 kWh). I dalje bez aktivnog hlađenja — proveriti kapacitet pri kupovini. Proveriti ProPILOT."
     }
   },
   "Seat": {
     "Leon": {
-      "2005-2012 (Mk2)": "Identicno VW Golf 5/6 — sve iste mane: rdja na pragovima, DSG i EGR problemi.",
-      "2012-2020 (Mk3)": "Motor 1.2/1.4 TSI — lanac razvoda proveriti. DSG7 suvo kvacilo trza. FR paket — proveriti stanje kocnica i trapa.",
-      "2020+ (Mk4)": "Softverske greske kao Golf 8. Motor 1.5 TSI pouzdan. DSG7 trzanje."
+      "2005-2012 (Mk2)": "Identično VW Golf 5/6 — sve iste mane: rđa na pragovima, DSG i EGR problemi.",
+      "2012-2020 (Mk3)": "Motor 1.2/1.4 TSI — lanac razvoda proveriti. DSG7 suvo kvačilo trza. FR paket — proveriti stanje kočnica i trapa.",
+      "2020+ (Mk4)": "Softverske greške kao Golf 8. Motor 1.5 TSI pouzdan. DSG7 trzanje."
     },
     "Ibiza": {
-      "2008-2017 (Mk4)": "Motor 1.2 TSI — lanac razvoda problem. Rdja ispod blatobrana. DSG7 sitnicav.",
+      "2008-2017 (Mk4)": "Motor 1.2 TSI — lanac razvoda problem. Rđa ispod blatobrana. DSG7 sitničav.",
       "2017+ (Mk5)": "MQB-A0 platforma. Motor 1.0 TSI pouzdan. DSG7 trzanje. Proveriti Full Link sistem."
     },
     "Ateca": {
       "2016+": "Isti kao VW Tiguan Mk2 — DSG7 trzanje i CP4 pumpa rizik na 2.0 TDI. Proveriti 4Drive sistem."
     },
     "Tarraco": {
-      "2018+": "Isti kao VW Tiguan Allspace. Motor 2.0 TDI CP4 rizik. DSG7 trzanje. Proveriti stanje elektricnih sedista i panoramskog krova."
-    }
-  },
-  "Toyota": {
-    "Yaris": {
-      "2005-2011": "Automatizovani menjac MMT/M-MT trza i spor je — nije prijatan za voznju u gradu. Lak na krovu i haubi se ljusti od sunca na juznim trzisstima — proveriti.",
-      "2011-2020": "Mehanicki izuzetno pouzdan, jedan od najpouzdanijih u klasi. Enterijer se lako grebe. Infotainment sistem zastareo i spor ali funkcionalan.",
-      "2020+ (Mk4)": "Hibridni motor (HEV) izuzetno pouzdan i ekonomican. Proveriti stanje GR Sport verzija — sportski trap osetljiv. Proveriti greske na Toyota Safety Sense sistemu."
+      "2018+": "Isti kao VW Tiguan Allspace. Motor 2.0 TDI CP4 rizik. DSG7 trzanje. Proveriti stanje el. sedišta i panoramskog krova."
     },
-    "Corolla": {
-      "2006-2012 (E150)": "Jedan od najpouzdanijih automobila u klasi ikada. Proveriti samo rdju na pragovima na starijim primercima i stanje kvacila.",
-      "2012-2018 (E170)": "Isti nivo pouzdanosti. Vizuelno zastareo, mehanicki besprekoran. Proveriti stanje enterijera i tehnicki pregled.",
-      "2018+ (E210)": "Hibridni sistem (1.8 i 2.0 HEV) izuzetno pouzdan. Proveriti Toyota Safety Sense kameru — moze zahtevati kalibraciju."
-    },
-    "RAV4": {
-      "2005-2012 (Mk3)": "Pouzdan SUV. Proveriti stanje 4WD sistema i kardana. Kompresor klime zna da zakazuje.",
-      "2012-2018 (Mk4)": "CVT menjac na benzincima — proveriti ulje i stanje. Motor 2.0 D-4D diesel pouzdan.",
-      "2018+ (Mk5)": "Hibridni AWD sistem izuzetno pouzdan. Proveriti JBL audio — sitni kvarovi. Proveriti greske na kamerama i radarima."
-    },
-    "Avensis": {
-      "2008-2018 (T270)": "Izuzetno pouzdan i mehanicki besprekoran. Motori 2.0 i 2.2 D-4D bez poznatih mana. Proveriti samo opste stanje trapa."
-    },
-    "C-HR": {
-      "2016+": "Hibridni sistem pouzdan. Proveriti stanje niskih pragova — lako se ostecuju pri parkingu. Zvucna izolacija slaba. Proveriti Toyota Safety Sense kameru."
-    }
-  },
-  "Honda": {
-    "Civic": {
-      "2006-2011 (Mk8)": "Motori 1.8 i-VTEC i 2.2 i-CDTi generalno pouzdani. Proveriti stanje zamajca i kvacila. Rdja na pragu vrata na starijim primercima.",
-      "2012-2017 (Mk9)": "Motor 1.6 i-DTEC izuzetno ekonomican. Proveriti greske na touch ekranu i senzorima parkiranja. Proveriti stanje zadnjeg trapa.",
-      "2017+ (Mk10)": "Motor 1.5 VTEC Turbo (K20C4) — rani primerci imali problem sa mesanjem ulja i benzina u hladnim uslovima. CVT menjac pouzdan."
-    },
-    "CR-V": {
-      "2006-2012 (Mk3)": "Pouzdan SUV. Proveriti 4WD elektromagnetno kvacilo zadnjeg diferenciala. Motor 2.2 i-CDTi dobar.",
-      "2012-2018 (Mk4)": "Motor 1.6 i-DTEC 4WD — proveriti stanje 4WD kvacila.",
-      "2018+ (Mk5)": "Hibridni sistem pouzdan. CVT — proveriti. Honda Sensing — proveriti greske."
-    },
-    "Jazz": {
-      "2008-2015 (Mk2)": "Jedan od najprakticnijih malih auta. Mehanicki pouzdan. Magic Seat mehanizam — proveriti da li se pravilno sklapa.",
-      "2015-2020 (Mk3)": "Motor 1.3 benzinac pouzdan. Automatski menjac — proveriti na trzanje."
-    },
-    "HR-V": {
-      "2015-2021 (Mk2)": "Motor 1.5 VTEC pouzdan. CVT menjac — proveriti stanje. 4WD — proveriti stanje kvacila."
-    }
-  },
-  "Ford": {
-    "Focus": {
-      "2004-2010 (Mk2)": "Prednji trap slozene geometrije — skuplji od VW za servis. Motor 1.6 TDCi solidan ali EGR ventil cesto zapusa.",
-      "2011-2018 (Mk3)": "PowerShift (DCT) menjac — KRITICNA mana, trza, kliza. Izbegavati PowerShift verziju! Manuelni menjac pouzdan.",
-      "2018+ (Mk4)": "8F24 automatski menjac mnogo bolji. Proveriti SYNC 3 infotainment i greske na prednjoj kameri."
-    },
-    "Mondeo": {
-      "2007-2014 (Mk4)": "PowerShift — isti kriticni problem, izbegavati. Motor 2.0 TDCi pouzdan. EGR i DPF proveriti.",
-      "2014-2022 (Mk5)": "Hibridni sistem proveriti. Rdja na donjim ivicama vrata. 8AT menjac bolji."
-    },
-    "Kuga": {
-      "2008-2012 (Mk1)": "Motor 2.0 TDCi dobar. Proveriti 4WD sistem i servolaktricu.",
-      "2012-2019 (Mk2)": "PowerShift automatik — izbegavati. Motori 1.5/2.0 EcoBoost — proveriti rashladni sistem.",
-      "2019+ (Mk3)": "PHEV verzija imala problem sa pozarom (opoziv!) — proveriti da li je opoziv izvrsen. Hibridni sistem proveriti."
-    },
-    "Fiesta": {
-      "2008-2017 (Mk7)": "Pouzdan mali auto. Motor 1.5 TDCi dobar. PowerShift ako je automatik — proveriti.",
-      "2017+ (Mk8)": "Motor 1.0 EcoBoost — proveriti rashladni sistem (termostat i EGR hladnjak — poznata mana)."
-    },
-    "Ranger": {
-      "2011-2022 (Mk3)": "Pouzdan picap. Motori 2.0 i 3.2 TDCi dobri. Proveriti 4x4 sistem i kardan. Rdja ispod podvozja na starijim primercima."
-    }
-  },
-  "Hyundai": {
-    "i30": {
-      "2007-2012 (Mk1)": "Pouzdan ali jeftina plastika. Motor 1.6 CRDi dobar. Rdja na pragu.",
-      "2012-2017 (Mk2)": "Poboljsan kvalitet. Motor 1.6 GDI — naslage uglja na ventilima (direktno ubrizgavanje).",
-      "2017+ (Mk3)": "N-Line i N verzije odlicne. Motor 1.4/1.6 T-GDi dobar. Proveriti kocione diskove."
-    },
-    "Tucson": {
-      "2004-2009 (Mk1)": "Proveriti 4WD sistem i kardan. Plastika izbledela.",
-      "2015-2021 (Mk3)": "Motor 1.6 T-GDi solidan. DCT menjac — proveriti na trzanje.",
-      "2021+ (Mk4)": "HTRAC AWD i greske na ekranima proveriti. Hibrid pouzdan."
-    },
-    "i20": {
-      "2008-2014 (Mk1)": "Pouzdan. Proveriti koroziju blatobrana.",
-      "2014-2020 (Mk2)": "Motor 1.0 T-GDi pouzdan. DCT menjac proveriti."
-    },
-    "Santa Fe": {
-      "2012-2018 (Mk3)": "Motor 2.2 CRDi pouzdan. HTRAC AWD — proveriti stanje.",
-      "2018+ (Mk4)": "Motor 2.0/2.2 CRDi dobar. Proveriti greske na senzorima i kamerama."
+    "Arona": {
+      "2017+": "Motor 1.0 TSI i 1.5 TSI pouzdani. DSG7 trza. Proveriti Full Link sistem i greške na senzorima."
     }
   },
   "Volvo": {
     "V40": {
-      "2012-2019": "Motor 2.0 D (D2, D3, D4) pouzdan ali proveriti DPF i stanje lanca razvoda. Geartronic automatski menjac — proveriti stanje. Proveriti rad panoramskog krova i odvode. Proveriti stanje bluetooth/Sensus sistema."
+      "2012-2019": "Motori D2/D3/D4 pouzdani ali proveriti DPF i lanac razvoda. Geartronic automat — proveriti. Panoramski krov — odvodi. Sensus sistem spor."
     },
     "V60": {
-      "2010-2018 (Mk1)": "Motor D3/D4 pouzdan ali proveriti EGR i DPF. Proveriti stanje Powershift menjaca na ranijim verzijama. Rdja na donjim ivicama vrata. Proveriti stanje BLIS sistema (blind spot).",
-      "2018+ (Mk2)": "Nove pogonske linije (B4/B5 mild-hibrid). Proveriti stanje Pilot Assist sistema. Sensus ekran sporiji od konkurencije."
+      "2010-2018 (Mk1)": "Motori D3/D4 pouzdani, proveriti EGR i DPF. Powershift menjač na ranijim verzijama — proveriti. Rđa na donjim ivicama vrata.",
+      "2018+ (Mk2)": "Motori B4/B5 mild-hibrid. Pilot Assist — proveriti. Sensus ekran sporiji od konkurencije. T8 PHEV — proveriti bateriju."
+    },
+    "V90": {
+      "2016+": "Motor D4/D5 i benzinac T5/T6 pouzdani. Air Suspension (opcija) — proveriti. Pilot Assist — proveriti greške. Proveriti B&W audio sistem."
+    },
+    "XC40": {
+      "2017+": "Motor T3/T4/T5 benzinac i D3/D4 diesel pouzdani. 8AT menjač dobar. Proveriti Pilot Assist i greške na kamerama. Električna XC40 (Recharge) — proveriti kapacitet baterije (78 kWh)."
     },
     "XC60": {
-      "2008-2017 (Mk1)": "Motor D4 pouzdan. Proveriti stanje AWD sistema (Haldex). Proveriti rdju ispod zadnjeg braniku i pragova. ActiveBending farovi — proveriti rad.",
-      "2017+ (Mk2)": "Kvalitetno vozilo. Motori B4/B5 dobar. T8 PHEV — proveriti stanje visokonaponske baterije. Proveriti Pilot Assist."
+      "2008-2017 (Mk1)": "Motor D4 pouzdan. AWD Haldex proveriti. Rđa ispod zadnjeg branika.",
+      "2017+ (Mk2)": "Motori B4/B5 dobri. T8 PHEV — proveriti bateriju. Pilot Assist proveriti greške. Air Suspension (opcija) skupo."
     },
     "XC90": {
-      "2015+": "Komplikovan auto sa mnogo elektronike. Motor T6/T8 PHEV — proveriti stanje baterije. Proveriti stanje Air Suspension ogibljenja. Proveriti sve Sensus ekrane i upravljacke sisteme."
+      "2015+": "Komplikovan auto sa mnogo elektronike. T8 PHEV baterija — proveriti kapacitet. Air Suspension (opcija) — proveriti. Sensus ekrani proveriti. B&W audio — proveriti."
     }
   },
   "Mazda": {
-    "Mazda3": {
-      "2013-2018 (BM/BN)": "Generalno pouzdan auto. Motor 2.0 SkyActiv-G benzinac i 2.2 SkyActiv-D diesel — bez poznatih vecih mana. Proveriti stanje zadnjeg trapa i amortizera. Proveriti MZD Connect infotainment sistem.",
-      "2018+ (BP)": "Novi motor SkyActiv-X (kompresijsko paljenje) — originalna tehnologija ali proveriti greske na sistemu. Proveriti stanje e-SkyActiv sistema. Proveriti i-Activsense paket."
+    "Mazda2": {
+      "2014+ (DJ)": "Motor 1.5 SkyActiv-G pouzdan. AT menjač — proveriti stanje. Proveriti i-ActivSense sistem. Enterijer kvalitetan za klasu."
     },
-    "CX-5": {
-      "2012-2017 (Mk1)": "Izuzetno pouzdan SUV. Motori SkyActiv-G i SkyActiv-D bez poznatih mana. Proveriti stanje AWD sistema (i-Activ AWD).",
-      "2017+ (Mk2)": "Poboljsan kvalitet enterijera. Motori SkyActiv i dalje pouzdani. Proveriti stanje MZD Connect ekrana i i-Activsense senzora."
+    "Mazda3": {
+      "2013-2018 (BM/BN)": "Pouzdan auto. Motori 2.0 SkyActiv-G i 2.2 SkyActiv-D bez poznatih mana. Proveriti MZD Connect infotainment.",
+      "2018+ (BP)": "Motor SkyActiv-X (kompresijsko paljenje) — proveriti greške na sistemu. i-Activsense paket proveriti. Enterijer premium kvaliteta za klasu."
     },
     "Mazda6": {
-      "2012-2018 (GJ)": "Pouzdan i prostran auto. Motor 2.2 SkyActiv-D diesel — pouzdan. Proveriti stanje 6AT menjaca. Proveriti stanje enterijera.",
-      "2018+ (GL facelift)": "Isti motori, poboljan enterijer. Proveriti greske na i-Activsense sistemu i Mazda Connect ekranu."
+      "2012-2018 (GJ)": "Pouzdan i prostran auto. Motor 2.2 SkyActiv-D diesel pouzdan. 6AT menjač proveriti stanje.",
+      "2018+ (GL facelift)": "Isti motori, poboljšan enterijer. i-Activsense i Mazda Connect proveriti. Motor 2.5 Turbo (opcija) proveriti."
+    },
+    "CX-5": {
+      "2012-2017 (Mk1)": "Izuzetno pouzdan SUV. SkyActiv motori bez poznatih mana. i-Activ AWD proveriti.",
+      "2017+ (Mk2)": "Poboljšan enterijer. Motori i dalje pouzdani. MZD Connect i i-Activsense proveriti. Motor 2.5 Turbo pouzdan."
+    },
+    "CX-30": {
+      "2019+": "Motor 2.0 SkyActiv-X i 2.0 SkyActiv-G pouzdani. i-Activsense — proveriti greške. Enterijer premium kvaliteta. Proveriti stanje AWD sistema."
+    },
+    "MX-5": {
+      "2015+ (ND)": "Motor 1.5 i 2.0 SkyActiv-G pouzdani. Proveriti stanje platna krova na kabriolet verziji. Sportski trap osetljiv na loše puteve. Proveriti stanje kočnica."
     }
   },
   "Subaru": {
     "Impreza": {
-      "2007-2011 (Mk3)": "Motor EJ20 boxer — KRITICNO proveriti brtvu glave (poznat problem svih EJ motora — emulzija ulja i rashladne tecnosti). Proveriti stanje simetricnog AWD sistema i manuelnog menjaca.",
+      "2007-2011 (Mk3)": "Motor EJ20 boxer — KRITIČNO proveriti brtvu glave (poznat problem svih EJ motora — emulzija ulja i rashladne tečnosti). Proveriti stanje simetričnog AWD sistema i manuelnog menjača.",
       "2011-2016 (Mk4)": "Motor FB20 — manje problema sa brtvu glave ali i dalje proveriti. Proveriti AWD sistem i diferencijal.",
-      "2016+ (Mk5)": "Motori FB generacije pouzdaniji. CVT Lineartronic menjac — proveriti. EyeSight stereo kamera — proveriti greske i kalibraciju."
+      "2016+ (Mk5)": "Motori FB generacije pouzdaniji. CVT Lineartronic menjač — proveriti. EyeSight stereo kamera — proveriti greške i kalibraciju."
     },
     "Forester": {
-      "2008-2013 (Mk3)": "Motor EJ25 — KRITICNO proveriti brtvu glave (najcesci problem na Subaru EJ motorima). Proveriti AWD sistem.",
+      "2008-2013 (Mk3)": "Motor EJ25 — KRITIČNO proveriti brtvu glave (najčešći problem na Subaru EJ motorima). Proveriti AWD sistem.",
       "2013-2018 (Mk4)": "Motor FB25 bolji, manje mana. CVT — proveriti. EyeSight — proveriti.",
-      "2018+ (Mk5)": "Motor e-Boxer hibrid. Proveriti stanje baterije i elektricnog motora. EyeSight kamere."
+      "2018+ (Mk5)": "Motor e-Boxer blagi hibrid. Proveriti stanje baterije i elektromotora. EyeSight kamere proveriti kalibraciju."
     },
     "Outback": {
       "2009-2014 (Mk4)": "Motor EJ25 — ista napomena sa brtvu glave kao Forester. AWD pouzdan.",
-      "2014-2019 (Mk5)": "Motor FB25 bolji. CVT Lineartronic proveriti. EyeSight proveriti."
+      "2014-2019 (Mk5)": "Motor FB25 bolji. CVT Lineartronic proveriti. EyeSight proveriti.",
+      "2019+ (Mk6)": "Motor 2.4 turbo i EyeSight proveriti. CVT poboljšan. Proveriti stanje AWD sistema."
+    },
+    "Legacy": {
+      "2009-2014 (Mk5)": "Iste napomene kao Outback Mk4. Motor EJ25 — proveriti brtvu glave. CVT — proveriti.",
+      "2014+ (Mk6)": "Motor FB25 bolji. CVT Lineartronic proveriti. EyeSight proveriti greške na kamerama."
     }
   },
   "Jeep": {
+    "Wrangler": {
+      "2007-2018 (JK)": "Motor 3.6 Pentastar V6 pouzdan. Proveriti stanje 4WD sistema i kardana. Rđa ispod podvozja česta. Proveriti stanje soft-top ili hard-top krova.",
+      "2018+ (JL)": "Motor 2.0 Turbo i 3.6 V6 pouzdani. Proveriti eTorque mild-hibrid sistem. Uconnect 4 — proveriti greške. Proveriti stanje 4WD sistema (Rock-Trac ili Command-Trac)."
+    },
     "Cherokee": {
-      "2013-2018 (KL)": "9-stepeni ZF automat (948TE) — PROBLEMATICNI na ranim primercima, trza i sporo menja. Proveriti da li je softver azuriran. Motor 2.4 Tigershark — potrosnja ulja cest problem. Proveriti 4x4 Active Drive sistem.",
-      "2019+ (KL facelift)": "Poboljsan 9AT ali proveriti. Uconnect 4 sistema — proveriti greske."
+      "2013-2018 (KL)": "9-stepeni ZF automat (948TE) — problematičan na ranim primercima, trza i sporo menja. Proveriti da li je softver ažuriran. Motor 2.4 Tigershark — potrošnja ulja čest problem. Proveriti stanje 4x4 Active Drive sistema.",
+      "2019+ (KL facelift)": "Poboljšan 9AT ali proveriti. Uconnect 4 sistema — proveriti greške."
     },
     "Renegade": {
-      "2014+": "Motor 1.4 MultiAir turbo — proveriti stanje DDCT kvacila i turbine. 4x4 elektricni motor na zadnjoj osovini — proveriti. 9AT automat spor."
+      "2014+": "Motor 1.4 MultiAir turbo — proveriti stanje DDCT kvačila i turbine. 4x4 električni motor na zadnjoj osovini — proveriti. 9AT automat spor na manjim verzijama."
     },
     "Compass": {
-      "2017+": "Motor 1.4 MultiAir i 2.0 MultiJet — proveriti DDCT menjac. 4x4 Active Drive Low pouzdan. Uconnect proveriti."
+      "2017+": "Motor 1.4 MultiAir i 2.0 MultiJet — proveriti DDCT menjač. 4x4 Active Drive Low pouzdan. Uconnect — proveriti greške na sistemu."
+    },
+    "Grand Cherokee": {
+      "2010-2021 (WK2)": "Vazdušno oslanjanje Quadra-Lift skupo za servis. Motor 3.0 EcoDiesel — proveriti DPF i AdBlue. Proveriti stanje 4WD sistema (Quadra-Drive II).",
+      "2021+ (WL)": "Kompleksna elektronika. Motor 2.0 turbo i V6 3.6 pouzdani. PHEV (4xe) — proveriti bateriju. Proveriti Uconnect 5 i ADAS sisteme."
     }
   },
   "Land Rover": {
     "Freelander": {
-      "2006-2014 (Mk2)": "Haldex elektromagnetna IRD transferna kutija skupa za zamenu. Motor 2.2 TD4 pouzdan ali proveriti stanje glave motora i hladnjaka. Rdja na pragovima i ispod blatobrana."
+      "2006-2014 (Mk2)": "Haldex elektromagnetna IRD transferna kutija skupa za zamenu. Motor 2.2 TD4 pouzdan ali proveriti stanje glave motora i hladnjaka. Rđa na pragovima i ispod blatobrana."
     },
     "Discovery Sport": {
-      "2014+": "Motor 2.0 Ingenium diesel pouzdan ali proveriti lanac razvoda. 9AT automat — proveriti trzanje. Proveriti elektricki AWD sistem i InControl Touch infotainment."
+      "2014+": "Motor 2.0 Ingenium diesel pouzdan ali proveriti lanac razvoda. 9AT automat — proveriti trzanje. Proveriti električki AWD sistem i InControl Touch infotainment."
+    },
+    "Discovery": {
+      "2016+ (Mk5)": "Motor 3.0 TDV6 i 2.0 Sd4 pouzdani. Proveriti stanje vazdušnog oslanjanja. Terrain Response sistem proveriti. InControl Pro — proveriti greške."
     },
     "Range Rover Evoque": {
-      "2011-2018 (Mk1)": "Rani 9AT automat trza — proveriti. Motor 2.0 Si4 i eD4 — proveriti stanje lanca. Elektricki sistemi cescce otkazuju od proseka.",
-      "2018+ (Mk2)": "Poboljsan kvalitet. PHEV verzija — proveriti bateriju. Terrain Response sistem proveriti."
+      "2011-2018 (Mk1)": "Rani 9AT automat trza — proveriti. Motor 2.0 Si4 i eD4 — proveriti stanje lanca. Električki sistemi češće otkazuju od proseka.",
+      "2018+ (Mk2)": "Poboljšan kvalitet. PHEV verzija — proveriti bateriju. Terrain Response sistem proveriti. Proveriti stanje infotainment sistema."
+    },
+    "Range Rover Sport": {
+      "2013-2022 (Mk2)": "Motor 3.0 TDV6 i SDV8 pouzdani. Vazdušno oslanjanje — proveriti visinu i kompresore. Proveriti stanje Terrain Response 2 sistema.",
+      "2022+ (Mk3)": "Motor 3.0 i6 i PHEV pouzdani. Kompleksna Pivi Pro elektronika — proveriti. Proveriti stanje vazdušnog oslanjanja."
     }
   },
   "Citroen": {
-    "C4": {
-      "2010-2018 (Mk2)": "BSI elektronski modul otkazuje bez razloga (ista platforma kao Peugeot). Motor 1.6 THP benzinac — isti lanac problem. Motor 1.6 HDi pouzdan. Proveriti Active Suspension vazdusne jastuike ako su prisutni.",
-      "2020+ (Mk3)": "Motor 1.2 PureTech — isti lanac problem kao Peugeot. EAT8 automat proveriti. Proveriti digitalnu tablu."
-    },
     "C3": {
-      "2010-2016 (Mk2)": "BSI elektronika sitnicava. Motor 1.4 HDi pouzdan. Proveriti enterijer.",
-      "2016+ (Mk3)": "Motor 1.2 PureTech — proveriti lanac. Airbump gumice na vrtima — proveriti stanje. Touch ekran proveriti."
+      "2010-2016 (Mk2)": "BSI elektronika sitničava. Motor 1.4 HDi pouzdan. Proveriti enterijer. Rđa ispod pragova.",
+      "2016+ (Mk3)": "Motor 1.2 PureTech — proveriti lanac razvoda (isti problem kao Peugeot). Airbump gumice na vratima — proveriti stanje. Touch ekran proveriti."
+    },
+    "C4": {
+      "2010-2018 (Mk2)": "BSI elektronski modul otkazuje bez razloga. Motor 1.6 THP benzinac — isti lanac problem. Motor 1.6 HDi pouzdan. Proveriti Active Suspension vazdušne jastuke ako su prisutni.",
+      "2020+ (Mk3)": "Motor 1.2 PureTech — isti lanac problem kao Peugeot. EAT8 automat proveriti. Proveriti digitalnu tablu. Električna ë-C4 — proveriti kapacitet baterije."
     },
     "C5": {
-      "2008-2017 (Mk2)": "Hydractive 3+ hidropneumatsko ogibljenje (SF system, Citroenov jedinstevni sistem) — fantasticna udobnost ali SKUPO za popravku. Proveriti nivo hidraulicne tecnosti i curenje. BSI elektronika."
+      "2008-2017 (Mk2)": "Hydractive 3+ hidropneumatsko oslanjanje (SF sistem) — fantastična udobnost ali SKUPO za popravku. Proveriti nivo hidraulične tečnosti i curenje. BSI elektronika."
+    },
+    "C5 Aircross": {
+      "2018+": "Motor 1.5 BlueHDi i 1.6 PureTech pouzdani. EAT8 menjač — proveriti stanje. Proveriti stanje Advanced Comfort oslanjanja. Infotainment — proveriti greške."
+    },
+    "Berlingo": {
+      "2018+ (Mk3)": "Motor 1.5 BlueHDi pouzdan. EAT8 menjač na pojedinim verzijama. Proveriti stanje kliznih vrata i mehanizma. Proveriti stanje infotainment sistema."
     }
   },
   "Mitsubishi": {
     "Outlander": {
-      "2012-2021 (Mk3)": "PHEV verzija — proveriti kapacitet visokonaponske baterije (opada sa godinama). Motor 2.0 benzinac pouzdan. CVT menjac na benzincima proveriti. PHEV elektricni motori — proveriti greske.",
-      "2021+ (Mk4)": "Nova platforma. Hibridni sistem — proveriti. MI-Pilot asistencija — proveriti greske na kamerama."
+      "2012-2021 (Mk3)": "PHEV verzija — proveriti kapacitet visokonaponske baterije (opada sa godinama). Motor 2.0 benzinac pouzdan. CVT menjač na benzincima proveriti. PHEV električni motori — proveriti greške.",
+      "2021+ (Mk4)": "Nova platforma. Hibridni sistem — proveriti. MI-Pilot asistencija — proveriti greške na kamerama."
     },
     "ASX": {
-      "2010-2022 (Mk1)": "Motor 2.0 MIVEC pouzdan. CVT — proveriti nivo i boju ulja. Rdja ispod blatobrana. Proveriti S-AWC 4WD sistem.",
-      "2022+ (Mk2)": "Sada Renault Captur platforma. Motor 1.3 TCe — proveriti stanje lanca."
+      "2010-2022 (Mk1)": "Motor 2.0 MIVEC pouzdan. CVT — proveriti nivo i boju ulja. Rđa ispod blatobrana. Proveriti S-AWC 4WD sistem.",
+      "2022+ (Mk2)": "Sada Renault Captur platforma. Motor 1.3 TCe — proveriti stanje lanca. Hibridni sistem proveriti."
     },
     "L200": {
-      "2015+": "Pouzdan picap. Motor 2.4 DiD diesel dobar. Proveriti 4WD sistem (4Super Select) i kardan. Rdja ispod podvozja na starijim primercima."
+      "2015+ (Mk5)": "Pouzdan pikap. Motor 2.4 DiD diesel dobar. Proveriti 4WD sistem (4Super Select) i kardan. Rđa ispod podvozja na starijim primercima."
+    },
+    "Eclipse Cross": {
+      "2017+": "Motor 1.5 turbo benzinac — proveriti turbinu. 4WD S-AWC sistem pouzdan. Proveriti stanje infotainment sistema i kamera."
+    },
+    "Pajero": {
+      "2006-2019 (Mk4)": "Motor 3.2 DI-D diesel pouzdan i robusno. Proveriti stanje Super-Select 4WD sistema i diferenci jala. Rđa ispod podvozja na starijim primercima. Auto-Transfer menjač proveriti."
     }
   },
   "Dacia": {
     "Logan": {
-      "2012-2020 (Mk2)": "Jedan od najpouzdanijih i najjeftinijih za odrzavanje. Motor 1.5 dCi (K9K) odlican. Proveriti rdju ispod blatobrana i pragova. Plasticni delovi lako zamenjivi.",
-      "2020+ (Mk3)": "Poboljsan kvalitet. Motor 1.0 TCe 100 proveriti. MediaNav zastareo ali funkcionalan."
+      "2012-2020 (Mk2)": "Jedan od najpouzdanijih i najjeftinijih za održavanje. Motor 1.5 dCi (K9K) odličan. Proveriti rđu ispod blatobrana i pragova. Plastični delovi lako i jeftino zamenljivi.",
+      "2020+ (Mk3)": "Poboljšan kvalitet gradnje. Motor 1.0 TCe 100 proveriti. MediaNav zastareo ali funkcionalan. TCe motor — proveriti turbinu."
     },
     "Sandero": {
-      "2012-2020 (Mk2)": "Iste napomene kao Logan Mk2. Stepway — proveriti stanje visokog trapa.",
-      "2020+ (Mk3)": "Poboljsan kvalitet. Isti motori. Proveriti MediaControl sistem."
+      "2012-2020 (Mk2)": "Iste napomene kao Logan Mk2. Stepway — proveriti stanje visokog trapa i zaštite ispod auta.",
+      "2020+ (Mk3)": "Poboljšan kvalitet. Isti motori. Proveriti MediaControl sistem. Stepway verzija odlična za naše puteve."
     },
     "Duster": {
-      "2010-2017 (Mk1)": "Pouzdan za nase puteve. Motor 1.5 dCi odlican. 4WD pouzdan. Zvucna izolacija losija.",
-      "2017-2023 (Mk2)": "Motor 1.3 TCe — proveriti turbinu i ulje. MediaNAV zastareo. 4WD dobar.",
-      "2023+ (Mk3)": "Nova platforma CMF-B. Proveriti novi MediaNav sistem."
+      "2010-2017 (Mk1)": "Pouzdan za naše puteve. Motor 1.5 dCi odličan. 4WD pouzdan. Zvučna izolacija losija.",
+      "2017-2023 (Mk2)": "Motor 1.3 TCe turbo benzinac — proveriti turbinu i ulje. MediaNAV sistem zastareo. 4WD i dalje pouzdan.",
+      "2023+ (Mk3)": "Nova CMF-B platforma. Motor 1.2 TCe hibrid i 1.3 TCe pouzdan. Proveriti novi infotainment sistem."
     },
     "Spring": {
-      "2021+": "Elektricni auto. Proveriti stanje baterije (30 kWh). Spor punjac (3.7 kW AC). Realan domet oko 180-200 km. Kvalitet gradnje skroman."
-    }
-  },
-  "Volvo": {
-    "V40": {
-      "2012-2019": "Motori D2/D3/D4 pouzdani ali proveriti DPF i lanac razvoda. Geartronic automat — proveriti. Panoramski krov — odvodi. Sensus sistem."
+      "2021+": "Električni auto. Proveriti stanje baterije (26 kWh). Spor punjač (3,7 kW AC). Realan domet oko 180-200 km. Kvalitet gradnje skroman ali funkcionalan."
     },
-    "V60": {
-      "2010-2018 (Mk1)": "Motori D3/D4 pouzdani, proveriti EGR i DPF. Powershift menjac na ranijim verzijama — proveriti. Rdja na donjim ivicama vrata.",
-      "2018+ (Mk2)": "Motori B4/B5 mild-hibrid. Pilot Assist — proveriti. Sensus ekran sporiji od konkurencije."
-    },
-    "XC60": {
-      "2008-2017 (Mk1)": "Motor D4 pouzdan. AWD Haldex proveriti. Rdja ispod zadnjeg braniku.",
-      "2017+ (Mk2)": "Motori B4/B5 dobri. T8 PHEV — proveriti bateriju. Pilot Assist proveriti."
-    },
-    "XC90": {
-      "2015+": "Komplikovan auto sa mnogo elektronike. T8 PHEV baterija — proveriti kapacitet. Air Suspension opcija — proveriti. Sensus ekrani proveriti."
-    }
-  },
-  "Mazda": {
-    "Mazda3": {
-      "2013-2018 (BM/BN)": "Pouzdan auto. Motori 2.0 SkyActiv-G i 2.2 SkyActiv-D bez poznatih vecih mana. Proveriti MZD Connect infotainment.",
-      "2018+ (BP)": "Motor SkyActiv-X (kompresijsko paljenje) — proveriti greske na sistemu. i-Activsense paket proveriti."
-    },
-    "CX-5": {
-      "2012-2017 (Mk1)": "Izuzetno pouzdan SUV. SkyActiv motori bez poznatih mana. i-Activ AWD proveriti.",
-      "2017+ (Mk2)": "Poboljsan enterijer. Motori i dalje pouzdani. MZD Connect i i-Activsense proveriti."
-    },
-    "Mazda6": {
-      "2012-2018 (GJ)": "Pouzdan i prostran. Motor 2.2 SkyActiv-D dobar. 6AT menjac proveriti.",
-      "2018+ (GL facelift)": "Isti motori, bolji enterijer. i-Activsense i Mazda Connect proveriti."
+    "Jogger": {
+      "2021+": "Motor 1.0 TCe pouzdan. 7-sedišni auto niske cene. Proveriti stanje trećeg reda sedišta. MediaControl sistem — proveriti greške."
     }
   },
   "Suzuki": {
     "Swift": {
-      "2010-2017 (Mk4)": "Lagani i ekonomican auto. Motor 1.2 benzinac pouzdan. CVT menjac na automatiku — proveriti. Proveriti rdju ispod blatobrana na starijim primercima.",
-      "2017+ (Mk5)": "Nova platforma, laksi auto. Motor 1.0 BoosterJet turbo — proveriti stanje turbine. Mild-hibridni sistem (SHVS) pouzdan. Proveriti stanje AllGrip 4WD ako je prisutan."
+      "2010-2017 (Mk4)": "Lagan i ekonomičan auto. Motor 1.2 benzinac pouzdan. CVT menjač na automatiku — proveriti. Proveriti rđu ispod blatobrana na starijim primercima.",
+      "2017+ (Mk5)": "Nova platforma, lakši auto. Motor 1.0 BoosterJet turbo — proveriti stanje turbine. Mild-hibridni sistem (SHVS) pouzdan. Proveriti stanje AllGrip 4WD ako je prisutan.",
+      "2023+ (Mk6)": "Novi hibridni sistem poboljšan. Motor 1.2 DualJet hibrid pouzdan. Proveriti stanje infotainment sistema."
     },
     "Vitara": {
-      "2015+": "Motor 1.0 i 1.4 BoosterJet turbo — proveriti turbinu. AllGrip 4WD sistem pouzdan. Proveriti stanje infotainment sistema i greske na senzorima."
+      "2015+": "Motor 1.0 i 1.4 BoosterJet turbo — proveriti turbinu. AllGrip 4WD sistem pouzdan. Proveriti stanje infotainment sistema i greške na senzorima.",
+      "2018+ (facelift)": "Poboljšan mild-hibridni sistem. Motor 1.4 BoosterJet MHEV pouzdan. Proveriti stanje AllGrip sistema."
     },
     "SX4 S-Cross": {
-      "2013+": "Motor 1.6 DDiS diesel i 1.4 BoosterJet benzinac — proveriti stanje. AllGrip AWD sistem pouzdan. Proveriti stanje enterijera i ekrana."
+      "2013+": "Motor 1.6 DDiS diesel i 1.4 BoosterJet benzinac — proveriti stanje. AllGrip AWD sistem pouzdan. Proveriti stanje enterijera i ekrana.",
+      "2021+ (Mk2)": "Potpuno novi model. Motor 1.4 BoosterJet MHEV pouzdan. Proveriti stanje AllGrip AWD sistema i infotainment ekrana."
+    },
+    "Jimny": {
+      "2018+ (Mk4)": "Mali ali robusni offroad auto. Motor 1.5 benzinac pouzdan. 4WD sistem AllGrip Pro odličan. Ograničena nosivost i mala kabina — proveriti stanje interijera i 4WD sistema."
+    },
+    "Across": {
+      "2020+": "Rebrendiran Toyota RAV4 PHEV. Proveriti kapacitet baterije i PHEV sistem. Toyota platforma — visoka pouzdanost. Proveriti softverske greške na informacionom sistemu."
     }
   },
   "Porsche": {
     "Cayenne": {
-      "2010-2017 (Mk2)": "Motor 3.0 TDI diesel — proveriti stanje turbina i DPF. Vazdusno ogibljenje PASM skupo za servis. Proveriti stanje PDK menjaca i svih elektricnih sistema.",
-      "2017+ (Mk3)": "Kompleksna elektronika. Motor V6 turbo i V8 — proveriti stanje turbina. PHEV (e-Hybrid) — proveriti bateriju. PCM infotainment — proveriti greske."
+      "2010-2017 (Mk2)": "Motor 3.0 TDI diesel — proveriti stanje turbina i DPF. Vazdušno oslanjanje PASM skupo za servis. Proveriti stanje PDK menjača i svih el. sistema.",
+      "2017+ (Mk3)": "Kompleksna elektronika. Motor V6 turbo i V8 — proveriti stanje turbina. PHEV (e-Hybrid) — proveriti bateriju. PCM infotainment — proveriti greške."
     },
     "Macan": {
-      "2014+": "Motor 2.0 TFSI i 3.0 TDI — proveriti potrosnju ulja i stanje turbina. PDK menjac pouzdan ali proveriti stanje ulja. Proveriti stanje PASM ogibljenja i PCM sistema."
+      "2014-2021": "Motor 2.0 TFSI i 3.0 TDI — proveriti potrošnju ulja i stanje turbina. PDK menjač pouzdan ali proveriti stanje ulja. Proveriti stanje PASM oslanjanja i PCM sistema.",
+      "2024+ (EV)": "Električni Macan na PPE platformi. Proveriti kapacitet baterije. Proveriti softverske greške na novom PCM sistemu."
+    },
+    "911": {
+      "1997-2004 (996)": "IMS ležaj (Intermediate Shaft Bearing) — može puknuti bez upozorenja i uništiti motor. KRITIČNO proveriti da li je menjan. Motor Tiptronic osetljiv.",
+      "2004-2011 (997)": "Rani primerci (do 2009) imaju isti IMS problem kao 996. Kasniji primerci sa direktnim ubrizgavanjem (DFI) imaju problem sa naslugama uglja na ventilima.",
+      "2011+ (991/992)": "Motor PDK menjač odličan. Proveriti stanje turbo sistema (Turbo verzije). Proveriti PCM navigaciju i greške na ADAS sistemima."
+    },
+    "Panamera": {
+      "2009-2016 (Mk1)": "Kompleksna elektronika — obavezna puna dijagnostika. Motor V6 TDI i V8 — proveriti turbine. PDK menjač pouzdan.",
+      "2016+ (Mk2)": "Visokotehnološki auto sa mnogo elektronike. Motor 4.0 V8 Twin-Turbo pouzdan. Proveriti PDCC aktivno oslanjanje. PCM ekrani — proveriti."
     }
   },
   "Chevrolet": {
     "Cruze": {
-      "2009-2015": "Motor 1.6 benzinac pouzdan ali bez snage. Motor 2.0 VCDI diesel — proveriti EGR i DPF. Preveriti rdju na donjim ivicama vrata. Automatski menjac 6AT — proveriti stanje.",
-      "2015-2019 (Mk2)": "Motor 1.4 Turbo — proveriti stanje turbine. Proveriti stanje enterijera — plastika jeftinijeg kvaliteta."
+      "2009-2015 (Mk1)": "Motor 1.6 benzinac pouzdan ali bez snage. Motor 2.0 VCDI diesel — proveriti EGR i DPF. Proveriti rđu na donjim ivicama vrata. 6AT — proveriti stanje.",
+      "2015-2019 (Mk2)": "Motor 1.4 Turbo — proveriti stanje turbine. Proveriti stanje enterijera — plastika jeftinijeg kvaliteta. MyLink infotainment — proveriti."
     },
     "Orlando": {
-      "2010-2018": "Motor 2.0 VCDI diesel pouzdan. EGR ventil cesto zapusa. Proveriti stanje kliznih vrata i trece linije sedista. Rdja na donjim ivicama vrata."
+      "2010-2018": "Motor 2.0 VCDI diesel pouzdan. EGR ventil se često začepljuje. Proveriti stanje kliznih vrata i trećeg reda sedišta. Rđa na donjim ivicama vrata."
+    },
+    "Captiva": {
+      "2006-2018": "Motor 2.0 VCDI diesel pouzdan. Proveriti stanje 4WD sistema i kardana. Proveriti stanje enterijera i plastike. EGR ventil — proveriti."
+    },
+    "Aveo": {
+      "2011-2015": "Pouzdan mali auto. Motor 1.2 i 1.4 benzinac bez poznatih mana. Proveriti rđu ispod blatobrana. Plastika enterijera jeftina."
+    }
+  },
+  "Tesla": {
+    "Model 3": {
+      "2017+": "Električno vozilo. Proveriti kapacitet baterije (Long Range: 75 kWh, Standard: 54 kWh). Proveriti panel gaps na karoseriji — neravni zazori česti. Autopilot kamera — proveriti kalibraciju. Proveriti stanje enterijera — rano habanje na nekim materijalima."
+    },
+    "Model Y": {
+      "2021+": "Električni SUV. Proveriti kapacitet baterije (Long Range: 75 kWh). Proveriti panel gaps. Proveriti zvuci iz oslanjanja na hladnom. Autopilot — proveriti greške. Proveriti stanje toplotne pumpe."
+    },
+    "Model S": {
+      "2012-2016": "Proveriti kapacitet baterije — degradacija može biti 20-30%. Proveriti stanje MCU1 (Media Control Unit) — čest kvar, skupa zamena. Proveriti falcon wing vrata (Model X).",
+      "2016+": "Proveriti kapacitet baterije. MCU2 pouzdan. Proveriti Autopilot kamere. Air Suspension — proveriti stanje."
+    }
+  },
+  "Volkswagen (Komercijalna)": {
+    "Transporter": {
+      "2003-2015 (T5)": "Motor 2.0 TDI pouzdan. Proveriti stanje kliznih vrata i mehanizma. Rđa na donjim ivicama vrata i pragovima. EGR ventil — proveriti. DSG menjač trza.",
+      "2015+ (T6)": "Motor 2.0 TDI poboljšan. Proveriti AdBlue sistem. DSG7 trzanje standardno. Proveriti stanje kliznih vrata i mehanizma."
+    },
+    "Crafter": {
+      "2006-2016 (Mk1)": "Motor 2.0/2.5 TDI pouzdan. Proveriti EGR ventil i DPF. Rđa ispod blatobrana i na donjim ivicama vrata.",
+      "2016+ (Mk2)": "Motor 2.0 TDI pouzdan. Proveriti AdBlue sistem. Proveriti stanje upravljačke letve. Parking senzori — proveriti."
+    }
+  },
+  "Lexus": {
+    "IS": {
+      "2005-2013 (Mk2)": "Motor 2.5 V6 benzinac i 2.2 diesel pouzdani. Proveriti stanje Mark Levinson audio sistema. Proveriti stanje kožnog enterijera.",
+      "2013+ (Mk3)": "Motor 2.5 hibrid (IS 300h) izuzetno pouzdan. Proveriti stanje baterije hibrida. Proveriti Touch Remote touchpad — osetljiv."
+    },
+    "RX": {
+      "2009-2015 (Mk3)": "Motor 3.5 V6 benzinac i hibrid pouzdani. Proveriti stanje enterijera i Navigation Pro sistema. CVT menjač pouzdan.",
+      "2015+ (Mk4)": "Motor 3.5 V6 hibrid izuzetno pouzdan. Proveriti stanje baterije hibrida. Remote Touch interface — proveriti."
+    },
+    "NX": {
+      "2014+": "Motor 2.0 turbo i 2.5 hibrid pouzdani. Proveriti stanje hibrida baterije. Remote Touch interface — proveriti. Proveriti stanje panoramskog krova."
+    },
+    "UX": {
+      "2018+": "Motor 2.0 hibrid pouzdan. Proveriti kapacitet baterije (EV verzija). Proveriti stanje infotainment sistema i kamera."
+    }
+  },
+  "Jaguar": {
+    "XE": {
+      "2015+": "Motor 2.0 Ingenium diesel i benzinac pouzdani. Proveriti stanje InControl Touch Pro sistema. Proveriti stanje AWD sistema na AWD verzijama. Rđa ispod pragova."
+    },
+    "XF": {
+      "2007-2015 (Mk1)": "Električna parkirna kočnica često zakazuje. Motor 3.0 V6 diesel i benzinac pouzdani. Proveriti stanje InControl sistema.",
+      "2015+ (Mk2)": "Motor 2.0 Ingenium pouzdan. Proveriti InControl Touch Pro ekran. Proveriti stanje AWD sistema."
+    },
+    "F-Pace": {
+      "2016+": "Motor 2.0 i 3.0 Ingenium diesel i benzinac pouzdani. Proveriti InControl Touch Pro. AWD sistem — proveriti. Proveriti stanje panoramskog krova."
+    },
+    "E-Pace": {
+      "2017+": "Motor 1.5 i 2.0 Ingenium pouzdan. 9AT menjač — proveriti trzanje. Proveriti InControl sistem i greške na kamerama."
+    }
+  },
+  "Infiniti": {
+    "Q30/QX30": {
+      "2016-2019": "Baziran na Mercedes A-Klasi W176. Iste mane — 7G-DCT trzanje. Motor 1.6 turbo pouzdan. Proveriti stanje enterijera i infotainment sistema."
+    },
+    "Q50": {
+      "2013+": "Motor 2.0 turbo (razvijen sa Mercedesom) — proveriti lanac. Motor 3.0 V6 Twin-Turbo pouzdan. Proveriti stanje ProPILOT Assist sistema."
+    }
+  },
+  "Abarth": {
+    "500/595": {
+      "2008+": "Motor 1.4 MultiAir turbo — proveriti stanje turbine i potrošnju ulja. Dualogic menjač trza — proveriti. Proveriti stanje performansnih kočnica na sportski voženim primercima. Proveriti enterijer."
+    }
+  },
+  "Mini": {
+    "Cooper": {
+      "2006-2013 (Mk2 R56)": "Motor 1.6 THP (Prince motor, razvijen sa PSA-om) — kritičan problem sa lancem razvoda koji se rano isteže. KRITIČNO proveriti. Motor Prince N12/N14 — proveriti i kvar turbo pumpe.",
+      "2013+ (Mk3 F56)": "Motor B38 (BMW-ov) pouzdan. Proveriti stanje iDrive/MINI Connected sistema. Proveriti stanje automatskog menjača (Aisin 6AT)."
+    },
+    "Countryman": {
+      "2010-2016 (R60)": "Motor 1.6 THP — isti lanac problem kao Cooper R56. ALL4 4WD sistem — proveriti stanje kvačila.",
+      "2016+ (F60)": "Motor B48/B47 (BMW-ov) pouzdan. Proveriti iDrive sistem. ALL4 4WD sistem dobar. Proveriti stanje panoramskog krova."
+    },
+    "Clubman": {
+      "2015+ (F54)": "Motor B47/B48 pouzdan. Proveriti stanje duplih zadnjih vrata i brtvi. ALL4 4WD sistem — proveriti. Proveriti MINI Connected sistem."
     }
   }
 }
