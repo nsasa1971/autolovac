@@ -1239,12 +1239,67 @@
         const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
         if (isIOS) prikaziPWABaner();
     });
+    // ── SERVICE WORKER (PWA offline podrška) ───────────────
     if ("serviceWorker" in navigator) {
         window.addEventListener("load", () => {
-            navigator.serviceWorker.register("/sw.js")
-                .then(() => console.log("AutoLovac PWA: offline rezim aktivan"))
-                .catch((e) => console.warn("SW registracija nije uspela:", e));
+            navigator.serviceWorker.register("/sw.js").then((reg) => {
+                console.log("AutoLovac PWA: offline režim aktivan");
+
+                // Detektuj novu verziju
+                reg.addEventListener("updatefound", () => {
+                    const noviSW = reg.installing;
+                    noviSW.addEventListener("statechange", () => {
+                        if (noviSW.state === "installed" && navigator.serviceWorker.controller) {
+                            prikaziObaveštenje();
+                        }
+                    });
+                });
+
+                // Odmah proveri da li postoji čekajuća verzija
+                if (reg.waiting) prikaziObaveštenje();
+            }).catch((e) => console.warn("SW registracija nije uspela:", e));
+
+            // Kada novi SW preuzme kontrolu — automatski osvežiti stranicu
+            let osveziOcekuje = false;
+            navigator.serviceWorker.addEventListener("controllerchange", () => {
+                if (osveziOcekuje) return;
+                osveziOcekuje = true;
+                window.location.reload();
+            });
         });
+    }
+
+    function prikaziObaveštenje() {
+        if (document.getElementById("sw-baner")) return; // već prikazan
+        const baner = document.createElement("div");
+        baner.id = "sw-baner";
+        baner.style.cssText = [
+            "position:fixed;top:0;left:0;right:0;z-index:9999",
+            "background:linear-gradient(135deg,#f5a623,#e08e10)",
+            "color:#1a0e00;padding:12px 16px",
+            "display:flex;align-items:center;justify-content:space-between;gap:12px",
+            "font-size:13px;font-weight:700",
+            "box-shadow:0 4px 20px rgba(0,0,0,0.4)"
+        ].join(";");
+        baner.innerHTML = `
+            <div style="display:flex;align-items:center;gap:8px">
+                <i class="fa-solid fa-rotate" style="font-size:16px"></i>
+                <span>Dostupna je nova verzija aplikacije!</span>
+            </div>
+            <button id="sw-azuriraj"
+                style="background:rgba(0,0,0,0.15);border:1px solid rgba(0,0,0,0.2);border-radius:8px;padding:7px 14px;font-size:12px;font-weight:800;color:#1a0e00;cursor:pointer;white-space:nowrap">
+                Ažuriraj sada
+            </button>
+        `;
+        document.body.prepend(baner);
+        document.getElementById("sw-azuriraj").onclick = () => {
+            navigator.serviceWorker.getRegistration().then((reg) => {
+                if (reg && reg.waiting) {
+                    reg.waiting.postMessage("SKIP_WAITING");
+                }
+            });
+            baner.remove();
+        };
     }
 
     // ── SELECTS ────────────────────────────────────────────

@@ -1,7 +1,8 @@
-const CACHE_IME = "autolovac-v1";
+// ── Promeni ovaj broj pri svakom deploymentu ──────────────
+const VERZIJA = "autolovac-v5";
+// ─────────────────────────────────────────────────────────
 
-// Fajlovi koji se keširaju pri instalaciji
-const KESIRAJ_PRI_INSTALACIJI = [
+const KESIRAJ = [
   "/",
   "/index.html",
   "/baza.json",
@@ -9,66 +10,89 @@ const KESIRAJ_PRI_INSTALACIJI = [
   "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
 ];
 
-// Instalacija — kesiraj sve bitne fajlove
-self.addEventListener("install", (event) => {
-  event.waitUntil(
-    caches.open(CACHE_IME).then((cache) => {
-      return cache.addAll(KESIRAJ_PRI_INSTALACIJI).catch((err) => {
-        console.warn("Neki fajlovi nisu kessirani:", err);
+// ── INSTALACIJA ───────────────────────────────────────────
+self.addEventListener("install", (e) => {
+  e.waitUntil(
+    caches.open(VERZIJA).then((cache) => {
+      return cache.addAll(KESIRAJ).catch((err) => {
+        console.warn("[SW] Neki fajlovi nisu keširani:", err);
       });
     })
   );
+  // Odmah preuzmi kontrolu — ne čekaj sledeće otvaranje
   self.skipWaiting();
 });
 
-// Aktivacija — obrisi stare cache verzije
-self.addEventListener("activate", (event) => {
-  event.waitUntil(
+// ── AKTIVACIJA — briše stare verzije ─────────────────────
+self.addEventListener("activate", (e) => {
+  e.waitUntil(
     caches.keys().then((kljucevi) => {
       return Promise.all(
         kljucevi
-          .filter((k) => k !== CACHE_IME)
-          .map((k) => caches.delete(k))
+          .filter((k) => k !== VERZIJA)
+          .map((k) => {
+            console.log("[SW] Brišem stari keš:", k);
+            return caches.delete(k);
+          })
       );
+    }).then(() => {
+      // Preuzmi kontrolu nad svim otvorenim tabovima odmah
+      return self.clients.claim();
     })
   );
-  self.clients.claim();
 });
 
-// Fetch — Cache first, network fallback
-self.addEventListener("fetch", (event) => {
-  // Firebase i eksterni API pozivi — uvek mreza, nikad cache
-  const url = event.request.url;
+// ── FETCH — Network first za HTML i JSON, Cache first za ostalo
+self.addEventListener("fetch", (e) => {
+  const url = e.request.url;
+
+  // Firebase i eksterni API — uvek mreža
   if (
     url.includes("firestore.googleapis.com") ||
     url.includes("firebase") ||
     url.includes("gstatic.com/firebasejs")
   ) {
-    return; // prepusti browseru
+    return;
   }
 
-  event.respondWith(
-    caches.match(event.request).then((kesiran) => {
-      if (kesiran) return kesiran;
-
-      // Nije u cache — pokusaj mreza pa kesiraj
-      return fetch(event.request)
+  // HTML i JSON — Network first (uvek pokušaj novu verziju)
+  if (
+    e.request.destination === "document" ||
+    url.endsWith(".json") ||
+    url.endsWith(".html")
+  ) {
+    e.respondWith(
+      fetch(e.request)
         .then((odgovor) => {
-          if (!odgovor || odgovor.status !== 200 || odgovor.type === "opaque") {
-            return odgovor;
-          }
+          if (!odgovor || odgovor.status !== 200) return odgovor;
           const klon = odgovor.clone();
-          caches.open(CACHE_IME).then((cache) => {
-            cache.put(event.request, klon);
-          });
+          caches.open(VERZIJA).then((cache) => cache.put(e.request, klon));
           return odgovor;
         })
-        .catch(() => {
-          // Offline fallback za HTML stranice
-          if (event.request.destination === "document") {
-            return caches.match("/index.html");
-          }
-        });
+        .catch(() => caches.match(e.request)) // offline fallback
+    );
+    return;
+  }
+
+  // Ostalo (CSS, JS, fontovi) — Cache first
+  e.respondWith(
+    caches.match(e.request).then((kesiran) => {
+      if (kesiran) return kesiran;
+      return fetch(e.request).then((odgovor) => {
+        if (!odgovor || odgovor.status !== 200 || odgovor.type === "opaque") {
+          return odgovor;
+        }
+        const klon = odgovor.clone();
+        caches.open(VERZIJA).then((cache) => cache.put(e.request, klon));
+        return odgovor;
+      });
     })
   );
+});
+
+// ── PORUKA OD KLIJENTA ────────────────────────────────────
+self.addEventListener("message", (e) => {
+  if (e.data === "SKIP_WAITING") {
+    self.skipWaiting();
+  }
 });
