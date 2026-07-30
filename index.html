@@ -816,20 +816,20 @@
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
 
-<!-- PWA INSTALL BANER -->
+<!-- PWA BANER — Saznaj vise -->
 <div id="pwa-baner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:300;padding:12px 16px 24px;background:linear-gradient(to top, var(--bg) 80%, transparent)">
     <div style="max-width:520px;margin:0 auto;background:var(--surface);border:1px solid rgba(245,166,35,0.3);border-radius:14px;padding:14px 16px;display:flex;align-items:center;gap:12px;box-shadow:0 -4px 30px rgba(0,0,0,0.5)">
         <div style="width:42px;height:42px;background:var(--gold-dim);border:1px solid rgba(245,166,35,0.3);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
-            <i class="fa-solid fa-mobile-screen" style="color:var(--gold);font-size:18px"></i>
+            <i class="fa-solid fa-circle-info" style="color:var(--gold);font-size:18px"></i>
         </div>
         <div style="flex:1;min-width:0">
-            <div style="font-size:13px;font-weight:800;color:#fff;margin-bottom:2px">Instaliraj AutoLovac PRO</div>
-            <div id="pwa-uputstvo" style="font-size:11px;color:var(--text2);line-height:1.4"></div>
+            <div style="font-size:13px;font-weight:800;color:#fff;margin-bottom:2px">AutoLovac PRO</div>
+            <div style="font-size:11px;color:var(--text2);line-height:1.4">Besplatan digitalni asistent za pregled polovnog vozila</div>
         </div>
         <div style="display:flex;flex-direction:column;gap:6px;flex-shrink:0">
-            <button id="pwa-btn-instaliraj" style="display:none;background:var(--gold);border:none;border-radius:8px;padding:8px 14px;font-size:12px;font-weight:800;color:#1a0e00;cursor:pointer;white-space:nowrap">
-                Instaliraj
-            </button>
+            <a href="https://autolovac.rs/kako-radi" target="_blank" style="background:var(--gold);border:none;border-radius:8px;padding:8px 14px;font-size:12px;font-weight:800;color:#1a0e00;cursor:pointer;white-space:nowrap;text-decoration:none;display:block;text-align:center">
+                Saznaj više
+            </a>
             <button onclick="zatvoriPWABaner()" style="background:none;border:none;color:var(--text3);font-size:11px;cursor:pointer;padding:4px;text-align:center">
                 Zatvori
             </button>
@@ -1168,50 +1168,13 @@
         azurirajHeaderDugme();
     }
 
-    // ── PWA INSTALL BANER ──────────────────────────────────
-    let deferredPrompt = null;
-
-    // Uhvati browser-ov beforeinstallprompt event (Android Chrome)
-    window.addEventListener("beforeinstallprompt", (e) => {
-        e.preventDefault();
-        deferredPrompt = e;
-        prikaziPWABaner();
-    });
-
+    // ── PWA BANER — Saznaj vise ────────────────────────────
     function prikaziPWABaner() {
-        // Ne prikazuj ako je vec instaliran
         if (window.matchMedia("(display-mode: standalone)").matches) return;
-        // Ne prikazuj ako je korisnik vec zatvorio
         if (localStorage.getItem("pwa_baner_zatvoren")) return;
-
-        const baner  = document.getElementById("pwa-baner");
-        const tekst  = document.getElementById("pwa-uputstvo");
-        const btnIns = document.getElementById("pwa-btn-instaliraj");
-
-        const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
-        const isAndroid = /android/i.test(navigator.userAgent);
-
-        if (isIOS) {
-            tekst.innerHTML = `Pritisni <i class="fa-solid fa-arrow-up-from-bracket" style="color:var(--gold)"></i> pa <b style="color:#fff">Dodaj na početni ekran</b>`;
-            btnIns.style.display = "none";
-        } else if (deferredPrompt) {
-            tekst.textContent = "Dodaj aplikaciju na početni ekran — radi i bez interneta.";
-            btnIns.style.display = "block";
-            btnIns.onclick = async () => {
-                deferredPrompt.prompt();
-                const { outcome } = await deferredPrompt.userChoice;
-                deferredPrompt = null;
-                zatvoriPWABaner();
-            };
-        } else if (isAndroid) {
-            tekst.innerHTML = `U Chrome meniju izaberi <b style="color:#fff">Dodaj na početni ekran</b>`;
-            btnIns.style.display = "none";
-        } else {
-            return; // Desktop — ne prikazuj
-        }
-
-        // Prikazi baner nakon 8 sekundi
-        setTimeout(() => { baner.style.display = "block"; }, 8000);
+        setTimeout(() => {
+            document.getElementById("pwa-baner").style.display = "block";
+        }, 8000);
     }
 
     function zatvoriPWABaner() {
@@ -1219,10 +1182,8 @@
         localStorage.setItem("pwa_baner_zatvoren", "1");
     }
 
-    // Pozovi odmah u slucaju da beforeinstallprompt nije stigao (iOS)
     window.addEventListener("load", () => {
-        const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
-        if (isIOS) prikaziPWABaner();
+        prikaziPWABaner();
     });
     // ── SERVICE WORKER (PWA offline podrška) ───────────────
     if ("serviceWorker" in navigator) {
